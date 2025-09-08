@@ -1,1 +1,8 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Edu+QLD+Beginner:wght@400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&family=Prata&display=swap');
+@import 'remixicon/fonts/remixicon.css';
+
+.prata {
+  font-family: "Prata", serif;
+
+}
