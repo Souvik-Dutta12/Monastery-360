@@ -8,7 +8,7 @@ const CarouselPage = () => {
   const autoplayRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const totalItems = 6; // keep in sync with rendered items
+  const totalItems = 8; 
   const visibleItems = 3; // show 3 cards on screen
   const gapPx = 24; // gap-6 = 24px
   const paddingX = 32; // px-4 (left+right) on the scroller = 32px total

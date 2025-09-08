@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Card from '../components/Card'
 import frame from '../assets/Frame 1.png'
 import CarouselPage from '../components/CarouselPage'
+import Footer from '../components/Footer'
 
 
 const Home = () => {
@@ -36,9 +37,9 @@ const Home = () => {
 
       <div className='w-full relative h-auto   ' >
         <div className="absolute inset-0">
-    <img src={frame} alt="frame" className="w-full h-full object-cover" />
-  </div>
-        
+          <img src={frame} alt="frame" className="w-full h-full object-cover" />
+        </div>
+
         <h1 className="prata text-4xl font-bold pt-10 text-red-800  ml-7">
           Discover
         </h1>
@@ -47,10 +48,10 @@ const Home = () => {
           Live Events
         </h1>
         <CarouselPage />
-        
+<Footer />
       </div>
 
-
+      
 
 
     </div>

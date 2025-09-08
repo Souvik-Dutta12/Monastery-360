@@ -1,5 +1,6 @@
 import React from "react";
 import card from "../assets/card.png";
+import vector from "../assets/vector.png";
 
 const Card = () => {
   return (
@@ -13,9 +14,12 @@ const Card = () => {
         pariatur laudantium quos a officiis, non eligendi quisquam tenetur libero
         repellat voluptas quas ratione, aliquid nemo porro minus veniam nobis?
       </p>
-      <span className="inline-block mt-3 text-red-600 font-medium cursor-pointer hover:underline">
+      <div className="flex items-center justify-between mt-4">
+        <span className="inline-block mt-3 text-red-800 font-medium cursor-pointer hover:underline">
         Read more <i className="ri-arrow-right-line"></i>
       </span>
+      <img src={vector} alt="" className="w-10 "/>
+      </div>
     </div>
   );
 };
