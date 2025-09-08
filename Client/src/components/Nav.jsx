@@ -7,15 +7,15 @@ const Nav = () => {
       <div className=' h-full flex items-center justify-center cursor-pointer'>
         <Link to={'/'} className='h-full flex items-center justify-center'>
           <img src={logo} alt="logo" className=' h-full' />
-          <div className='prata text-4xl text-red-900 text-shadow-lg'>Monastery 360</div>
+          <div className='prata text-4xl text-amber-300 text-shadow-lg'>Monastery <span className='text-amber-50'>360</span></div>
         </Link>
       </div>
       <div className='flex justify-between w-auto  gap-70'>
-        <div className='flex gap-10  w-auto items-center'>
-          <span><Link to={'#'} className='prata text-red-950 text-shadow-md'>Home</Link></span>
-          <span><Link to={'#'} className='prata text-red-950 text-shadow-md'>Explore</Link></span>
-          <span><Link to={'#'} className='prata text-red-950 text-shadow-md'>Events</Link></span>
-          <span><Link to={'#'} className='prata text-red-950 text-shadow-md'>Digital Archives</Link></span>
+        <div className='flex gap-10  w-auto items-center pl-10'>
+          <span><Link to={'#'} className='prata text-amber-50 hover:text-amber-300 duration-300 text-shadow-md'>Home</Link></span>
+          <span><Link to={'#'} className='prata text-amber-50 hover:text-amber-300 duration-300 text-shadow-md'>Explore</Link></span>
+          <span><Link to={'#'} className='prata text-amber-50 hover:text-amber-300 duration-300 text-shadow-md'>Events</Link></span>
+          <span><Link to={'#'} className='prata text-amber-50 hover:text-amber-300 duration-300 text-shadow-md'>Digital Archives</Link></span>
         </div>
         <div className='flex gap-5'>
           <button className='px-5 py-2 text-center bg-red-900 hover:bg-red-800 duration-300 text-amber-100 rounded-lg border cursor-pointer'>
