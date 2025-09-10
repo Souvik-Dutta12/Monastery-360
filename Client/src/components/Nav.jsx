@@ -56,10 +56,10 @@ const Nav = () => {
         </div>
         <div className='flex gap-5'>
           <button className='px-5 py-2 text-center bg-red-900 hover:bg-red-800 duration-300 text-amber-100 rounded-lg border cursor-pointer'>
-            <Link to={'#'} className='prata '>Login</Link>
+            <Link to={'/sign-in'} className='prata '>Login</Link>
           </button>
           <button className='px-5 py-2 text-center bg-amber-100 hover:bg-amber-200 duration-300 text-red-900 rounded-lg border cursor-pointer'>
-            <Link to={'#'} className='prata '>Sign up</Link>
+            <Link to={'/sign-up'} className='prata '>Sign up</Link>
           </button>
         </div>
       </div>

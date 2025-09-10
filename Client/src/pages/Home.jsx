@@ -48,10 +48,10 @@ const Home = () => {
           Live Events
         </h1>
         <CarouselPage />
-<Footer />
+        <Footer />
       </div>
 
-      
+
 
 
     </div>

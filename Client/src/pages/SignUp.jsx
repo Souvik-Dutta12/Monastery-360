@@ -1,0 +1,76 @@
+import React from 'react'
+import { SignUp } from '@clerk/clerk-react'
+import { Link } from 'react-router-dom'
+import logo from '../assets/logo.png'
+import frame from '../assets/Frame 1.png'
+
+const SignUpPage = () => {
+  return (
+    <div className="min-h-screen bg-[#FFF5E0] relative">
+      {/* Background Frame */}
+      <div className="absolute inset-0">
+        <img src={frame} alt="frame" className="w-full h-full object-cover" />
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
+        <div className="w-full max-w-md">
+          {/* Logo and branding */}
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <img src={logo} alt="Monastery 360" className="h-12" />
+              <div className="text-red-900">
+                <h1 className="text-2xl font-bold text-red-800 prata">Monastery 360</h1>
+                <p className="text-sm text-red-700 prata">Sikkim Heritage</p>
+              </div>
+            </div>
+            <p className="text-red-800 prata">Create your account to explore Sikkim's heritage</p>
+          </div>
+
+          {/* Clerk SignUp Component */}
+          <div className="bg-white/90 backdrop-blur-md rounded-xl p-6 border border-red-200 shadow-lg">
+            <SignUp 
+              appearance={{
+                elements: {
+                  formButtonPrimary: 'bg-red-900 hover:bg-red-800 text-amber-100 border-0',
+                  card: 'bg-transparent shadow-none',
+                  headerTitle: 'text-red-900 prata',
+                  headerSubtitle: 'text-red-700',
+                  socialButtonsBlockButton: 'bg-red-50 hover:bg-red-100 text-red-900 border-red-200',
+                  formFieldInput: 'bg-white border-red-200 text-red-900 placeholder-red-500',
+                  formFieldLabel: 'text-red-800',
+                  identityPreviewText: 'text-red-900',
+                  formResendCodeLink: 'text-red-800 hover:text-red-900',
+                  footerActionLink: 'text-red-800 hover:text-red-900',
+                  dividerLine: 'bg-red-200',
+                  dividerText: 'text-red-700',
+                  formFieldErrorText: 'text-red-600',
+                  identityPreviewEditButton: 'text-red-800 hover:text-red-900',
+                  formFieldSuccessText: 'text-green-700'
+                }
+              }}
+              redirectUrl="/dashboard"
+              signInUrl="/sign-in"
+              forceRedirectUrl="/dashboard"
+            />
+          </div>
+
+          {/* Additional links */}
+          <div className="text-center mt-6">
+            <p className="text-red-800">
+              Already have an account?{' '}
+              <Link to="/sign-in" className="text-red-900 hover:text-red-700 font-semibold">
+                Sign in here
+              </Link>
+            </p>
+            <Link to="/" className="text-red-800 hover:text-red-700 text-sm mt-2 inline-block">
+              ← Back to Home
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default SignUpPage
