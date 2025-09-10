@@ -20,13 +20,13 @@ const DashboardSidebar = ({ active, onChange }) => {
 
   return (
     <aside className='fixed left-0 top-0 h-screen w-72 bg-[#0D244B] backdrop-blur-md text-white z-50'>
-      <div className='h-20 flex  items-center px-6 text-2xl prata border-b border-red-900/30 mt-3'>
+      <Link to={'/'} className='h-20 flex  items-center px-6 text-2xl prata border-b border-red-900/30 mt-3'>
         <img src={logo} alt="" className='h-full'/>
         <div className='prata flex flex-col '>
           <p className='text-amber-200'>Monastery 360</p>
         <p className='font-light'>Sikkim Heritage</p>
         </div>
-      </div>
+      </Link>
       <nav className='p-4 flex flex-col gap-1'>
         {items.map((item) => (
           <button

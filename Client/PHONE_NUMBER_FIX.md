@@ -85,3 +85,4 @@ When you're ready for phone authentication:
 ---
 
 **Recommendation**: Start with email-only authentication for now. It's free, reliable, and works perfectly for your Monastery 360 app!
+
