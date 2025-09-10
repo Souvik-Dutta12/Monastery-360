@@ -6,6 +6,7 @@ import Users from '../components/Users'
 import Analytics from '../components/Analytics'
 import Archives from '../components/Archives'
 import Tours from '../components/Tours'
+import { UserProfile } from '@clerk/clerk-react'
 
 const Dashboard = () => {
   const [active, setActive] = useState('Monasteries')
@@ -35,6 +36,24 @@ const Dashboard = () => {
           )}
           {active === 'Analytics' && (
             <Analytics />
+          )}
+          {active === 'Profile' && (
+            <div className='bg-white/90 backdrop-blur-md rounded-xl p-4 sm:p-6 border border-red-200 shadow-lg'>
+              <UserProfile
+                appearance={{
+                  elements: {
+                    card: 'bg-transparent shadow-none',
+                    navbar: 'hidden',
+                    headerTitle: 'text-red-900 prata',
+                    headerSubtitle: 'text-red-700',
+                    formButtonPrimary: 'bg-red-900 hover:bg-red-800 text-amber-100 border-0',
+                    formFieldInput: 'bg-white border-red-200 text-red-900 placeholder-red-500',
+                    formFieldLabel: 'text-red-800',
+                    formFieldAction: 'text-red-800 hover:text-red-900',
+                  }
+                }}
+              />
+            </div>
           )}
           </div>
         </main>

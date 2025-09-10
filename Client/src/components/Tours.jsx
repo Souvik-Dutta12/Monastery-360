@@ -234,65 +234,57 @@ const Tours = ({ tours = defaultTours }) => {
   }
 
   return (
-    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div className="w-full flex flex-col gap-4 px-3 sm:px-4">
       {tours.map((tour) => {
         const isExpanded = expandedTour?.id === tour.id
         return (
-          <div key={tour.id} style={{ border: '1px solid #e5e7eb', borderRadius: '12px', overflow: 'hidden', background: '#fff' }}>
+          <div key={tour.id} className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
             <button
               onClick={() => setExpandedId(tour.id)}
-              style={{
-                width: '100%',
-                textAlign: 'left',
-                padding: '14px 16px',
-                background: isExpanded ? '#f8fafc' : '#fff',
-                border: 0,
-                borderBottom: isExpanded ? '1px solid #e5e7eb' : '1px solid transparent',
-                cursor: 'pointer'
-              }}
+              className={`w-full text-left px-3 sm:px-4 py-3 ${isExpanded ? 'bg-slate-50 border-b border-gray-200' : 'bg-white'} cursor-pointer`}
             >
-              <div style={{ display: 'flex', gap: '8px', alignItems: 'baseline' }}>
-                <h3 style={{ margin: 0, fontSize: '16px', color: '#111827', flex: 1 }}>{tour.title}</h3>
-                <span style={{ fontSize: '12px', color: '#6b7280' }}>{tour.period}</span>
+              <div className="flex flex-wrap items-baseline gap-2">
+                <h3 className="m-0 text-base sm:text-lg text-gray-900 font-semibold flex-1">{tour.title}</h3>
+                <span className="text-xs sm:text-sm text-gray-500">{tour.period}</span>
               </div>
-              <div style={{ fontSize: '12px', color: '#6b7280' }}>{tour.description}</div>
-              <div style={{ marginTop: '6px', display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+              <div className="text-xs sm:text-sm text-gray-600">{tour.description}</div>
+              <div className="mt-1 flex gap-1.5 flex-wrap">
                 {(tour.tags || []).map((tag) => (
-                  <span key={tag} style={{ fontSize: '11px', background: '#eef2ff', color: '#3730a3', padding: '2px 8px', borderRadius: '9999px' }}>#{tag}</span>
+                  <span key={tag} className="text-[11px] bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-full">#{tag}</span>
                 ))}
               </div>
             </button>
 
             {isExpanded && (
-              <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <div className="px-3 sm:px-4 py-3 flex flex-col gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
                   <InfoItem label="Location" value={tour.location} />
                   <InfoItem label="Period" value={tour.period} />
                   <InfoItem label="Credits" value={tour.credits} />
                   <InfoItem label="Date" value={tour.date} />
                 </div>
 
-                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                  <div style={{ flex: 1 }} />
-                  <button onClick={handleToggleAutorotate} style={btnStyle()}>{isAutoRotating ? 'Pause' : 'Play'}</button>
-                  <button onClick={handleResetView} style={btnStyle()}>Reset</button>
-                  <button onClick={handleFullscreen} style={btnStyle()}>Fullscreen</button>
-                  <button onClick={handleShare} style={btnStyle()}>Share</button>
-                  <button onClick={handleDownload} style={btnStyle()}>Download</button>
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="flex-1" />
+                  <button onClick={handleToggleAutorotate} className="px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50">{isAutoRotating ? 'Pause' : 'Play'}</button>
+                  <button onClick={handleResetView} className="px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50">Reset</button>
+                  <button onClick={handleFullscreen} className="px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50">Fullscreen</button>
+                  <button onClick={handleShare} className="px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50">Share</button>
+                  <button onClick={handleDownload} className="px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50">Download</button>
                 </div>
 
-                <div style={{ position: 'relative', width: '100%', height: '460px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e5e7eb' }}>
-                  <div ref={containerRef} style={{ width: '100%', height: '100%', background: '#000' }} />
+                <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] lg:h-[460px] rounded-xl overflow-hidden border border-gray-200">
+                  <div ref={containerRef} className="w-full h-full bg-black" />
                   {loading && (
-                    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af', background: 'rgba(0,0,0,0.2)', backdropFilter: 'blur(1px)' }}>
+                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-black/20 backdrop-blur-[1px]">
                       Loading 360° view…
                     </div>
                   )}
                 </div>
 
                 {tour.hotSpots && tour.hotSpots.length > 0 && (
-                  <div style={{ fontSize: '12px', color: '#6b7280' }}>
-                    <strong style={{ color: '#111827' }}>Hotspots:</strong> {tour.hotSpots.map(h => h.text).join(', ')}
+                  <div className="text-xs sm:text-sm text-gray-600">
+                    <strong className="text-gray-900">Hotspots:</strong> {tour.hotSpots.map(h => h.text).join(', ')}
                   </div>
                 )}
               </div>
@@ -307,22 +299,13 @@ const Tours = ({ tours = defaultTours }) => {
 function InfoItem({ label, value }) {
   if (!value) return null
   return (
-    <div style={{ display: 'flex', gap: '6px', alignItems: 'baseline' }}>
-      <span style={{ fontSize: '12px', color: '#6b7280', minWidth: '64px' }}>{label}:</span>
-      <span style={{ fontSize: '12px', color: '#111827' }}>{value}</span>
+    <div className="flex items-baseline gap-1.5">
+      <span className="text-xs text-gray-500 min-w-16">{label}:</span>
+      <span className="text-xs text-gray-900">{value}</span>
     </div>
   )
 }
 
-function btnStyle() {
-  return {
-    padding: '8px 12px',
-    borderRadius: '8px',
-    border: '1px solid #e5e7eb',
-    background: '#fff',
-    cursor: 'pointer',
-    fontSize: '13px'
-  }
-}
+function btnStyle() { return {} }
 
 export default Tours

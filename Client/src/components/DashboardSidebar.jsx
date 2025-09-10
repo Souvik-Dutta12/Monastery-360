@@ -16,6 +16,7 @@ const DashboardSidebar = ({ active, onChange }) => {
     { key: 'Tours', icon: 'ri-compass-3-line' },
     { key: 'Archives', icon: 'ri-article-line' },
     { key: 'Analytics', icon: 'ri-line-chart-fill' },
+    { key: 'Profile', icon: 'ri-user-3-line' },
   ]
 
   return (
