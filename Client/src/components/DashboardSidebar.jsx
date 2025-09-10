@@ -14,7 +14,7 @@ const DashboardSidebar = ({ active, onChange }) => {
     { key: 'Monasteries', icon: 'ri-dashboard-line' },
     { key: 'Users', icon: 'ri-user-line' },
     { key: 'Tours', icon: 'ri-compass-3-line' },
-    { key: 'Documents', icon: 'ri-article-line' },
+    { key: 'Archives', icon: 'ri-article-line' },
     { key: 'Analytics', icon: 'ri-line-chart-fill' },
   ]
 

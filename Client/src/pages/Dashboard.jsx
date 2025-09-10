@@ -3,6 +3,9 @@ import DashboardSidebar from '../components/DashboardSidebar'
 import frame from '../assets/Frame 1.png'
 import Monastery from '../components/Monastery'
 import Users from '../components/Users'
+import Analytics from '../components/Analytics'
+import Archives from '../components/Archives'
+import Tours from '../components/Tours'
 
 const Dashboard = () => {
   const [active, setActive] = useState('Monasteries')
@@ -25,22 +28,13 @@ const Dashboard = () => {
             <Users />
           )}
           {active === 'Tours' && (
-            <div className='bg-white rounded-xl shadow p-6 border border-red-100'>
-              <div className='text-red-900 prata text-xl mb-2'>Tours content</div>
-              <div className='text-red-800'>Build your tours page here.</div>
-            </div>
+            <Tours />
           )}
-          {active === 'Documents' && (
-            <div className='bg-white rounded-xl shadow p-6 border border-red-100'>
-              <div className='text-red-900 prata text-xl mb-2'>Documents content</div>
-              <div className='text-red-800'>Build your documents page here.</div>
-            </div>
+          {active === 'Archives' && (
+            <Archives />
           )}
           {active === 'Analytics' && (
-            <div className='bg-white rounded-xl shadow p-6 border border-red-100'>
-              <div className='text-red-900 prata text-xl mb-2'>Analytics content</div>
-              <div className='text-red-800'>Build your analytics page here.</div>
-            </div>
+            <Analytics />
           )}
           </div>
         </main>

@@ -10,15 +10,15 @@ const Users = () => {
                 <h1 className='prata text-xl     text-[#0D244B] '>Manage your team members & account permissions here </h1>
             </div>
             <Searchbar />
-            <div className='w-full prata text-xl font-semibold h-12 mt-5 flex items-center px-12 gap-63 text-[#0D244B]'>
-                <span>Username</span>
-                <span>Access</span>
-                <span>Last Active</span>
-                <span>Date added</span>
+            <div className='w-full prata text-xl font-semibold h-12 mt-5 flex items-center px-14 gap-63 text-[#0D244B]'>
+                <span className='ml-10'>Username</span>
+                <span className='-ml-2'>Access</span>
+                <span className='-ml-10'>Last Active</span>
+                <span className='-ml-20'>Date added</span>
             </div>
             <div className='w-[75%] min-h-[65vh] mt-3 bg-white/60 ml-12'>
                 <div className='w-full h-auto flex flex-col justify-center '>
-                {Array.from({length:5}).map((_,i)=><User />)}
+                {Array.from({length:4}).map((_,i)=><User />)}
             </div>
             </div>
         </div>
