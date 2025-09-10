@@ -1,0 +1,504 @@
+# Create Researcher Dashboard
+researcher_dashboard_html = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Researcher Dashboard - Monastery360</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/researcher.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar researcher-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <div class="logo-circle researcher-logo">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">Monastery360</span>
+                    <span class="logo-role">Research Portal</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-title">RESEARCH</div>
+                <ul>
+                    <li><a href="#overview" class="nav-item active" onclick="showSection('overview')">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Research Overview</span>
+                    </a></li>
+                    <li><a href="#advanced-search" class="nav-item" onclick="showSection('advanced-search')">
+                        <i class="fas fa-search-plus"></i>
+                        <span>Advanced Search</span>
+                    </a></li>
+                    <li><a href="#manuscripts" class="nav-item" onclick="showSection('manuscripts')">
+                        <i class="fas fa-scroll"></i>
+                        <span>Digital Manuscripts</span>
+                    </a></li>
+                    <li><a href="#data-analysis" class="nav-item" onclick="showSection('data-analysis')">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Data Analysis</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">COLLABORATION</div>
+                <ul>
+                    <li><a href="#publications" class="nav-item" onclick="showSection('publications')">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Publications</span>
+                    </a></li>
+                    <li><a href="#collaborations" class="nav-item" onclick="showSection('collaborations')">
+                        <i class="fas fa-users"></i>
+                        <span>Research Network</span>
+                    </a></li>
+                    <li><a href="#citations" class="nav-item" onclick="showSection('citations')">
+                        <i class="fas fa-quote-right"></i>
+                        <span>Citations</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">TOOLS</div>
+                <ul>
+                    <li><a href="#ai-analysis" class="nav-item" onclick="showSection('ai-analysis')">
+                        <i class="fas fa-brain"></i>
+                        <span>AI Analysis</span>
+                    </a></li>
+                    <li><a href="#visualization" class="nav-item" onclick="showSection('visualization')">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Data Visualization</span>
+                    </a></li>
+                    <li><a href="#exports" class="nav-item" onclick="showSection('exports')">
+                        <i class="fas fa-download"></i>
+                        <span>Export Tools</span>
+                    </a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar researcher-avatar">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name">Dr. Research User</span>
+                    <span class="user-role">Buddhist Studies</span>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h1 id="page-title">Research Overview</h1>
+                <p id="page-subtitle">Advanced monastery heritage research platform</p>
+            </div>
+            <div class="header-right">
+                <div class="search-widget">
+                    <input type="text" placeholder="Search manuscripts, artifacts..." class="quick-search">
+                    <button class="search-btn" onclick="performQuickSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <button class="notification-btn" onclick="toggleNotifications()">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                <button class="help-btn" onclick="openHelp()">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <div class="content-container">
+            <!-- Research Overview Section -->
+            <section id="overview-section" class="content-section active">
+                <div class="research-stats-grid">
+                    <div class="stat-card research-stat">
+                        <div class="stat-icon manuscripts-icon">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>1,247</h3>
+                            <p>Manuscripts Analyzed</p>
+                            <small class="stat-change positive">+23% this month</small>
+                        </div>
+                    </div>
+                    <div class="stat-card research-stat">
+                        <div class="stat-icon citations-icon">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>89</h3>
+                            <p>Research Citations</p>
+                            <small class="stat-change positive">+12% this month</small>
+                        </div>
+                    </div>
+                    <div class="stat-card research-stat">
+                        <div class="stat-icon publications-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>15</h3>
+                            <p>Published Papers</p>
+                            <small class="stat-change neutral">2 under review</small>
+                        </div>
+                    </div>
+                    <div class="stat-card research-stat">
+                        <div class="stat-icon collaborations-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>34</h3>
+                            <p>Active Collaborations</p>
+                            <small class="stat-change positive">+8 this quarter</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-dashboard-grid">
+                    <div class="dashboard-card recent-research">
+                        <div class="card-header">
+                            <h3>Recent Research Activity</h3>
+                            <button class="view-all-btn" onclick="showSection('manuscripts')">View All</button>
+                        </div>
+                        <div class="research-timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot completed"></div>
+                                <div class="timeline-content">
+                                    <h4>Tibetan Manuscript Analysis</h4>
+                                    <p>Completed OCR analysis of 15th century Prajnaparamita texts from Rumtek</p>
+                                    <small>2 hours ago</small>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot in-progress"></div>
+                                <div class="timeline-content">
+                                    <h4>Architectural Study</h4>
+                                    <p>Comparative analysis of monastery construction patterns (1600-1800)</p>
+                                    <small>1 day ago</small>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot pending"></div>
+                                <div class="timeline-content">
+                                    <h4>Cultural Impact Assessment</h4>
+                                    <p>Digital preservation impact on local Buddhist communities</p>
+                                    <small>3 days ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card data-visualization">
+                        <div class="card-header">
+                            <h3>Research Trends</h3>
+                            <select class="time-filter" onchange="updateResearchChart()">
+                                <option value="month">This Month</option>
+                                <option value="quarter">This Quarter</option>
+                                <option value="year">This Year</option>
+                            </select>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="researchTrendsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card manuscript-categories">
+                        <div class="card-header">
+                            <h3>Manuscript Categories</h3>
+                        </div>
+                        <div class="category-grid">
+                            <div class="category-item" onclick="filterByCategory('sutras')">
+                                <div class="category-icon">
+                                    <i class="fas fa-om"></i>
+                                </div>
+                                <h4>Buddhist Sutras</h4>
+                                <p>423 documents</p>
+                                <div class="category-progress">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="category-item" onclick="filterByCategory('commentaries')">
+                                <div class="category-icon">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <h4>Commentaries</h4>
+                                <p>312 documents</p>
+                                <div class="category-progress">
+                                    <div class="progress-bar" style="width: 67%"></div>
+                                </div>
+                            </div>
+                            <div class="category-item" onclick="filterByCategory('historical')">
+                                <div class="category-icon">
+                                    <i class="fas fa-landmark"></i>
+                                </div>
+                                <h4>Historical Records</h4>
+                                <p>178 documents</p>
+                                <div class="category-progress">
+                                    <div class="progress-bar" style="width: 45%"></div>
+                                </div>
+                            </div>
+                            <div class="category-item" onclick="filterByCategory('art')">
+                                <div class="category-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <h4>Art & Iconography</h4>
+                                <p>234 documents</p>
+                                <div class="category-progress">
+                                    <div class="progress-bar" style="width: 58%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card collaboration-network">
+                        <div class="card-header">
+                            <h3>Research Network</h3>
+                            <button class="view-all-btn" onclick="showSection('collaborations')">View Network</button>
+                        </div>
+                        <div class="collaborator-list">
+                            <div class="collaborator-item">
+                                <div class="collaborator-avatar">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" alt="Dr. Smith">
+                                </div>
+                                <div class="collaborator-info">
+                                    <h4>Dr. John Smith</h4>
+                                    <p>Tibetan Studies, Harvard</p>
+                                    <span class="collaboration-badge active">Active Project</span>
+                                </div>
+                            </div>
+                            <div class="collaborator-item">
+                                <div class="collaborator-avatar">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b332e234?w=50&h=50&fit=crop&crop=face" alt="Dr. Chen">
+                                </div>
+                                <div class="collaborator-info">
+                                    <h4>Dr. Li Chen</h4>
+                                    <p>Digital Humanities, Beijing</p>
+                                    <span class="collaboration-badge pending">Proposal Review</span>
+                                </div>
+                            </div>
+                            <div class="collaborator-item">
+                                <div class="collaborator-avatar">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" alt="Dr. Patel">
+                                </div>
+                                <div class="collaborator-info">
+                                    <h4>Dr. Raj Patel</h4>
+                                    <p>Buddhist Philosophy, Oxford</p>
+                                    <span class="collaboration-badge completed">Published Paper</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card ai-insights">
+                        <div class="card-header">
+                            <h3>AI Research Insights</h3>
+                        </div>
+                        <div class="insights-list">
+                            <div class="insight-item">
+                                <div class="insight-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <h4>Pattern Discovery</h4>
+                                    <p>Found recurring iconographic patterns in 12th-14th century manuscripts suggesting shared artistic traditions</p>
+                                    <button class="insight-btn" onclick="exploreInsight('patterns')">Explore</button>
+                                </div>
+                            </div>
+                            <div class="insight-item">
+                                <div class="insight-icon">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <h4>Connection Analysis</h4>
+                                    <p>Identified potential links between Sikkim monasteries and Tibetan mother monasteries</p>
+                                    <button class="insight-btn" onclick="exploreInsight('connections')">Explore</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Advanced Search Section -->
+            <section id="advanced-search-section" class="content-section">
+                <div class="section-header">
+                    <h2>Advanced Research Search</h2>
+                    <p>Powerful tools for deep research into monastery heritage</p>
+                </div>
+                
+                <div class="search-interface">
+                    <div class="search-filters-panel">
+                        <h3>Search Parameters</h3>
+                        <div class="filter-group">
+                            <label>Content Type</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" checked> Manuscripts</label>
+                                <label><input type="checkbox" checked> Murals</label>
+                                <label><input type="checkbox"> Architecture</label>
+                                <label><input type="checkbox"> Audio Records</label>
+                                <label><input type="checkbox"> Historical Photos</label>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Date Range</label>
+                            <div class="date-inputs">
+                                <input type="date" placeholder="From">
+                                <input type="date" placeholder="To">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Monastery</label>
+                            <select multiple class="monastery-select">
+                                <option value="rumtek">Rumtek Monastery</option>
+                                <option value="pemayangtse">Pemayangtse Monastery</option>
+                                <option value="tashiding">Tashiding Monastery</option>
+                                <option value="enchey">Enchey Monastery</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Language</label>
+                            <select class="language-select">
+                                <option value="all">All Languages</option>
+                                <option value="tibetan">Tibetan</option>
+                                <option value="sanskrit">Sanskrit</option>
+                                <option value="english">English</option>
+                                <option value="nepali">Nepali</option>
+                            </select>
+                        </div>
+                        
+                        <button class="search-btn primary" onclick="performAdvancedSearch()">
+                            <i class="fas fa-search"></i>
+                            Search Archive
+                        </button>
+                    </div>
+                    
+                    <div class="search-results-panel">
+                        <div class="results-header">
+                            <h3>Search Results</h3>
+                            <div class="results-controls">
+                                <select class="sort-select">
+                                    <option>Relevance</option>
+                                    <option>Date</option>
+                                    <option>Title</option>
+                                    <option>Monastery</option>
+                                </select>
+                                <button class="view-toggle" onclick="toggleResultsView()">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="search-results" id="searchResults">
+                            <!-- Results will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Other sections would continue similarly... -->
+        </div>
+    </main>
+
+    <!-- Research AI Assistant -->
+    <div class="research-ai-container" id="researchAI">
+        <div class="ai-header" onclick="toggleResearchAI()">
+            <div class="ai-avatar">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="ai-info">
+                <span class="ai-name">Research Assistant AI</span>
+                <span class="ai-status">Analyzing patterns</span>
+            </div>
+            <button class="ai-toggle">
+                <i class="fas fa-chevron-up" id="ai-icon"></i>
+            </button>
+        </div>
+        
+        <div class="ai-body" id="ai-body">
+            <div class="ai-tabs">
+                <button class="ai-tab active" onclick="switchAITab('analysis')">Analysis</button>
+                <button class="ai-tab" onclick="switchAITab('insights')">Insights</button>
+                <button class="ai-tab" onclick="switchAITab('chat')">Chat</button>
+            </div>
+            
+            <div class="ai-content">
+                <div id="analysis-tab" class="ai-tab-content active">
+                    <div class="analysis-results">
+                        <h4>Current Analysis</h4>
+                        <div class="analysis-item">
+                            <div class="analysis-progress">
+                                <span>Manuscript pattern recognition</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 73%"></div>
+                                </div>
+                                <span>73%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="insights-tab" class="ai-tab-content">
+                    <div class="ai-insights">
+                        <h4>Latest Insights</h4>
+                        <div class="insight-card">
+                            <h5>Iconographic Patterns</h5>
+                            <p>Discovered recurring mandala designs across 3 different monasteries</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="chat-tab" class="ai-tab-content">
+                    <div class="ai-messages" id="ai-messages">
+                        <div class="ai-message bot">
+                            <p>I can help you analyze patterns, suggest research directions, and identify connections in the monastery data. What would you like to explore?</p>
+                        </div>
+                    </div>
+                    <div class="ai-input">
+                        <input type="text" id="ai-input" placeholder="Ask about patterns, connections, or research suggestions...">
+                        <button onclick="sendAIMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/researcher.js"></script>
+</body>
+</html>'''
+
+with open('dashboard-researcher.html', 'w', encoding='utf-8') as f:
+    f.write(researcher_dashboard_html)
+
+print("✅ Researcher Dashboard (dashboard-researcher.html) created successfully!")

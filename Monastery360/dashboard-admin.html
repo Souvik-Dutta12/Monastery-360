@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Monastery360</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar admin-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <div class="logo-circle admin-logo">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">Monastery360</span>
+                    <span class="logo-role">Admin Control</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-title">OVERVIEW</div>
+                <ul>
+                    <li><a href="#overview" class="nav-item active" onclick="showSection('overview')">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a></li>
+                    <li><a href="#analytics" class="nav-item" onclick="showSection('analytics')">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a></li>
+                    <li><a href="#system-health" class="nav-item" onclick="showSection('system-health')">
+                        <i class="fas fa-heartbeat"></i>
+                        <span>System Health</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">CONTENT</div>
+                <ul>
+                    <li><a href="#content-management" class="nav-item" onclick="showSection('content-management')">
+                        <i class="fas fa-edit"></i>
+                        <span>Content Management</span>
+                    </a></li>
+                    <li><a href="#digital-assets" class="nav-item" onclick="showSection('digital-assets')">
+                        <i class="fas fa-images"></i>
+                        <span>Digital Assets</span>
+                    </a></li>
+                    <li><a href="#publications" class="nav-item" onclick="showSection('publications')">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Publications</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">USERS</div>
+                <ul>
+                    <li><a href="#user-management" class="nav-item" onclick="showSection('user-management')">
+                        <i class="fas fa-users-cog"></i>
+                        <span>User Management</span>
+                    </a></li>
+                    <li><a href="#roles-permissions" class="nav-item" onclick="showSection('roles-permissions')">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Roles & Permissions</span>
+                    </a></li>
+                    <li><a href="#activity-logs" class="nav-item" onclick="showSection('activity-logs')">
+                        <i class="fas fa-list-alt"></i>
+                        <span>Activity Logs</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">SYSTEM</div>
+                <ul>
+                    <li><a href="#settings" class="nav-item" onclick="showSection('settings')">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a></li>
+                    <li><a href="#backups" class="nav-item" onclick="showSection('backups')">
+                        <i class="fas fa-database"></i>
+                        <span>Backups</span>
+                    </a></li>
+                    <li><a href="#integrations" class="nav-item" onclick="showSection('integrations')">
+                        <i class="fas fa-plug"></i>
+                        <span>Integrations</span>
+                    </a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar admin-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name">Admin User</span>
+                    <span class="user-role">System Administrator</span>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header admin-header">
+            <div class="header-left">
+                <h1 id="page-title">System Dashboard</h1>
+                <p id="page-subtitle">Monastery360 administration and monitoring</p>
+            </div>
+            <div class="header-right">
+                <div class="system-status">
+                    <div class="status-indicator online"></div>
+                    <span>All Systems Online</span>
+                </div>
+                <div class="quick-actions">
+                    <button class="quick-action-btn" onclick="performBackup()">
+                        <i class="fas fa-download"></i>
+                        <span>Backup</span>
+                    </button>
+                    <button class="quick-action-btn" onclick="deployUpdates()">
+                        <i class="fas fa-rocket"></i>
+                        <span>Deploy</span>
+                    </button>
+                </div>
+                <button class="notification-btn" onclick="toggleNotifications()">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">7</span>
+                </button>
+                <div class="admin-avatar-header">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <div class="content-container">
+            <!-- Overview Section -->
+            <section id="overview-section" class="content-section active">
+                <div class="admin-stats-grid">
+                    <div class="stat-card admin-stat">
+                        <div class="stat-icon users-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>2,847</h3>
+                            <p>Total Users</p>
+                            <div class="stat-details">
+                                <small class="positive">+127 this week</small>
+                                <div class="mini-chart">
+                                    <canvas id="usersChart" width="60" height="20"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card admin-stat">
+                        <div class="stat-icon content-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>15,394</h3>
+                            <p>Digital Assets</p>
+                            <div class="stat-details">
+                                <small class="positive">+89 today</small>
+                                <div class="mini-chart">
+                                    <canvas id="contentChart" width="60" height="20"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card admin-stat">
+                        <div class="stat-icon performance-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>99.8%</h3>
+                            <p>System Uptime</p>
+                            <div class="stat-details">
+                                <small class="positive">Excellent</small>
+                                <div class="uptime-indicator">
+                                    <div class="uptime-bar" style="width: 99.8%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card admin-stat">
+                        <div class="stat-icon traffic-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>45.2K</h3>
+                            <p>Monthly Visitors</p>
+                            <div class="stat-details">
+                                <small class="positive">+12.3% vs last month</small>
+                                <div class="mini-chart">
+                                    <canvas id="trafficChart" width="60" height="20"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-dashboard-grid">
+                    <div class="dashboard-card system-overview">
+                        <div class="card-header">
+                            <h3>System Overview</h3>
+                            <div class="header-controls">
+                                <select class="time-selector" onchange="updateSystemCharts()">
+                                    <option value="24h">Last 24h</option>
+                                    <option value="7d">Last 7 days</option>
+                                    <option value="30d">Last 30 days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="system-metrics">
+                            <div class="metric-row">
+                                <div class="metric-item">
+                                    <span class="metric-label">CPU Usage</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill cpu" style="width: 65%"></div>
+                                    </div>
+                                    <span class="metric-value">65%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Memory</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill memory" style="width: 78%"></div>
+                                    </div>
+                                    <span class="metric-value">78%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Storage</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill storage" style="width: 45%"></div>
+                                    </div>
+                                    <span class="metric-value">45%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Bandwidth</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill bandwidth" style="width: 32%"></div>
+                                    </div>
+                                    <span class="metric-value">32%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card recent-activities">
+                        <div class="card-header">
+                            <h3>Recent Activities</h3>
+                            <button class="view-all-btn" onclick="showSection('activity-logs')">View All</button>
+                        </div>
+                        <div class="activity-timeline">
+                            <div class="activity-item critical">
+                                <div class="activity-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>System Alert</h4>
+                                    <p>High memory usage detected on server cluster</p>
+                                    <small>5 minutes ago</small>
+                                </div>
+                                <button class="activity-action" onclick="handleAlert('memory-high')">
+                                    <i class="fas fa-cog"></i>
+                                </button>
+                            </div>
+
+                            <div class="activity-item success">
+                                <div class="activity-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Backup Completed</h4>
+                                    <p>Daily backup successfully completed (2.3 GB)</p>
+                                    <small>2 hours ago</small>
+                                </div>
+                            </div>
+
+                            <div class="activity-item info">
+                                <div class="activity-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>New User Registration</h4>
+                                    <p>15 new researcher accounts created today</p>
+                                    <small>4 hours ago</small>
+                                </div>
+                            </div>
+
+                            <div class="activity-item warning">
+                                <div class="activity-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Database Maintenance</h4>
+                                    <p>Scheduled maintenance window starting tonight</p>
+                                    <small>6 hours ago</small>
+                                </div>
+                                <button class="activity-action" onclick="scheduleMaintenanceReminder()">
+                                    <i class="fas fa-bell"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card user-analytics">
+                        <div class="card-header">
+                            <h3>User Analytics</h3>
+                        </div>
+                        <div class="analytics-chart">
+                            <canvas id="userAnalyticsChart"></canvas>
+                        </div>
+                        <div class="user-breakdown">
+                            <div class="breakdown-item">
+                                <div class="breakdown-color tourists"></div>
+                                <span>Tourists (67%)</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-color researchers"></div>
+                                <span>Researchers (28%)</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-color admins"></div>
+                                <span>Admins (5%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card content-stats">
+                        <div class="card-header">
+                            <h3>Content Statistics</h3>
+                            <button class="view-all-btn" onclick="showSection('content-management')">Manage</button>
+                        </div>
+                        <div class="content-categories">
+                            <div class="category-stat">
+                                <div class="category-icon manuscripts">
+                                    <i class="fas fa-scroll"></i>
+                                </div>
+                                <div class="category-info">
+                                    <h4>8,472</h4>
+                                    <p>Manuscripts</p>
+                                    <small class="positive">+23 this week</small>
+                                </div>
+                            </div>
+
+                            <div class="category-stat">
+                                <div class="category-icon murals">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <div class="category-info">
+                                    <h4>3,891</h4>
+                                    <p>Murals & Art</p>
+                                    <small class="positive">+15 this week</small>
+                                </div>
+                            </div>
+
+                            <div class="category-stat">
+                                <div class="category-icon photos">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <div class="category-info">
+                                    <h4>2,156</h4>
+                                    <p>Historical Photos</p>
+                                    <small class="neutral">+7 this week</small>
+                                </div>
+                            </div>
+
+                            <div class="category-stat">
+                                <div class="category-icon audio">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <div class="category-info">
+                                    <h4>875</h4>
+                                    <p>Audio Records</p>
+                                    <small class="positive">+5 this week</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card quick-actions-panel">
+                        <div class="card-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="actions-grid">
+                            <button class="action-card" onclick="addNewContent()">
+                                <div class="action-icon">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <h4>Add Content</h4>
+                                <p>Upload new manuscripts or media</p>
+                            </button>
+
+                            <button class="action-card" onclick="manageUsers()">
+                                <div class="action-icon">
+                                    <i class="fas fa-users-cog"></i>
+                                </div>
+                                <h4>Manage Users</h4>
+                                <p>Add, edit, or remove user accounts</p>
+                            </button>
+
+                            <button class="action-card" onclick="systemMaintenance()">
+                                <div class="action-icon">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <h4>Maintenance</h4>
+                                <p>System cleanup and optimization</p>
+                            </button>
+
+                            <button class="action-card" onclick="generateReports()">
+                                <div class="action-icon">
+                                    <i class="fas fa-file-download"></i>
+                                </div>
+                                <h4>Generate Reports</h4>
+                                <p>Create usage and analytics reports</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card security-overview">
+                        <div class="card-header">
+                            <h3>Security Overview</h3>
+                            <div class="security-status good">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Secure</span>
+                            </div>
+                        </div>
+                        <div class="security-metrics">
+                            <div class="security-item">
+                                <div class="security-icon">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <div class="security-info">
+                                    <h4>Authentication</h4>
+                                    <p>2FA enabled for 89% of admin users</p>
+                                    <div class="security-progress">
+                                        <div class="progress-fill" style="width: 89%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="security-item">
+                                <div class="security-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="security-info">
+                                    <h4>SSL/TLS</h4>
+                                    <p>All connections encrypted</p>
+                                    <span class="security-badge active">Active</span>
+                                </div>
+                            </div>
+
+                            <div class="security-item">
+                                <div class="security-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="security-info">
+                                    <h4>Monitoring</h4>
+                                    <p>Real-time threat detection</p>
+                                    <span class="security-badge active">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Management Section -->
+            <section id="user-management-section" class="content-section">
+                <div class="section-header">
+                    <h2>User Management</h2>
+                    <div class="header-actions">
+                        <button class="btn-primary" onclick="addNewUser()">
+                            <i class="fas fa-user-plus"></i>
+                            Add New User
+                        </button>
+                        <button class="btn-secondary" onclick="exportUserData()">
+                            <i class="fas fa-download"></i>
+                            Export Data
+                        </button>
+                    </div>
+                </div>
+
+                <div class="user-management-interface">
+                    <div class="users-filters">
+                        <div class="filter-group">
+                            <input type="text" placeholder="Search users..." class="user-search" onkeyup="filterUsers()">
+                        </div>
+                        <div class="filter-group">
+                            <select class="role-filter" onchange="filterByRole()">
+                                <option value="all">All Roles</option>
+                                <option value="tourist">Tourists</option>
+                                <option value="researcher">Researchers</option>
+                                <option value="admin">Admins</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <select class="status-filter" onchange="filterByStatus()">
+                                <option value="all">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="suspended">Suspended</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="users-table-container">
+                        <table class="users-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Last Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- User rows will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Other sections would continue similarly... -->
+        </div>
+    </main>
+
+    <!-- Admin Control Panel -->
+    <div class="admin-control-panel" id="controlPanel">
+        <button class="control-toggle" onclick="toggleControlPanel()">
+            <i class="fas fa-cog"></i>
+        </button>
+
+        <div class="control-content" id="controlContent">
+            <h3>Admin Controls</h3>
+
+            <div class="control-section">
+                <h4>System Status</h4>
+                <div class="system-toggles">
+                    <div class="toggle-item">
+                        <span>Maintenance Mode</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" onchange="toggleMaintenanceMode()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-item">
+                        <span>Debug Mode</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" onchange="toggleDebugMode()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h4>Emergency Actions</h4>
+                <div class="emergency-actions">
+                    <button class="emergency-btn" onclick="emergencyShutdown()">
+                        <i class="fas fa-power-off"></i>
+                        Emergency Shutdown
+                    </button>
+                    <button class="emergency-btn" onclick="clearCache()">
+                        <i class="fas fa-trash-alt"></i>
+                        Clear System Cache
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
