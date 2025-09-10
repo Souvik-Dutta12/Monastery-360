@@ -47,7 +47,7 @@ const DashboardSidebar = ({ active, onChange }) => {
       <div className='absolute bottom-4 left-0 right-0 px-4'>
         <button 
           onClick={handleSignOut}
-          className='w-full text-center px-4 py-2 rounded-lg bg-transparent hover:bg-[#294169a7] border border-amber-200 text-amber-100 duration-300'
+          className='w-full text-center px-4 py-2 cursor-pointer rounded-lg bg-transparent hover:bg-[#294169a7] border border-amber-200 text-amber-100 duration-300'
         >
           Log out <i className="ri-arrow-right-line"></i>
         </button>
