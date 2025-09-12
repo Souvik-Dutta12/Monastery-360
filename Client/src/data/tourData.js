@@ -136,3 +136,67 @@ export const regionDescriptions = {
   East: 'Experience the capital region with modern amenities, ancient monasteries, and vibrant city life.',
   West: 'Embark on challenging treks and explore ancient monasteries in the western region of Sikkim.'
 }
+
+export const sidebarItems = [
+  { key: 'Monasteries', icon: 'ri-dashboard-line' },
+  { key: 'Users', icon: 'ri-user-line' },
+  { key: 'Tours', icon: 'ri-compass-3-line' },
+  { key: 'Archives', icon: 'ri-article-line' },
+  { key: 'Analytics', icon: 'ri-line-chart-fill' },
+  { key: 'Bookings', icon: 'ri-calendar-check-line' },
+  { key: 'Pricing', icon: 'ri-price-tag-3-line' },
+  { key: 'Status', icon: 'ri-wifi-line' },
+  { key: 'Profile', icon: 'ri-user-3-line' },
+]
+
+export const pricingPlans = [
+  {
+    name: 'Explorer',
+    price: 'Free',
+    color: 'from-amber-200 to-red-200',
+    text: 'text-red-900',
+    features: [
+      'Basic VR tours (limited)',
+      'Community events (view only)',
+      'Email support',
+    ],
+    cta: 'Get Started'
+  },
+  {
+    name: 'Traveler',
+    price: '₹499/mo',
+    color: 'from-amber-300 to-red-400',
+    text: 'text-red-900',
+    features: [
+      'Unlimited VR tours',
+      'AI cultural guide (standard)',
+      'Audio guidance offline',
+      'Bookings with reminders',
+    ],
+    cta: 'Upgrade'
+  },
+  {
+    name: 'Researcher',
+    price: '₹1,499/mo',
+    color: 'from-amber-400 to-red-600',
+    text: 'text-amber-50',
+    features: [
+      'All Traveler features',
+      'Digital archives access',
+      'Advanced search & filters',
+      'Priority support',
+    ],
+    cta: 'Choose Plan'
+  },
+]
+
+export const sampleBookings = [
+  { id: 'B-1001', name: 'Amit Sharma', email: 'amit@example.com', date: '2025-09-20', time: '10:00', people: 2, tour: 'Rumtek Monastery', status: 'Confirmed' },
+  { id: 'B-1002', name: 'Priya Singh', email: 'priya@example.com', date: '2025-09-22', time: '14:00', people: 4, tour: 'Pemayangtse Monastery', status: 'Pending' },
+]
+
+export const statusDefaults = {
+  online: true,
+  audioOffline: true,
+  latencyMs: 42,
+}

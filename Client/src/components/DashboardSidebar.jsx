@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useClerk } from '@clerk/clerk-react'
+import { sidebarItems } from '../data/tourData'
 
 
 const DashboardSidebar = ({ active, onChange }) => {
@@ -9,15 +10,6 @@ const DashboardSidebar = ({ active, onChange }) => {
   const handleSignOut = () => {
     signOut()
   }
-
-  const items = [
-    { key: 'Monasteries', icon: 'ri-dashboard-line' },
-    { key: 'Users', icon: 'ri-user-line' },
-    { key: 'Tours', icon: 'ri-compass-3-line' },
-    { key: 'Archives', icon: 'ri-article-line' },
-    { key: 'Analytics', icon: 'ri-line-chart-fill' },
-    { key: 'Profile', icon: 'ri-user-3-line' },
-  ]
 
   return (
     <aside className='fixed left-0 top-0 h-screen w-72 bg-[#0D244B] backdrop-blur-md text-white z-50'>
@@ -29,7 +21,7 @@ const DashboardSidebar = ({ active, onChange }) => {
         </div>
       </Link>
       <nav className='p-4 flex flex-col gap-1'>
-        {items.map((item) => (
+        {sidebarItems.map((item) => (
           <button
             key={item.key}
             onClick={() => onChange?.(item.key)}
