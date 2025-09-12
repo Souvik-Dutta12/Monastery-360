@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import VRTourPage from './pages/VRTour'
+import Contact from './pages/Contact'
 import ProtectedRoute from './components/ProtectedRoute'
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/vr-tour' element={<VRTourPage />} />
+        <Route path='/contact' element={<Contact />} />
         <Route 
           path='/dashboard' 
           element={
