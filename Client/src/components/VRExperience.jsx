@@ -1,110 +1,17 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
-// 3D Monastery Model Component
-const Monastery3DModel = () => {
-  const canvasRef = useRef(null)
-  const animationRef = useRef(null)
-  const rotationRef = useRef(0)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext('2d')
-    const width = canvas.width = 400
-    const height = canvas.height = 300
-
-    const animate = () => {
-      ctx.clearRect(0, 0, width, height)
-      
-      // Gradient background
-      const gradient = ctx.createLinearGradient(0, 0, width, height)
-      gradient.addColorStop(0, '#1d1903')
-      gradient.addColorStop(0.5, '#2d1a0a')
-      gradient.addColorStop(1, '#1d1903')
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, width, height)
-
-      // Draw 3D monastery structure
-      ctx.save()
-      ctx.translate(width / 2, height / 2)
-      ctx.rotate(rotationRef.current)
-
-      // Main building
-      ctx.fillStyle = '#7F1D1D'
-      ctx.fillRect(-80, -60, 160, 120)
-      
-      // Roof
-      ctx.fillStyle = '#991B1B'
-      ctx.beginPath()
-      ctx.moveTo(-90, -60)
-      ctx.lineTo(0, -100)
-      ctx.lineTo(90, -60)
-      ctx.closePath()
-      ctx.fill()
-
-      // Windows
-      ctx.fillStyle = '#FEF3C7'
-      ctx.fillRect(-60, -40, 20, 30)
-      ctx.fillRect(-20, -40, 20, 30)
-      ctx.fillRect(20, -40, 20, 30)
-      ctx.fillRect(60, -40, 20, 30)
-
-      // Door
-      ctx.fillStyle = '#1d1903'
-      ctx.fillRect(-15, 20, 30, 40)
-
-      // Stupa/Tower
-      ctx.fillStyle = '#FEF3C7'
-      ctx.fillRect(-20, -120, 40, 60)
-      ctx.fillStyle = '#991B1B'
-      ctx.beginPath()
-      ctx.arc(0, -120, 20, 0, Math.PI * 2)
-      ctx.fill()
-
-      // Prayer flags
-      ctx.strokeStyle = '#FEF3C7'
-      ctx.lineWidth = 2
-      for (let i = 0; i < 5; i++) {
-        ctx.beginPath()
-        ctx.moveTo(-60 + i * 30, -100)
-        ctx.lineTo(-50 + i * 30, -80)
-        ctx.stroke()
-      }
-
-      ctx.restore()
-
-      rotationRef.current += 0.005
-      animationRef.current = requestAnimationFrame(animate)
-    }
-
-    animate()
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
-    }
-  }, [])
-
-  return (
-    <div className='relative'>
-      <canvas 
-        ref={canvasRef} 
-        className='w-full h-full rounded-xl shadow-2xl border border-amber-200/20'
-        style={{ background: 'transparent' }}
-      />
-      <div className='absolute inset-0 bg-gradient-to-t from-[#1d1903]/50 via-transparent to-transparent rounded-xl'></div>
-      <div className='absolute bottom-4 left-4 right-4'>
-        <div className='text-amber-200 text-sm font-semibold'>3D Monastery Model</div>
-        <div className='text-amber-100/70 text-xs'>Interactive 360° View</div>
-      </div>
-    </div>
-  )
-}
+import ThreeJSMonastery from './ThreeJSMonastery'
 
 const VRExperience = () => {
+  const [selectedModel, setSelectedModel] = useState('rumtek')
+  const [isFullscreen, setIsFullscreen] = useState(false)
+
+  const monasteryModels = [
+    { id: 'rumtek', name: 'Rumtek Monastery', desc: 'The Dharmachakra Centre' },
+    { id: 'pemayangtse', name: 'Pemayangtse Monastery', desc: 'Perfect Sublime Lotus' },
+    { id: 'tashiding', name: 'Tashiding Monastery', desc: 'Sacred Hill of Glory' }
+  ]
+
   return (
     <section className='w-full relative text-amber-50 py-16 px-6 md:px-10 lg:px-16 overflow-hidden'>
       {/* Gradient Background */}
@@ -128,9 +35,32 @@ const VRExperience = () => {
             {/* 3D Monastery Model Showcase */}
             <div className='relative'>
               <div className='relative bg-gradient-to-br from-amber-200/10 to-red-900/20 rounded-2xl p-8 border border-amber-200/20 backdrop-blur-sm'>
+                {/* Monastery Selection */}
+                <div className='mb-4 flex gap-2 justify-center'>
+                  {monasteryModels.map((model) => (
+                    <button
+                      key={model.id}
+                      onClick={() => setSelectedModel(model.id)}
+                      className={`px-3 py-1 rounded-lg text-xs transition-colors ${
+                        selectedModel === model.id
+                          ? 'bg-amber-200 text-red-900'
+                          : 'bg-amber-200/20 text-amber-200 hover:bg-amber-200/30'
+                      }`}
+                    >
+                      {model.name}
+                    </button>
+                  ))}
+                </div>
+
                 {/* 3D Monastery Model */}
                 <div className='relative mx-auto w-80 h-60 transform hover:scale-105 transition-transform duration-500'>
-                  <Monastery3DModel />
+                  <ThreeJSMonastery 
+                    width={320} 
+                    height={240}
+                    isInteractive={true}
+                    autoRotate={true}
+                    showControls={true}
+                  />
                 </div>
                 
                 {/* Floating Elements */}
@@ -144,6 +74,16 @@ const VRExperience = () => {
                   <div className='text-amber-100/70 text-xs'>90 FPS</div>
                 </div>
                 
+                {/* Model Info */}
+                <div className='absolute top-4 left-4 bg-[#1d1903]/90 backdrop-blur-sm rounded-lg p-3 border border-amber-200/20'>
+                  <div className='text-amber-300 text-sm font-bold'>
+                    {monasteryModels.find(m => m.id === selectedModel)?.name}
+                  </div>
+                  <div className='text-amber-100/70 text-xs'>
+                    {monasteryModels.find(m => m.id === selectedModel)?.desc}
+                  </div>
+                </div>
+                
                 {/* Interactive Controls */}
                 <div className='absolute bottom-4 left-4 flex gap-2'>
                   <Link 
@@ -153,7 +93,10 @@ const VRExperience = () => {
                     <i className='ri-vr-cardboard-line'></i>
                     <span>Start VR Tour</span>
                   </Link>
-                  <button className='px-3 py-1 bg-amber-200/20 hover:bg-amber-200/30 transition-colors text-amber-200 rounded-lg text-xs flex items-center gap-1'>
+                  <button 
+                    onClick={() => setIsFullscreen(!isFullscreen)}
+                    className='px-3 py-1 bg-amber-200/20 hover:bg-amber-200/30 transition-colors text-amber-200 rounded-lg text-xs flex items-center gap-1'
+                  >
                     <i className='ri-fullscreen-line'></i>
                     <span>Full View</span>
                   </button>
@@ -248,6 +191,28 @@ const VRExperience = () => {
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Modal */}
+      {isFullscreen && (
+        <div className='fixed inset-0 z-50 bg-black flex items-center justify-center'>
+          <div className='w-full h-full relative'>
+            <button
+              onClick={() => setIsFullscreen(false)}
+              className='absolute top-4 right-4 z-10 px-4 py-2 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg flex items-center gap-2'
+            >
+              <i className='ri-close-line'></i>
+              <span>Exit Fullscreen</span>
+            </button>
+            <ThreeJSMonastery 
+              width={window.innerWidth} 
+              height={window.innerHeight}
+              isInteractive={true}
+              autoRotate={true}
+              showControls={true}
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }

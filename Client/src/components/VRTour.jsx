@@ -1,122 +1,11 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import ThreeJSMonastery from './ThreeJSMonastery'
 
 const VRTour = () => {
-  const canvasRef = useRef(null)
-  const animationRef = useRef(null)
-  const rotationRef = useRef(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(true)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext('2d')
-    const width = canvas.width = isFullscreen ? 1200 : 800
-    const height = canvas.height = isFullscreen ? 800 : 600
-
-    const animate = () => {
-      ctx.clearRect(0, 0, width, height)
-      
-      // Sky gradient background
-      const skyGradient = ctx.createLinearGradient(0, 0, 0, height)
-      skyGradient.addColorStop(0, '#1e3a8a') // Deep blue sky
-      skyGradient.addColorStop(0.7, '#fbbf24') // Golden sunset
-      skyGradient.addColorStop(1, '#dc2626') // Red horizon
-      ctx.fillStyle = skyGradient
-      ctx.fillRect(0, 0, width, height)
-
-      // Mountains in background
-      ctx.fillStyle = '#374151'
-      ctx.beginPath()
-      ctx.moveTo(0, height * 0.6)
-      ctx.lineTo(width * 0.3, height * 0.4)
-      ctx.lineTo(width * 0.6, height * 0.5)
-      ctx.lineTo(width, height * 0.6)
-      ctx.lineTo(width, height)
-      ctx.lineTo(0, height)
-      ctx.closePath()
-      ctx.fill()
-
-      // Monastery complex
-      ctx.save()
-      ctx.translate(width / 2, height * 0.7)
-      
-      if (isPlaying) {
-        ctx.rotate(rotationRef.current)
-      }
-
-      // Main monastery building
-      ctx.fillStyle = '#7F1D1D'
-      ctx.fillRect(-100, -80, 200, 160)
-      
-      // Roof
-      ctx.fillStyle = '#991B1B'
-      ctx.beginPath()
-      ctx.moveTo(-110, -80)
-      ctx.lineTo(0, -120)
-      ctx.lineTo(110, -80)
-      ctx.closePath()
-      ctx.fill()
-
-      // Windows with light
-      ctx.fillStyle = '#FEF3C7'
-      ctx.fillRect(-80, -60, 25, 35)
-      ctx.fillRect(-40, -60, 25, 35)
-      ctx.fillRect(15, -60, 25, 35)
-      ctx.fillRect(55, -60, 25, 35)
-
-      // Door
-      ctx.fillStyle = '#1d1903'
-      ctx.fillRect(-20, 20, 40, 60)
-
-      // Stupa/Tower
-      ctx.fillStyle = '#FEF3C7'
-      ctx.fillRect(-30, -150, 60, 70)
-      ctx.fillStyle = '#991B1B'
-      ctx.beginPath()
-      ctx.arc(0, -150, 30, 0, Math.PI * 2)
-      ctx.fill()
-
-      // Prayer flags
-      ctx.strokeStyle = '#FEF3C7'
-      ctx.lineWidth = 3
-      for (let i = 0; i < 7; i++) {
-        ctx.beginPath()
-        ctx.moveTo(-90 + i * 30, -120)
-        ctx.lineTo(-80 + i * 30, -100)
-        ctx.stroke()
-      }
-
-      // Courtyard
-      ctx.fillStyle = '#FEF3C7'
-      ctx.fillRect(-150, 40, 300, 20)
-
-      // Trees
-      ctx.fillStyle = '#166534'
-      for (let i = 0; i < 3; i++) {
-        ctx.beginPath()
-        ctx.arc(-200 + i * 200, 30, 25, 0, Math.PI * 2)
-        ctx.fill()
-      }
-
-      ctx.restore()
-
-      if (isPlaying) {
-        rotationRef.current += 0.003
-      }
-      animationRef.current = requestAnimationFrame(animate)
-    }
-
-    animate()
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
-    }
-  }, [isFullscreen, isPlaying])
+  const [vrMode, setVrMode] = useState(false)
 
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen)
@@ -124,6 +13,10 @@ const VRTour = () => {
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying)
+  }
+
+  const toggleVrMode = () => {
+    setVrMode(!vrMode)
   }
 
   return (
@@ -161,12 +54,17 @@ const VRTour = () => {
         </div>
       </div>
 
-      {/* VR Canvas */}
+      {/* 3D VR Experience */}
       <div className='w-full h-full flex items-center justify-center'>
-        <canvas 
-          ref={canvasRef} 
-          className={`${isFullscreen ? 'w-full h-full' : 'w-full max-w-4xl h-full max-h-3xl'} rounded-lg shadow-2xl border border-amber-200/20`}
-        />
+        <div className={`${isFullscreen ? 'w-full h-full' : 'w-full max-w-4xl h-full max-h-3xl'} rounded-lg shadow-2xl border border-amber-200/20 overflow-hidden`}>
+          <ThreeJSMonastery 
+            width={isFullscreen ? window.innerWidth : 800} 
+            height={isFullscreen ? window.innerHeight : 600}
+            isInteractive={true}
+            autoRotate={isPlaying}
+            showControls={true}
+          />
+        </div>
       </div>
 
       {/* VR Controls Overlay */}
@@ -208,13 +106,20 @@ const VRTour = () => {
             <div className='bg-[#1d1903]/80 backdrop-blur-sm rounded-lg p-4 border border-amber-200/20'>
               <h3 className='prata text-lg text-amber-200 mb-2'>Quick Actions</h3>
               <div className='space-y-2'>
-                <button className='w-full px-3 py-2 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg text-sm flex items-center gap-2'>
-                  <i className='ri-vr-cardboard-line'></i>
-                  <span>Enter VR Mode</span>
+                <button 
+                  onClick={toggleVrMode}
+                  className={`w-full px-3 py-2 ${vrMode ? 'bg-green-600 hover:bg-green-700' : 'bg-red-900 hover:bg-red-800'} transition-colors text-amber-100 rounded-lg text-sm flex items-center gap-2`}
+                >
+                  <i className={vrMode ? 'ri-vr-cardboard-fill' : 'ri-vr-cardboard-line'}></i>
+                  <span>{vrMode ? 'Exit VR Mode' : 'Enter VR Mode'}</span>
                 </button>
                 <button className='w-full px-3 py-2 bg-amber-200 hover:bg-amber-300 transition-colors text-red-900 rounded-lg text-sm flex items-center gap-2'>
                   <i className='ri-share-line'></i>
                   <span>Share Tour</span>
+                </button>
+                <button className='w-full px-3 py-2 bg-blue-600 hover:bg-blue-700 transition-colors text-white rounded-lg text-sm flex items-center gap-2'>
+                  <i className='ri-screenshot-line'></i>
+                  <span>Take Screenshot</span>
                 </button>
               </div>
             </div>
@@ -225,23 +130,51 @@ const VRTour = () => {
       {/* VR Instructions */}
       <div className='absolute top-1/2 left-4 transform -translate-y-1/2 z-10'>
         <div className='bg-[#1d1903]/80 backdrop-blur-sm rounded-lg p-4 border border-amber-200/20 max-w-xs'>
-          <h4 className='prata text-lg text-amber-200 mb-2'>VR Controls</h4>
+          <h4 className='prata text-lg text-amber-200 mb-2'>3D Controls</h4>
           <div className='space-y-2 text-sm text-amber-100/70'>
             <div className='flex items-center gap-2'>
               <i className='ri-mouse-line'></i>
-              <span>Click & drag to look around</span>
+              <span>Click & drag to rotate</span>
             </div>
             <div className='flex items-center gap-2'>
-              <i className='ri-keyboard-line'></i>
-              <span>WASD to move</span>
+              <i className='ri-mouse-2-line'></i>
+              <span>Scroll to zoom</span>
             </div>
             <div className='flex items-center gap-2'>
-              <i className='ri-space'></i>
-              <span>Space to jump</span>
+              <i className='ri-play-line'></i>
+              <span>Auto-rotate when playing</span>
+            </div>
+            <div className='flex items-center gap-2'>
+              <i className='ri-vr-line'></i>
+              <span>VR mode for immersion</span>
             </div>
           </div>
         </div>
       </div>
+
+      {/* VR Mode Overlay */}
+      {vrMode && (
+        <div className='absolute inset-0 z-20 bg-black/50 backdrop-blur-sm flex items-center justify-center'>
+          <div className='bg-[#1d1903] rounded-xl p-8 border border-amber-200/20 max-w-md text-center'>
+            <div className='mb-6'>
+              <i className='ri-vr-cardboard-line text-6xl text-amber-300 mb-4'></i>
+              <h3 className='prata text-2xl text-amber-200 mb-2'>VR Mode Activated</h3>
+              <p className='text-amber-100/70'>Put on your VR headset for the full immersive experience</p>
+            </div>
+            <div className='space-y-3'>
+              <button 
+                onClick={toggleVrMode}
+                className='w-full px-6 py-3 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg'
+              >
+                Exit VR Mode
+              </button>
+              <p className='text-xs text-amber-100/50'>
+                Compatible with Oculus, HTC Vive, and mobile VR headsets
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
