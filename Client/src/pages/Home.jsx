@@ -81,7 +81,7 @@ const Home = () => {
               <span className='prata text-lg'>Start Virtual Tour</span>
               <i className="ri-arrow-right-line"></i>
             </Link>
-            <Link to={'#'} className='px-6 py-3 bg-amber-200 hover:bg-amber-300 transition-colors text-red-900 rounded-lg border border-amber-300 inline-flex items-center gap-2'>
+            <Link to={'/sign-in'} className='px-6 py-3 bg-amber-200 hover:bg-amber-300 transition-colors text-red-900 rounded-lg border border-amber-300 inline-flex items-center gap-2'>
               <span className='prata text-lg'>Book Your Visit</span>
             </Link>
           </div>
@@ -94,7 +94,7 @@ const Home = () => {
               <div key={i} className='text-center'>
                 <div className='text-3xl md:text-4xl font-extrabold text-amber-300'>{s.n}</div>
                 <div className='text-sm md:text-base'>{s.l}</div>
-              </div>
+        </div>
             ))}
           </div>
         </div>
@@ -212,6 +212,134 @@ const Home = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VR EXPERIENCE SECTION: Dark theme with 3D/VR showcase */}
+      <section className='w-full bg-gradient-to-t from-[#FFF5E0] via-[#2d1a0a] to-[#1d1903] text-amber-50 py-16 px-6 md:px-10 lg:px-16'>
+        <div className='max-w-7xl mx-auto'>
+          <div className='text-center mb-12'>
+            <h2 className='prata text-4xl md:text-5xl font-bold text-amber-200'>Immersive VR Experience</h2>
+            <p className='mt-3 text-amber-100/80 text-lg'>Step into ancient monasteries through cutting-edge virtual reality technology</p>
+          </div>
+
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
+            {/* VR Showcase */}
+            <div className='relative'>
+              <div className='relative bg-gradient-to-br from-amber-200/10 to-red-900/20 rounded-2xl p-8 border border-amber-200/20'>
+                {/* VR Headset Mockup */}
+                <div className='relative mx-auto w-64 h-48 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500'>
+                  <div className='absolute inset-4 bg-gradient-to-br from-amber-200/20 to-red-900/30 rounded-xl overflow-hidden'>
+                    <img 
+                      src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=60' 
+                      alt='VR Monastery View' 
+                      className='w-full h-full object-cover opacity-80'
+                    />
+                    <div className='absolute inset-0 bg-gradient-to-t from-[#1d1903] via-transparent to-transparent'></div>
+                    <div className='absolute bottom-4 left-4 right-4'>
+                      <div className='text-amber-200 text-sm font-semibold'>Rumtek Monastery</div>
+                      <div className='text-amber-100/70 text-xs'>360° Virtual Tour</div>
+                    </div>
+                  </div>
+                  {/* VR Controls */}
+                  <div className='absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-gray-700 rounded-full'></div>
+                  <div className='absolute -right-2 top-1/2 transform -translate-y-1/2 w-4 h-12 bg-gray-600 rounded-full'></div>
+                </div>
+                
+                {/* Floating Elements */}
+                <div className='absolute -top-4 -right-4 w-8 h-8 bg-amber-300 rounded-full animate-pulse'></div>
+                <div className='absolute -bottom-4 -left-4 w-6 h-6 bg-red-800 rounded-full animate-bounce'></div>
+                
+                {/* VR Stats Overlay */}
+                <div className='absolute top-4 right-4 bg-[#1d1903]/90 backdrop-blur-sm rounded-lg p-3 border border-amber-200/20'>
+                  <div className='text-amber-300 text-sm font-bold'>4K Resolution</div>
+                  <div className='text-amber-100/70 text-xs'>90 FPS</div>
+                </div>
+              </div>
+            </div>
+
+            {/* VR Features & Controls */}
+            <div className='space-y-8'>
+              <div>
+                <h3 className='prata text-3xl font-bold text-amber-200 mb-4'>Experience Sacred Spaces Like Never Before</h3>
+                <p className='text-amber-100/80 text-lg leading-relaxed'>
+                  Our advanced VR technology transports you directly into Sikkim's most sacred monasteries. 
+                  Walk through ancient halls, witness traditional ceremonies, and explore hidden chambers 
+                  with unprecedented realism.
+                </p>
+              </div>
+
+              {/* VR Features Grid */}
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                {[
+                  { icon: 'ri-vr-line', title: '360° Immersion', desc: 'Complete panoramic views' },
+                  { icon: 'ri-hand-coin-line', title: 'Hand Tracking', desc: 'Natural interaction' },
+                  { icon: 'ri-volume-up-line', title: 'Spatial Audio', desc: '3D sound experience' },
+                  { icon: 'ri-eye-line', title: 'Eye Tracking', desc: 'Foveated rendering' },
+                ].map((feature, idx) => (
+                  <div key={idx} className='group bg-[#241f07]/60 border border-amber-200/10 rounded-xl p-4 hover:border-amber-200/30 transition-colors'>
+                    <div className='flex items-center gap-3 mb-2'>
+                      <i className={`${feature.icon} text-amber-300 text-xl`}></i>
+                      <h4 className='prata text-lg font-semibold text-amber-200'>{feature.title}</h4>
+                    </div>
+                    <p className='text-amber-100/70 text-sm'>{feature.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* VR Controls */}
+              <div className='space-y-4'>
+                <h4 className='prata text-xl font-semibold text-amber-200'>VR Controls</h4>
+                <div className='grid grid-cols-2 gap-3'>
+                  <button className='px-4 py-3 bg-red-900/80 hover:bg-red-800 transition-colors text-amber-100 rounded-lg border border-red-800 flex items-center gap-2'>
+                    <i className='ri-vr-cardboard-line'></i>
+                    <span>Start VR Tour</span>
+                  </button>
+                  <button className='px-4 py-3 bg-amber-200/20 hover:bg-amber-200/30 transition-colors text-amber-200 rounded-lg border border-amber-200/30 flex items-center gap-2'>
+                    <i className='ri-download-line'></i>
+                    <span>Download App</span>
+                  </button>
+                </div>
+                <div className='flex items-center gap-4 text-sm text-amber-100/70'>
+                  <span className='flex items-center gap-1'>
+                    <i className='ri-checkbox-circle-line text-green-400'></i>
+                    Compatible with Oculus, HTC Vive
+                  </span>
+                  <span className='flex items-center gap-1'>
+                    <i className='ri-smartphone-line text-blue-400'></i>
+                    Mobile VR Support
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* VR Gallery */}
+          <div className='mt-16'>
+            <h3 className='prata text-2xl font-bold text-amber-200 text-center mb-8'>VR Experience Gallery</h3>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+              {[
+                { img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=300&q=60', title: 'Prayer Hall', desc: 'Immersive meditation space' },
+                { img: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=300&q=60', title: 'Sacred Courtyard', desc: '360° monastery grounds' },
+                { img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=300&q=60', title: 'Ancient Library', desc: 'Digital manuscript archive' },
+                { img: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=300&q=60', title: 'Ceremony Room', desc: 'Live ritual experience' },
+              ].map((item, idx) => (
+                <div key={idx} className='group relative overflow-hidden rounded-xl border border-amber-200/10 bg-[#241f07]/60 hover:border-amber-200/30 transition-colors'>
+                  <div className='relative h-48 overflow-hidden'>
+                    <img src={item.img} alt={item.title} className='w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110' />
+                    <div className='absolute inset-0 bg-gradient-to-t from-[#1d1903] via-transparent to-transparent opacity-60'></div>
+                    <div className='absolute top-3 right-3 w-8 h-8 bg-red-900/80 rounded-full flex items-center justify-center'>
+                      <i className='ri-vr-line text-amber-200 text-sm'></i>
+                    </div>
+                    <div className='absolute bottom-3 left-3 right-3'>
+                      <h4 className='prata text-lg text-amber-200'>{item.title}</h4>
+                      <p className='text-amber-100/70 text-sm'>{item.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -360,20 +488,20 @@ const Home = () => {
         </div>
       </section>
 
-      <Footer />
+        <Footer />
       {/* Floating Chatbot */}
-      <div className={`fixed z-50 right-6 bottom-6`}>
+      <div className={`fixed cursor-pointer z-50 right-6 bottom-6`}>
         {!chatOpen && (
           <button
             onClick={() => setChatOpen(true)}
-            className='h-14 w-14 rounded-full bg-red-900 text-amber-100 shadow-lg flex items-center justify-center hover:bg-red-800 transition-colors'
+            className='h-14 w-14 rounded-full cursor-pointer bg-red-900 text-amber-100 shadow-lg flex items-center justify-center hover:bg-red-800 transition-colors'
             aria-label='Open Cultural Guide AI'
           >
             <i className='ri-robot-2-line text-2xl'></i>
           </button>
         )}
         {chatOpen && (
-          <div className='w-[320px] sm:w-[360px] h-[440px] rounded-xl overflow-hidden shadow-2xl border border-amber-200 bg-white/95 backdrop-blur-md'>
+          <div className='cursor-pointer w-[320px] sm:w-[360px] h-[440px] rounded-xl overflow-hidden shadow-2xl border border-amber-200 bg-white/95 backdrop-blur-md'>
             {/* Header */}
             <div className='px-4 py-3 bg-red-900 text-amber-100 flex items-center justify-between cursor-pointer' onClick={() => setChatOpen(false)}>
               <div className='flex items-center gap-3'>

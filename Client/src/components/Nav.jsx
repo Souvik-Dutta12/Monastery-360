@@ -15,7 +15,7 @@ const Nav = () => {
         <div className='flex gap-10  w-auto items-center pl-10'>
           <span>
             <Link
-              to={'#'}
+              to={'/'}
               onClick={() => setActive('Home')}
               className={`prata text-amber-300 duration-300 text-shadow-md relative inline-block pb-1 group`}
             >
@@ -25,7 +25,7 @@ const Nav = () => {
           </span>
           <span>
             <Link
-              to={'#'}
+              to={'/explore'}
               onClick={() => setActive('Explore')}
               className={`prata text-amber-300 duration-300 text-shadow-md relative inline-block pb-1 group`}
             >
