@@ -10,10 +10,12 @@ import Bookings from '../components/Bookings'
 import Pricing from '../components/Pricing'
 import Status from '../components/Status'
 import { UserProfile } from '@clerk/clerk-react'
+import { RegionProvider } from '../context/RegionContext'
 
 const Dashboard = () => {
   const [active, setActive] = useState('Monasteries')
   return (
+    <RegionProvider>
     <div className='w-screen min-h-screen relative'>
       {/* Foreground content */}
       <div className='relative z-10'>
@@ -66,6 +68,7 @@ const Dashboard = () => {
         </main>
       </div>
     </div>
+    </RegionProvider>
   )
 }
 

@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useRegion } from '../context/RegionContext'
+import { regionToTours } from '../data/tourData'
 
 // Lightweight 360° viewer using Pannellum via CDN (no npm install required)
 // We dynamically inject the CSS/JS once, then initialize the viewer.
@@ -22,36 +24,6 @@ const defaultTours = [
     hotSpots: [
       { pitch: 2, yaw: 120, text: 'Altar', type: 'info' },
       { pitch: -3, yaw: -30, text: 'Mural Fragment', type: 'info' }
-    ]
-  },
-  {
-    id: 'cloister-garden',
-    title: 'Cloister Garden',
-    description: 'Serene courtyard with stone pathways and herbs.',
-    panoramaUrl: 'https://pannellum.org/images/bma-1.jpg',
-    autoRotate: 1,
-    location: 'South Wing',
-    period: '14th Century',
-    tags: ['Garden', 'Cloister', 'Nature'],
-    credits: 'Photo: Example CC BY-SA',
-    date: '2021-03-22',
-    hotSpots: [
-      { pitch: 5, yaw: 60, text: 'Herb Patch', type: 'info' }
-    ]
-  },
-  {
-    id: 'monk-quarters',
-    title: "Monk's Quarters",
-    description: 'Living space with traditional wooden interiors.',
-    panoramaUrl: 'https://pannellum.org/images/cuba.jpg',
-    autoRotate: 0,
-    location: 'East Residence',
-    period: '13th Century',
-    tags: ['Residence', 'Woodwork'],
-    credits: 'Photo: Example CC BY-SA',
-    date: '2019-11-05',
-    hotSpots: [
-      { pitch: -2, yaw: 10, text: 'Writing Desk', type: 'info' }
     ]
   }
 ]
@@ -99,14 +71,19 @@ const loadCdnOnce = () => {
   })
 }
 
-const Tours = ({ tours = defaultTours }) => {
-  const [expandedId, setExpandedId] = useState(() => (typeof window !== 'undefined' && window.location.hash ? window.location.hash.replace('#', '') : tours[0]?.id))
+const Tours = ({ tours }) => {
+  const { selectedRegion } = useRegion()
+  const regionTours = regionToTours?.[selectedRegion]
+  // Use provided tours prop; otherwise if regionTours is defined (even empty), use it; else fallback to defaultTours
+  const effectiveTours = tours ?? (typeof regionTours !== 'undefined' ? regionTours : defaultTours)
+
+  const [expandedId, setExpandedId] = useState(() => (typeof window !== 'undefined' && window.location.hash ? window.location.hash.replace('#', '') : effectiveTours[0]?.id))
   const [isAutoRotating, setIsAutoRotating] = useState(true)
   const [loading, setLoading] = useState(true)
   const containerRef = useRef(null)
   const viewerRef = useRef(null)
 
-  const expandedTour = useMemo(() => tours.find(t => t.id === expandedId) || tours[0], [tours, expandedId])
+  const expandedTour = useMemo(() => effectiveTours.find(t => t.id === expandedId) || effectiveTours[0], [effectiveTours, expandedId])
 
   // Sync with URL hash (shareable links)
   useEffect(() => {
@@ -120,7 +97,7 @@ const Tours = ({ tours = defaultTours }) => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const newHash = `#${expandedTour?.id}`
+      const newHash = `#${expandedTour?.id || ''}`
       if (window.location.hash !== newHash) {
         window.history.replaceState(null, '', newHash)
       }
@@ -132,7 +109,7 @@ const Tours = ({ tours = defaultTours }) => {
     let isDisposed = false
     setLoading(true)
 
-    if (!expandedTour) return
+    if (!expandedTour) { setLoading(false); return }
 
     loadCdnOnce()
       .then((pannellum) => {
@@ -197,7 +174,7 @@ const Tours = ({ tours = defaultTours }) => {
       const next = !prev
       try {
         if (viewerRef.current) {
-          if (next) viewerRef.current.startAutoRotate(expandedTour.autoRotate || 2)
+          if (next) viewerRef.current.startAutoRotate(expandedTour?.autoRotate || 2)
           else viewerRef.current.stopAutoRotate()
         }
       } catch (_) {}
@@ -233,26 +210,42 @@ const Tours = ({ tours = defaultTours }) => {
     link.remove()
   }
 
+  if (!effectiveTours || effectiveTours.length === 0) {
+    return (
+      <div className="w-full px-3 sm:px-4">
+        <div className="rounded-xl border border-amber-200 bg-amber-50 p-6 text-center text-red-900">
+          No tours available for this region.
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full flex flex-col gap-4 px-3 sm:px-4">
-      {tours.map((tour) => {
+      {effectiveTours.map((tour) => {
         const isExpanded = expandedTour?.id === tour.id
+        const timeText = tour.time || ''
+        const description = tour.description || 'Immersive 360° tour experience.'
         return (
-          <div key={tour.id} className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+          <div key={tour.id} className="border border-amber-200 rounded-xl overflow-hidden bg-white shadow-sm">
             <button
               onClick={() => setExpandedId(tour.id)}
-              className={`w-full text-left px-3 sm:px-4 py-3 ${isExpanded ? 'bg-slate-50 border-b border-gray-200' : 'bg-white'} cursor-pointer`}
+              className={`w-full text-left px-3 sm:px-4 py-3 ${isExpanded ? 'bg-amber-50 border-b border-amber-200' : 'bg-white'} cursor-pointer`}
             >
               <div className="flex flex-wrap items-baseline gap-2">
-                <h3 className="m-0 text-base sm:text-lg text-gray-900 font-semibold flex-1">{tour.title}</h3>
-                <span className="text-xs sm:text-sm text-gray-500">{tour.period}</span>
+                <h3 className="m-0 text-base sm:text-lg text-red-900 font-semibold flex-1">{tour.title}</h3>
+                {timeText && (
+                  <span className="text-[11px] sm:text-xs bg-amber-100 text-red-900 px-2 py-0.5 rounded-md">{timeText}</span>
+                )}
               </div>
-              <div className="text-xs sm:text-sm text-gray-600">{tour.description}</div>
-              <div className="mt-1 flex gap-1.5 flex-wrap">
-                {(tour.tags || []).map((tag) => (
-                  <span key={tag} className="text-[11px] bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-full">#{tag}</span>
-                ))}
-              </div>
+              <div className="text-xs sm:text-sm text-red-900/80">{description}</div>
+              {(tour.tags && tour.tags.length > 0) && (
+                <div className="mt-1 flex gap-1.5 flex-wrap">
+                  {tour.tags.map((tag) => (
+                    <span key={tag} className="text-[11px] bg-amber-100 text-red-900 px-2 py-0.5 rounded-full">#{tag}</span>
+                  ))}
+                </div>
+              )}
             </button>
 
             {isExpanded && (
@@ -266,25 +259,25 @@ const Tours = ({ tours = defaultTours }) => {
 
                 <div className="flex flex-wrap items-center gap-2">
                   <div className="flex-1" />
-                  <button onClick={handleToggleAutorotate} className="px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50">{isAutoRotating ? 'Pause' : 'Play'}</button>
-                  <button onClick={handleResetView} className="px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50">Reset</button>
-                  <button onClick={handleFullscreen} className="px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50">Fullscreen</button>
-                  <button onClick={handleShare} className="px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50">Share</button>
-                  <button onClick={handleDownload} className="px-3 py-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50">Download</button>
+                  <button onClick={handleToggleAutorotate} className="px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">{isAutoRotating ? 'Pause' : 'Play'}</button>
+                  <button onClick={handleResetView} className="px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Reset</button>
+                  <button onClick={handleFullscreen} className="px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Fullscreen</button>
+                  <button onClick={handleShare} className="px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Share</button>
+                  <button onClick={handleDownload} className="px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Download</button>
                 </div>
 
-                <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] lg:h-[460px] rounded-xl overflow-hidden border border-gray-200">
+                <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] lg:h-[460px] rounded-xl overflow-hidden border border-amber-200">
                   <div ref={containerRef} className="w-full h-full bg-black" />
                   {loading && (
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-black/20 backdrop-blur-[1px]">
+                    <div className="absolute inset-0 flex items-center justify-center text-red-900/70 bg-black/20 backdrop-blur-[1px]">
                       Loading 360° view…
                     </div>
                   )}
                 </div>
 
                 {tour.hotSpots && tour.hotSpots.length > 0 && (
-                  <div className="text-xs sm:text-sm text-gray-600">
-                    <strong className="text-gray-900">Hotspots:</strong> {tour.hotSpots.map(h => h.text).join(', ')}
+                  <div className="text-xs sm:text-sm text-red-900/80">
+                    <strong className="text-red-900">Hotspots:</strong> {tour.hotSpots.map(h => h.text).join(', ')}
                   </div>
                 )}
               </div>
@@ -300,8 +293,8 @@ function InfoItem({ label, value }) {
   if (!value) return null
   return (
     <div className="flex items-baseline gap-1.5">
-      <span className="text-xs text-gray-500 min-w-16">{label}:</span>
-      <span className="text-xs text-gray-900">{value}</span>
+      <span className="text-xs text-red-900/70 min-w-16">{label}:</span>
+      <span className="text-xs text-red-900">{value}</span>
     </div>
   )
 }

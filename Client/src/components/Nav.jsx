@@ -35,7 +35,7 @@ const Nav = () => {
           </span>
           <span>
             <Link
-              to={'#'}
+              to={'/sign-in'}
               onClick={() => setActive('Events')}
               className={`prata text-amber-300 duration-300 text-shadow-md relative inline-block pb-1 group`}
             >
@@ -45,7 +45,7 @@ const Nav = () => {
           </span>
           <span>
             <Link
-              to={'#'}
+              to={'/sign-in'}
               onClick={() => setActive('Digital Archives')}
               className={`prata text-amber-300 duration-300 text-shadow-md relative inline-block pb-1 group`}
             >

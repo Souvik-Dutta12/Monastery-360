@@ -12,6 +12,12 @@ const Status = () => {
     return () => clearInterval(id)
   }, [])
 
+  const audioGuides = [
+    { label: 'Rumtek Guide (EN)', src: 'https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav' },
+    { label: 'Pemayangtse (HI)', src: 'https://www2.cs.uic.edu/~i101/SoundFiles/ImperialMarch60.wav' },
+    { label: 'Tashiding (NE)', src: 'https://www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav' }
+  ]
+
   return (
     <div className='w-full p-6'>
       <div className='max-w-6xl mx-auto'>
@@ -58,7 +64,7 @@ const Status = () => {
             <span className='px-3 py-1 rounded-full text-sm bg-green-100 text-green-700'>Healthy</span>
           </div>
 
-          {/* Audio Guidance (Offline) - third, with horizontal full-width buttons */}
+          {/* Audio Guidance (Offline) - third, now with inline players */}
           <div className='rounded-xl border border-amber-200 bg-white p-5 flex items-center justify-between gap-6'>
             <div className='flex-1 flex items-start gap-4'>
               <div className='h-10 w-10 rounded-lg bg-amber-100 text-red-900 flex items-center justify-center'>
@@ -66,17 +72,17 @@ const Status = () => {
               </div>
               <div className='w-full'>
                 <div className='prata text-xl text-red-900'>Audio Guidance (Offline)</div>
-                <div className='text-red-900/70 text-sm'>Downloadable voice guidance for VR and tours</div>
+                <div className='text-red-900/70 text-sm'>Play voice guidance for VR and tours</div>
                 {audioOffline && (
-                  <div className='mt-4 w-full space-y-2'>
-                    {['Rumtek Guide (EN)', 'Pemayangtse (HI)', 'Tashiding (NE)'].map((f) => (
-                      <button
-                        key={f}
-                        className='w-full px-4 py-2 rounded-lg bg-red-900 hover:bg-red-800 text-amber-100 flex items-center justify-between'
-                      >
-                        <span>{f}</span>
-                        <i className='ri-download-line'></i>
-                      </button>
+                  <div className='mt-4 w-full space-y-3'>
+                    {audioGuides.map((a) => (
+                      <div key={a.label} className='w-full rounded-lg border border-amber-200 p-3 bg-amber-50'>
+                        <div className='text-red-900 text-sm mb-2'>{a.label}</div>
+                        <audio controls className='w-full'>
+                          <source src={a.src} type='audio/mpeg' />
+                          Your browser does not support the audio element.
+                        </audio>
+                      </div>
                     ))}
                   </div>
                 )}
