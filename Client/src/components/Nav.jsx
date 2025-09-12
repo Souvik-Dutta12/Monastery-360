@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import logo from '../assets/Logo.png'
+
 import { Link } from 'react-router-dom'
 const Nav = () => {
   const [active, setActive] = useState('Home')
@@ -7,7 +7,7 @@ const Nav = () => {
     <div className='fixed z-100 w-full h-20 backdrop-blur flex justify-between  px-10 pt-2 items-center text-2xl font-bold '>
       <div className=' h-full flex items-center justify-center cursor-pointer'>
         <Link to={'/'} className='h-full flex items-center justify-center'>
-          <img src={logo} alt="logo" className=' h-full' />
+          <img src='/Logo.png' alt="logo" className=' h-full' />
           <div className='prata text-4xl text-amber-300 text-shadow-lg'>Monastery <span className='text-amber-50'>360</span></div>
         </Link>
       </div>

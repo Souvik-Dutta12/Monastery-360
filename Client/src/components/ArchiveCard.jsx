@@ -1,12 +1,12 @@
 import React from 'react'
-import sompod from '../assets/sompod.png'
+
 const ArchiveCard = () => {
     return (
         <div className='w-[75%] mb-3 cursor-pointer max-h-[65vh] bg-amber-100 shadow-xl border border-red-800 overflow-hidden p-7 hover:shadow-2xl transition mt-5 flex'>
             {/* Left Section */}
             <div className='w-1/3 h-full bg-[#B68855]'>
                 <img
-                    src={sompod}
+                    src='/sompod.png'
                     alt="Card"
                     className='w-full h-full object-cover scale-90 transition-transform duration-500 hover:scale-100'
                 />

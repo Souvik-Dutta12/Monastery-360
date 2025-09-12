@@ -1,5 +1,4 @@
 import React from 'react'
-import frame from '../assets/Frame 1.png'
 import Searchbar from './Searchbar'
 import MonaCard from './MonaCard'
 

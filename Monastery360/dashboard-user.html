@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tourist Dashboard - Monastery360</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/dashboard.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body class="dashboard-body">
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
@@ -32,21 +35,21 @@
                 <div class="nav-title">EXPLORE</div>
                 <ul>
                     <li><a href="#overview" class="nav-item active" onclick="showSection('overview')">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span>Overview</span>
-                    </a></li>
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Overview</span>
+                        </a></li>
                     <li><a href="#virtual-tours" class="nav-item" onclick="showSection('virtual-tours')">
-                        <i class="fas fa-vr-cardboard"></i>
-                        <span>Virtual Tours</span>
-                    </a></li>
+                            <i class="fas fa-vr-cardboard"></i>
+                            <span>Virtual Tours</span>
+                        </a></li>
                     <li><a href="#map" class="nav-item" onclick="showSection('map')">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <span>Interactive Map</span>
-                    </a></li>
+                            <i class="fas fa-map-marked-alt"></i>
+                            <span>Interactive Map</span>
+                        </a></li>
                     <li><a href="#events" class="nav-item" onclick="showSection('events')">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Live Events</span>
-                    </a></li>
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Live Events</span>
+                        </a></li>
                 </ul>
             </div>
 
@@ -54,17 +57,17 @@
                 <div class="nav-title">PLAN & BOOK</div>
                 <ul>
                     <li><a href="#itinerary" class="nav-item" onclick="showSection('itinerary')">
-                        <i class="fas fa-route"></i>
-                        <span>My Itinerary</span>
-                    </a></li>
+                            <i class="fas fa-route"></i>
+                            <span>My Itinerary</span>
+                        </a></li>
                     <li><a href="#bookings" class="nav-item" onclick="showSection('bookings')">
-                        <i class="fas fa-ticket-alt"></i>
-                        <span>Bookings</span>
-                    </a></li>
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Bookings</span>
+                        </a></li>
                     <li><a href="#favorites" class="nav-item" onclick="showSection('favorites')">
-                        <i class="fas fa-heart"></i>
-                        <span>Favorites</span>
-                    </a></li>
+                            <i class="fas fa-heart"></i>
+                            <span>Favorites</span>
+                        </a></li>
                 </ul>
             </div>
 
@@ -72,17 +75,17 @@
                 <div class="nav-title">LEARN</div>
                 <ul>
                     <li><a href="#archives" class="nav-item" onclick="showSection('archives')">
-                        <i class="fas fa-archive"></i>
-                        <span>Digital Archives</span>
-                    </a></li>
+                            <i class="fas fa-archive"></i>
+                            <span>Digital Archives</span>
+                        </a></li>
                     <li><a href="#audio-guide" class="nav-item" onclick="showSection('audio-guide')">
-                        <i class="fas fa-headphones"></i>
-                        <span>Audio Guides</span>
-                    </a></li>
+                            <i class="fas fa-headphones"></i>
+                            <span>Audio Guides</span>
+                        </a></li>
                     <li><a href="#cultural-guide" class="nav-item" onclick="showSection('cultural-guide')">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Cultural Learning</span>
-                    </a></li>
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Cultural Learning</span>
+                        </a></li>
                 </ul>
             </div>
         </nav>
@@ -178,7 +181,8 @@
                         </div>
                         <div class="tours-list">
                             <div class="tour-item" onclick="startTour('rumtek')">
-                                <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Rumtek Monastery">
+                                <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                                    alt="Rumtek Monastery">
                                 <div class="tour-info">
                                     <h4>Rumtek Monastery</h4>
                                     <p>The seat of 16th Karmapa</p>
@@ -193,7 +197,8 @@
                             </div>
 
                             <div class="tour-item" onclick="startTour('pemayangtse')">
-                                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Pemayangtse Monastery">
+                                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                                    alt="Pemayangtse Monastery">
                                 <div class="tour-info">
                                     <h4>Pemayangtse Monastery</h4>
                                     <p>Perfect Sublime Lotus</p>
@@ -328,7 +333,8 @@
                 <div class="tours-grid">
                     <div class="tour-card premium" onclick="startTour('rumtek')">
                         <div class="tour-image">
-                            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Rumtek Monastery">
+                            <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                                alt="Rumtek Monastery">
                             <div class="tour-overlay">
                                 <button class="play-btn">
                                     <i class="fas fa-play"></i>
@@ -381,7 +387,9 @@
                         <i class="fas fa-robot"></i>
                     </div>
                     <div class="message-content">
-                        <p>Hello! I'm your personal cultural guide. I can help you plan monastery visits, explain Buddhist traditions, and recommend the best experiences for you. What would you like to explore today?</p>
+                        <p>Hello! I'm your personal cultural guide. I can help you plan monastery visits, explain
+                            Buddhist traditions, and recommend the best experiences for you. What would you like to
+                            explore today?</p>
                     </div>
                 </div>
             </div>
@@ -398,4 +406,5 @@
     <script src="js/main.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
+
 </html>

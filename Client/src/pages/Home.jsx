@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react'
 import Nav from '../components/Nav'
-import bg from '../assets/bg2.jpg'
 import { Link } from 'react-router-dom'
 import CarouselPage from '../components/CarouselPage'
 import Footer from '../components/Footer'
@@ -68,7 +67,7 @@ const Home = () => {
       <div className='relative w-full h-screen'>
         <Nav />
         <div className='absolute inset-0'>
-          <img src={bg} alt="Monastery background" className='w-full h-full object-cover' />
+          <img src='/bg2.jpg' alt="Monastery background" className='w-full h-full object-cover' />
         </div>
         <div className='absolute inset-0 bg-[#1d1903]/80'></div>
         <div className='relative z-10 w-full h-full flex flex-col items-center justify-center text-center px-6'>

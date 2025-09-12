@@ -1,16 +1,13 @@
 import React from 'react'
 import { SignUp } from '@clerk/clerk-react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/logo.png'
-import frame from '../assets/Frame 1.png'
+
+
 
 const SignUpPage = () => {
   return (
     <div className="min-h-screen bg-[#FFF5E0] relative">
-      {/* Background Frame */}
-      <div className="absolute inset-0">
-        <img src={frame} alt="frame" className="w-full h-full object-cover" />
-      </div>
+      
       
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
@@ -18,7 +15,7 @@ const SignUpPage = () => {
           {/* Logo and branding */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <img src={logo} alt="Monastery 360" className="h-12" />
+              <img src='/Logo.png' alt="Monastery 360" className="h-12" />
               <div className="text-red-900">
                 <h1 className="text-2xl font-bold text-red-800 prata">Monastery 360</h1>
                 <p className="text-sm text-red-700 prata">Sikkim Heritage</p>

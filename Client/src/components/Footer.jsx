@@ -1,7 +1,7 @@
 import React from 'react'
-import logo from '../assets/Logo.png'
+
 import { Link } from 'react-router-dom'
-import frame from '../assets/Frame 1.png'
+
 
 const Footer = () => {
     return (
@@ -10,7 +10,7 @@ const Footer = () => {
             <div className='w-full  grid grid-cols-3 py-10 px-5 gap-5 ' >
                 <div className='flex flex-col  w-sm  ml-10 items-center justify-center gap-3'>
                     <div className='flex items-center justify-center gap-3'>
-                        <img src={logo} alt="logo" className='w-20 h-20 ' />
+                        <img src='/Logo.png' alt="logo" className='w-20 h-20 ' />
                         <div className='prata text-3xl text-white font-semibold flex flex-col items-center'>
                             <span>Monastery 360</span>
                             <span className='text-lg'>Sikkim Heritage</span>

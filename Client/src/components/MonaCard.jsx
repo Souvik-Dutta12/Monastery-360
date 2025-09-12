@@ -1,8 +1,4 @@
 import React from 'react'
-import card from '../assets/card.png'
-import remove from '../assets/remove.png'
-import material from '../assets/material.png'
-import group from '../assets/group.png'
 
 const MonaCard = () => {
     return (
@@ -10,7 +6,7 @@ const MonaCard = () => {
             {/* Left Section */}
             <div className='w-1/3 h-full bg-[#0D244B]'>
                 <img
-                    src={card}
+                    src='/card.png'
                     alt="Card"
                     className='w-full h-full object-cover scale-90 transition-transform duration-500 hover:scale-100'
                 />
@@ -27,9 +23,9 @@ const MonaCard = () => {
                 </div>
                 <div className='flex items-center justify-between mt-3 '>
                     <div className='flex gap-5'>
-                        <button className='w-10 h-10  cursor-pointer text-center flex items-center justify-center'><img src={group} alt="" /></button>
-                    <button className='w-10 h-10  cursor-pointer text-center flex items-center justify-center'><img src={material} alt="" /></button>
-                    <button className='w-10 h-10  cursor-pointer text-center flex items-center justify-center'><img src={remove} alt="" /></button>
+                        <button className='w-10 h-10  cursor-pointer text-center flex items-center justify-center'><img src='/group.png' alt="" /></button>
+                    <button className='w-10 h-10  cursor-pointer text-center flex items-center justify-center'><img src='/material.png' alt="" /></button>
+                    <button className='w-10 h-10  cursor-pointer text-center flex items-center justify-center'><img src='/remove.png' alt="" /></button>
                     </div>
                     <div className='flex items-center justify-center text-xl text-red-600 hover:text-red-800 duration-300 '>More<i className="ri-arrow-right-line"></i></div>
                     

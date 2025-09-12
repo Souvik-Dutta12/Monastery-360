@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import DashboardSidebar from '../components/DashboardSidebar'
-import frame from '../assets/Frame 1.png'
+
 import Monastery from '../components/Monastery'
 import Users from '../components/Users'
 import Analytics from '../components/Analytics'
@@ -12,10 +12,7 @@ const Dashboard = () => {
   const [active, setActive] = useState('Monasteries')
   return (
     <div className='w-screen min-h-screen relative'>
-      {/* Background covering the whole page */}
-      <div className="absolute inset-0">
-        <img src={frame} alt="frame" className="w-full h-full object-cover" />
-      </div>
+      
 
       {/* Foreground content */}
       <div className='relative z-10'>
