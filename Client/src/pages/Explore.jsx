@@ -272,7 +272,7 @@ const AITourGuide = ({ region, onClose }) => {
               </div>
 
               {/* Action Buttons */}
-              <div className='flex gap-4 pt-4'>
+              <div className='flex flex-col lg:flex-row gap-4 pt-4'>
                 <button className='px-6 py-3 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg flex items-center gap-2'>
                   <i className='ri-download-line'></i>
                   <span>Download Itinerary</span>
