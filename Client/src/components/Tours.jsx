@@ -221,19 +221,21 @@ const Tours = ({ tours }) => {
   }
 
   return (
-    <div className="w-full flex flex-col gap-4 px-3 sm:px-4">
+    <div className="w-full flex flex-col mt-20 md:mt-0 gap-4 px-3 sm:px-4">
       {effectiveTours.map((tour) => {
         const isExpanded = expandedTour?.id === tour.id
         const timeText = tour.time || ''
         const description = tour.description || 'Immersive 360° tour experience.'
+
         return (
-          <div key={tour.id} className="border border-amber-200 rounded-xl overflow-hidden bg-white shadow-sm">
+          <div key={tour.id} className="border  border-amber-200 rounded-xl overflow-hidden bg-white shadow-sm">
+            {/* --- Card Header --- */}
             <button
               onClick={() => setExpandedId(tour.id)}
               className={`w-full text-left px-3 sm:px-4 py-3 ${isExpanded ? 'bg-amber-50 border-b border-amber-200' : 'bg-white'} cursor-pointer`}
             >
-              <div className="flex flex-wrap items-baseline gap-2">
-                <h3 className="m-0 text-base sm:text-lg text-red-900 font-semibold flex-1">{tour.title}</h3>
+              <div className="flex flex-wrap items-baseline gap-2 ">
+                <h3 className=" m-0 text-base sm:text-lg text-red-900 font-semibold flex-1">{tour.title}</h3>
                 {timeText && (
                   <span className="text-[11px] sm:text-xs bg-amber-100 text-red-900 px-2 py-0.5 rounded-md">{timeText}</span>
                 )}
@@ -248,8 +250,10 @@ const Tours = ({ tours }) => {
               )}
             </button>
 
+            {/* --- Expanded Section --- */}
             {isExpanded && (
               <div className="px-3 sm:px-4 py-3 flex flex-col gap-3">
+                {/* Info Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
                   <InfoItem label="Location" value={tour.location} />
                   <InfoItem label="Period" value={tour.period} />
@@ -257,16 +261,17 @@ const Tours = ({ tours }) => {
                   <InfoItem label="Date" value={tour.date} />
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="flex-1" />
-                  <button onClick={handleToggleAutorotate} className="px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">{isAutoRotating ? 'Pause' : 'Play'}</button>
-                  <button onClick={handleResetView} className="px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Reset</button>
-                  <button onClick={handleFullscreen} className="px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Fullscreen</button>
-                  <button onClick={handleShare} className="px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Share</button>
-                  <button onClick={handleDownload} className="px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Download</button>
+                {/* Buttons - responsive row */}
+                <div className="flex flex-wrap sm:flex-nowrap gap-2 overflow-x-auto pb-1">
+                  <button onClick={handleToggleAutorotate} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">{isAutoRotating ? 'Pause' : 'Play'}</button>
+                  <button onClick={handleResetView} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Reset</button>
+                  <button onClick={handleFullscreen} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Fullscreen</button>
+                  <button onClick={handleShare} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Share</button>
+                  <button onClick={handleDownload} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Download</button>
                 </div>
 
-                <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] lg:h-[460px] rounded-xl overflow-hidden border border-amber-200">
+                {/* 360 Viewer */}
+                <div className="relative w-full aspect-video sm:aspect-[16/9] lg:aspect-[21/9] rounded-xl overflow-hidden border border-amber-200">
                   <div ref={containerRef} className="w-full h-full bg-black" />
                   {loading && (
                     <div className="absolute inset-0 flex items-center justify-center text-red-900/70 bg-black/20 backdrop-blur-[1px]">
@@ -294,7 +299,7 @@ function InfoItem({ label, value }) {
   return (
     <div className="flex items-baseline gap-1.5">
       <span className="text-xs text-red-900/70 min-w-16">{label}:</span>
-      <span className="text-xs text-red-900">{value}</span>
+      <span className="text-xs sm:text-sm text-red-900">{value}</span>
     </div>
   )
 }

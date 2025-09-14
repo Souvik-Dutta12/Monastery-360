@@ -26,7 +26,7 @@ const Dashboard = () => {
           <div>
             {active === 'Monasteries' && <Monastery />}
             {active === 'Users' && <Users />}
-            {/* {active === 'Tours' && <Tours />}
+            {active === 'Tours' && <Tours />}
             {active === 'Archives' && <Archives />}
             {active === 'Analytics' && <Analytics />}
             {active === 'Bookings' && <Bookings />}
@@ -51,7 +51,7 @@ const Dashboard = () => {
                   }}
                 />
               </div>
-            )} */}
+            )}
           </div>
         </main>
       </div>

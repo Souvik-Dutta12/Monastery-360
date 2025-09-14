@@ -28,7 +28,7 @@ const DashboardSidebar = ({ active, onChange }) => {
     <>
       {/* Mobile Toggle Button */}
       <button
-        className="lg:hidden fixed top-2 left-1 z-50 bg-red-800 p-1 rounded-md text-amber-200 text-2xl"
+        className="lg:hidden fixed top-2 left-1 z-50 bg-red-800 text-sm p-1 rounded-md text-amber-200 text-2xl"
         onClick={() => setIsOpen(!isOpen)}
       >
         <i className={isOpen ? "ri-close-line" : "ri-menu-line"}></i>

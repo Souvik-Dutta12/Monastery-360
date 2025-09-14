@@ -23,7 +23,7 @@ const deviceSplit = [
 
 const Analytics = () => {
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-full mt-15 md:mt-0'>
       <Searchbar />
 
       <div className='w-full px-4 sm:px-6 lg:px-8 py-4 prata'>

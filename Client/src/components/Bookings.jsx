@@ -126,7 +126,7 @@ const Bookings = () => {
   }
 
   return (
-    <div className='w-full p-6'>
+    <div className='w-full p-6 mt-8 md:mt-0'>
       <div className='max-w-6xl mx-auto'>
         <h2 className='prata text-3xl font-bold text-red-800 mb-3'>Bookings</h2>
 

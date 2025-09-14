@@ -5,7 +5,7 @@ const Pricing = () => {
   const featuredIndex = 1
 
   return (
-    <div className='w-full p-6'>
+    <div className='w-full p-6 mt-10 md:mt-0'>
       <div className='max-w-6xl mx-auto'>
         <h2 className='prata text-3xl font-bold text-red-800 mb-6'>Pricing</h2>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
