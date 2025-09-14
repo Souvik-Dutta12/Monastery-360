@@ -28,6 +28,7 @@ const App = () => {
             </ProtectedRoute>
           } 
         />
+        <Route path="*" element={<div className='text-7xl ml-[7%] md:ml-[25%] prata font-black  mt-70 text-red-800'>404 - Page Not Found</div>} />
       </Routes>
     </div>
   )
