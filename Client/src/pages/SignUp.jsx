@@ -14,18 +14,18 @@ const SignUpPage = () => {
         <div className="w-full max-w-md">
           {/* Logo and branding */}
           <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <img src='/Logo.png' alt="Monastery 360" className="h-12" />
+            <div className="flex items-center justify-center gap-3 mb-4 ">
+              <img src='/Logo.png' alt="Monastery 360" className="h-20" />
               <div className="text-red-900">
-                <h1 className="text-2xl font-bold text-red-800 prata">Monastery 360</h1>
-                <p className="text-sm text-red-700 prata">Sikkim Heritage</p>
+                <h1 className="text-4xl font-bold text-red-800 prata">Monastery 360</h1>
+                <p className="text-xl text-red-700 prata">Sikkim Heritage</p>
               </div>
             </div>
             <p className="text-red-800 prata">Create your account to explore Sikkim's heritage</p>
           </div>
 
           {/* Clerk SignUp Component */}
-          <div className="bg-white/90 backdrop-blur-md rounded-xl p-6 border border-red-200 shadow-lg">
+          <div className="bg-white/90 backdrop-blur-md rounded-xl p-1 lg:p-6 border border-red-200 shadow-lg">
             <SignUp 
               appearance={{
                 elements: {
