@@ -12,10 +12,10 @@ const MonaCard = ({ name = 'Lachung Monastery', cover = '/card.png', about, loca
 
     return (
         <>
-        <div className='w-[75%] mb-3 cursor-pointer bg-amber-50 shadow-xl border border-red-800 overflow-hidden p-7 hover:shadow-2xl transition mt-5 flex items-stretch'>
+        <div className='w-full sm:w-[90%] lg:w-[75%] mb-3 cursor-pointer bg-amber-50 shadow-xl border border-red-800 overflow-hidden p-4 sm:p-7 hover:shadow-2xl transition mt-5 flex flex-col sm:flex-row items-stretch'>
             {/* Left Section */}
-            <div className='w-1/3'>
-                <div className='w-full h-48 md:h-56 lg:h-60 bg-[#0D244B]'>
+            <div className='w-full sm:w-1/3 mb-4 sm:mb-0'>
+                <div className='w-full h-48 sm:h-56 lg:h-60 bg-[#0D244B]'>
                     <img
                         src={cover}
                         alt={name}
@@ -25,23 +25,23 @@ const MonaCard = ({ name = 'Lachung Monastery', cover = '/card.png', about, loca
             </div>
 
             {/* Right Section */}
-            <div className='w-2/3 p-5 prata flex flex-col gap-5'>
-                <h2 className='text-4xl font-bold text-[#0D244B]'>{name}</h2>
+            <div className='w-full sm:w-2/3 p-2 sm:p-5 prata flex flex-col gap-3 sm:gap-5'>
+                <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0D244B]'>{name}</h2>
                 <div className='flex flex-col gap-1'>
-                    <p className=' text-[#0D244B]'>{about || 'This monastery is renowned for its serene ambiance, traditional Buddhist architecture, and vibrant local festivals, serving as a cultural and spiritual hub for the community.'}</p>
-                <p className=' text-[#0D244B]'>
+                    <p className='text-sm sm:text-base text-[#0D244B]'>{about || 'This monastery is renowned for its serene ambiance, traditional Buddhist architecture, and vibrant local festivals, serving as a cultural and spiritual hub for the community.'}</p>
+                <p className='text-sm sm:text-base text-[#0D244B]'>
                       {location || 'Sikkim'}
                 </p>
                 </div>
-                <div className='flex items-center justify-between mt-3 '>
-                    <div className='flex gap-5'>
-                        <button className='w-10 h-10  cursor-pointer text-center flex items-center justify-center'><img src='/group.png' alt="" /></button>
-                    <button className='w-10 h-10  cursor-pointer text-center flex items-center justify-center'><img src='/material.png' alt="" /></button>
-                    <button className='w-10 h-10  cursor-pointer text-center flex items-center justify-center'><img src='/remove.png' alt="" /></button>
+                <div className='flex items-center justify-between mt-3'>
+                    <div className='flex gap-3 sm:gap-5'>
+                        <button className='w-8 h-8 sm:w-10 sm:h-10 cursor-pointer text-center flex items-center justify-center'><img src='/group.png' alt="" className='w-full h-full object-contain' /></button>
+                    <button className='w-8 h-8 sm:w-10 sm:h-10 cursor-pointer text-center flex items-center justify-center'><img src='/material.png' alt="" className='w-full h-full object-contain' /></button>
+                    <button className='w-8 h-8 sm:w-10 sm:h-10 cursor-pointer text-center flex items-center justify-center'><img src='/remove.png' alt="" className='w-full h-full object-contain' /></button>
                     </div>
                     <button
                       onClick={() => setOpen(true)}
-                      className='flex items-center justify-center text-xl text-red-600 hover:text-red-800 duration-300 '>
+                      className='flex items-center justify-center text-lg sm:text-xl text-red-600 hover:text-red-800 duration-300'>
                       More<i className="ri-arrow-right-line"></i>
                     </button>
                     
@@ -50,67 +50,67 @@ const MonaCard = ({ name = 'Lachung Monastery', cover = '/card.png', about, loca
         </div>
 
         {open && (
-          <div className='fixed  inset-0 z-[9999] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4'>
-            <div className='w-full max-w-5xl h-[90vh] rounded-2xl border border-amber-200 bg-amber-50 shadow-2xl overflow-hidden flex flex-col'>
+          <div className='fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4'>
+            <div className='w-full max-w-5xl h-[95vh] sm:h-[90vh] rounded-xl sm:rounded-2xl border border-amber-200 bg-amber-50 shadow-2xl overflow-hidden flex flex-col'>
               {/* Header */}
-              <div className='flex items-center justify-between px-5 py-4 border-b border-amber-200'>
+              <div className='flex items-center justify-between px-3 sm:px-5 py-3 sm:py-4 border-b border-amber-200'>
                 <div>
-                  <h3 className='prata text-2xl text-red-900'>{name}</h3>
-                  <p className='text-red-900/70 text-sm'>Discover more images and details</p>
+                  <h3 className='prata text-xl sm:text-2xl text-red-900'>{name}</h3>
+                  <p className='text-red-900/70 text-xs sm:text-sm'>Discover more images and details</p>
                 </div>
                 <button onClick={() => setOpen(false)} className='p-2 rounded hover:bg-amber-100 text-red-900' aria-label='Close'>
-                  <i className='ri-close-line text-2xl'></i>
+                  <i className='ri-close-line text-xl sm:text-2xl'></i>
                 </button>
               </div>
 
               {/* Scrollable content */}
-              <div className='flex-1 overflow-y-auto px-5 py-4'>
+              <div className='flex-1 overflow-y-auto px-3 sm:px-5 py-3 sm:py-4'>
                 {/* Gallery */}
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
                   <div className='lg:col-span-2'>
-                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4'>
                       {gallery.slice(0,4).map((src, idx) => (
                         <div key={idx} className='rounded-xl overflow-hidden border border-amber-200'>
-                          <img src={src} alt={`Gallery ${idx+1}`} className='w-full h-40 object-cover' />
+                          <img src={src} alt={`Gallery ${idx+1}`} className='w-full h-32 sm:h-40 object-cover' />
                         </div>
                       ))}
                     </div>
                   </div>
                   <aside>
-                    <div className='bg-white rounded-xl p-4 border border-amber-200 h-full'>
-                      <h4 className='prata text-xl text-red-900 mb-2'>About</h4>
-                      <p className='text-red-900/80 text-sm'>{about || `${name} is known for its serene location and traditional Tibetan architecture. It serves as a cultural center for the local community with annual festivals and rituals.`}</p>
-                      <h5 className='prata text-lg text-red-900 mt-4 mb-2'>Location</h5>
-                      <p className='text-red-900/80 text-sm'>{location || 'Sikkim'}</p>
-                      <div className='mt-4 flex gap-2'>
-                        <a href='/vr-tour' className='px-4 py-2 rounded-lg bg-red-900 hover:bg-red-800 text-amber-100 inline-flex items-center gap-2'>Start VR Tour <i className='ri-vr-line'></i></a>
-                        <button onClick={() => setOpen(false)} className='px-4 py-2 rounded-lg border border-amber-200 text-red-900 hover:bg-amber-100'>Close</button>
+                    <div className='bg-white rounded-xl p-3 sm:p-4 border border-amber-200 h-full'>
+                      <h4 className='prata text-lg sm:text-xl text-red-900 mb-2'>About</h4>
+                      <p className='text-red-900/80 text-xs sm:text-sm'>{about || `${name} is known for its serene location and traditional Tibetan architecture. It serves as a cultural center for the local community with annual festivals and rituals.`}</p>
+                      <h5 className='prata text-base sm:text-lg text-red-900 mt-3 sm:mt-4 mb-2'>Location</h5>
+                      <p className='text-red-900/80 text-xs sm:text-sm'>{location || 'Sikkim'}</p>
+                      <div className='mt-3 sm:mt-4 flex flex-col sm:flex-row gap-2'>
+                        <a href='/vr-tour' className='px-3 sm:px-4 py-2 rounded-lg bg-red-900 hover:bg-red-800 text-amber-100 inline-flex items-center justify-center gap-2 text-sm'>Start VR Tour <i className='ri-vr-line'></i></a>
+                        <button onClick={() => setOpen(false)} className='px-3 sm:px-4 py-2 rounded-lg border border-amber-200 text-red-900 hover:bg-amber-100 text-sm'>Close</button>
                       </div>
                     </div>
                   </aside>
                 </div>
 
                 {/* Visiting Info */}
-                <div className='mt-6 grid grid-cols-1 md:grid-cols-3 gap-4'>
-                  <div className='bg-white rounded-xl p-4 border border-amber-200'>
-                    <h4 className='prata text-lg text-red-900 mb-2'>Timings</h4>
-                    <ul className='text-red-900/80 text-sm space-y-1'>
+                <div className='mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4'>
+                  <div className='bg-white rounded-xl p-3 sm:p-4 border border-amber-200'>
+                    <h4 className='prata text-base sm:text-lg text-red-900 mb-2'>Timings</h4>
+                    <ul className='text-red-900/80 text-xs sm:text-sm space-y-1'>
                       <li>Mon–Fri: 6:00 AM – 6:00 PM</li>
                       <li>Sat–Sun: 6:00 AM – 7:00 PM</li>
                       <li>Festivals: Extended hours</li>
                     </ul>
                   </div>
-                  <div className='bg-white rounded-xl p-4 border border-amber-200'>
-                    <h4 className='prata text-lg text-red-900 mb-2'>Entry & Dress</h4>
-                    <ul className='text-red-900/80 text-sm space-y-1'>
+                  <div className='bg-white rounded-xl p-3 sm:p-4 border border-amber-200'>
+                    <h4 className='prata text-base sm:text-lg text-red-900 mb-2'>Entry & Dress</h4>
+                    <ul className='text-red-900/80 text-xs sm:text-sm space-y-1'>
                       <li>Entry: Free (donations welcome)</li>
                       <li>Dress: Modest attire recommended</li>
                       <li>Photography: Allowed (no flash)</li>
                     </ul>
                   </div>
-                  <div className='bg-white rounded-xl p-4 border border-amber-200'>
-                    <h4 className='prata text-lg text-red-900 mb-2'>Contact</h4>
-                    <ul className='text-red-900/80 text-sm space-y-1'>
+                  <div className='bg-white rounded-xl p-3 sm:p-4 border border-amber-200 sm:col-span-2 lg:col-span-1'>
+                    <h4 className='prata text-base sm:text-lg text-red-900 mb-2'>Contact</h4>
+                    <ul className='text-red-900/80 text-xs sm:text-sm space-y-1'>
                       <li><i className='ri-phone-line'></i> +91-3592-123456</li>
                       <li><i className='ri-mail-line'></i> info@monastery.org</li>
                       <li><i className='ri-map-pin-2-line'></i> {location || 'Sikkim'}</li>
@@ -119,9 +119,9 @@ const MonaCard = ({ name = 'Lachung Monastery', cover = '/card.png', about, loca
                 </div>
 
                 {/* Events */}
-                <div className='mt-6 bg-white rounded-xl p-4 border border-amber-200'>
-                  <h4 className='prata text-lg text-red-900 mb-2'>Upcoming Events</h4>
-                  <div className='grid grid-cols-1 md:grid-cols-2 gap-3 text-red-900/80 text-sm'>
+                <div className='mt-4 sm:mt-6 bg-white rounded-xl p-3 sm:p-4 border border-amber-200'>
+                  <h4 className='prata text-base sm:text-lg text-red-900 mb-2'>Upcoming Events</h4>
+                  <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 text-red-900/80 text-xs sm:text-sm'>
                     <div className='p-3 rounded-lg border border-amber-200'>
                       <div className='font-semibold text-red-900'>Morning Prayers</div>
                       <div>Daily • 6:00 AM</div>
@@ -134,9 +134,9 @@ const MonaCard = ({ name = 'Lachung Monastery', cover = '/card.png', about, loca
                 </div>
 
                 {/* Map placeholder */}
-                <div className='mt-6 bg-white rounded-xl p-4 border border-amber-200'>
-                  <h4 className='prata text-lg text-red-900 mb-2'>Location</h4>
-                  <div className='w-full h-56 rounded-lg overflow-hidden border border-amber-200'>
+                <div className='mt-4 sm:mt-6 bg-white rounded-xl p-3 sm:p-4 border border-amber-200'>
+                  <h4 className='prata text-base sm:text-lg text-red-900 mb-2'>Location</h4>
+                  <div className='w-full h-40 sm:h-56 rounded-lg overflow-hidden border border-amber-200'>
                     <img src='https://maps.googleapis.com/maps/api/staticmap?center=Sikkim&zoom=7&size=600x300&key=fake-key' alt='Map' className='w-full h-full object-cover' />
                   </div>
                 </div>
