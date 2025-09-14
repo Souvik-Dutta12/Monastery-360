@@ -44,10 +44,13 @@ const SignInPage = () => {
                   formFieldErrorText: 'text-red-600',
                   identityPreviewEditButton: 'text-red-800 hover:text-red-900'
                 }
-              }}
+              }
+              
+            }
               redirectUrl="/dashboard"
               signUpUrl="/sign-up"
               forceRedirectUrl="/dashboard"
+              
             />
           </div>
 

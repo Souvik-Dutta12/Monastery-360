@@ -9,6 +9,7 @@ import VRTourPage from './pages/VRTour'
 import Contact from './pages/Contact'
 import ProtectedRoute from './components/ProtectedRoute'
 
+
 const App = () => {
   return (
     <div className='w-screen h-auto'>
