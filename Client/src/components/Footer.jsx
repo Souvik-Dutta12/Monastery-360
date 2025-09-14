@@ -5,51 +5,71 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <div className='w-full relative h-auto bg-[#D49E42]/70 pb-10'>
-            
-            <div className='w-full  grid grid-cols-3 py-10 px-5 gap-5 ' >
-                <div className='flex flex-col  w-sm  ml-10 items-center justify-center gap-3'>
+        <div className='w-full relative h-auto bg-[#D49E42]/70 pb-6 sm:pb-10'>
+            {/* Main Footer Content */}
+            <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8 sm:py-10 px-4 lg:px-8 gap-8'>
+                {/* Brand Section */}
+                <div className='flex flex-col items-center lg:items-start justify-center gap-3 lg:col-span-1'>
                     <div className='flex items-center justify-center gap-3'>
-                        <img src='/Logo.png' alt="logo" className='w-20 h-20 ' />
-                        <div className='prata text-3xl text-white font-semibold flex flex-col items-center'>
+                        <img src='/Logo.png' alt="logo" className='w-16 h-16 sm:w-20 sm:h-20' />
+                        <div className='prata text-2xl sm:text-3xl text-white font-semibold flex flex-col items-center lg:items-start'>
                             <span>Monastery 360</span>
-                            <span className='text-lg'>Sikkim Heritage</span>
+                            <span className='text-base sm:text-lg'>Sikkim Heritage</span>
                         </div>
                     </div>
-                    <p className='text-xl prata text-white text-center'>Preserving Sikkim’s heritage - connecting communities, inspiring generations, and making the wisdom of monastries accessible worldwide</p>
+                    <p className='text-sm sm:text-base lg:text-xl prata text-white text-center lg:text-left max-w-md'>
+                        Preserving Sikkim's heritage - connecting communities, inspiring generations, and making the wisdom of monasteries accessible worldwide
+                    </p>
                 </div>
-                <div className='flex flex-col w-sm ml-40 items-start text-xl  prata text-white justify-center '>
-                    <span><Link>Contact Us</Link></span>
-                    <span><Link>FAQs</Link></span>
-                    <span><Link>Virtual Tours</Link></span>
-                    <span><Link>Bookings</Link></span>
-                    <span><Link>Events</Link></span>
-                    <span><Link>Archives</Link></span>
-                </div>
-                <div className='flex flex-col w-md  prata px-5 text-white text-xl items-center justify-center gap-5'>
-                    <div className='flex flex-col items-start justify-center'>
-                        <h1 >Donate to Heritage</h1>
-                        <h1>Languages</h1>
+
+                {/* Quick Links Section */}
+                <div className='flex  flex-col items-start lg:items-center  text-white justify-center gap-3 lg:col-span-1'>
+                    <h3 className='prata text-lg sm:text-xl font-semibold text-white mb-2'>Quick Links</h3>
+                    <div className='flex flex-col gap-1 text-sm sm:text-base lg:text-xl prata'>
+                        <Link to="/contact" className='hover:text-red-800 duration-300 transition-colors'>Contact Us</Link>
+                        <Link to="#" className='hover:text-red-800 duration-300 transition-colors'>FAQs</Link>
+                        <Link to="/vr-tour" className='hover:text-red-800 duration-300 transition-colors'>Virtual Tours</Link>
+                        <Link to="#" className='hover:text-red-800 duration-300 transition-colors'>Bookings</Link>
+                        <Link to="#" className='hover:text-red-800 duration-300 transition-colors'>Events</Link>
+                        <Link to="#" className='hover:text-red-800 duration-300 transition-colors'>Archives</Link>
                     </div>
-                    <div className='w-full border border-amber-400 flex items-center justify-center h-12 bg-white'>
+                </div>
+
+                {/* Newsletter Section */}
+                <div className='flex flex-col items-center lg:items-start prata text-white justify-center  lg:col-span-1'>
+                    <div className='flex flex-col items-center lg:items-start justify-center'>
+                        <h3 className='text-lg sm:text-xl font-semibold '>Donate to Heritage</h3>
+                        <h3 className='text-lg sm:text-xl font-semibold mb-4'>Languages</h3>
+                    </div>
+                    <div className='w-full max-w-md border border-amber-400 flex flex-row items-center justify-center bg-white overflow-hidden'>
                         <input
-                        className='w-3/5 px-3 h-full outline-none text-red-800'
-                        placeholder='Enter your email id'
-                        type="email" />
-                        <button className='w-2/5 h-full bg-red-800 text-white'>Join our newsletter</button>
+                            className='w-full sm:w-3/5 px-3 py-3 sm:h-12 outline-none text-red-800 text-sm sm:text-base'
+                            placeholder='Enter your email id'
+                            type="email" 
+                        />
+                        <button className='w-full sm:w-2/5 h-12 bg-red-800 text-white hover:bg-red-700 transition-colors text-sm sm:text-base font-semibold'>
+                            Join our newsletter
+                        </button>
                     </div>
                 </div>
             </div>
-            <div className='flex justify-evenly items-center'>
-                <div className='text-red-800 flex gap-7 text-4xl'>
-            
-                    <i className="ri-facebook-circle-fill"></i>
-                    <i className="ri-twitter-x-line"></i>
-                    <i className="ri-youtube-fill"></i>
+
+            {/* Bottom Section */}
+            <div className='flex flex-col sm:flex-row justify-between items-center gap-4 lg:px-80 px-4 py-4 border-t border-amber-400/30'>
+                <div className='text-red-800 flex gap-4 sm:gap-6 lg:gap-7 text-2xl sm:text-3xl lg:text-4xl'>
+                    <a href="#" className='hover:text-red-600 transition-colors duration-300' aria-label="Facebook">
+                        <i className="ri-facebook-circle-fill"></i>
+                    </a>
+                    <a href="#" className='hover:text-red-600 transition-colors duration-300' aria-label="Twitter">
+                        <i className="ri-twitter-x-line"></i>
+                    </a>
+                    <a href="#" className='hover:text-red-600 transition-colors duration-300' aria-label="YouTube">
+                        <i className="ri-youtube-fill"></i>
+                    </a>
                 </div>
-                <div className='flex gap-7 text-md text-white prata'>
-                    <span>Privacy Policy</span>
-                    <span>Terms of Use</span>
+                <div className='flex flex-col sm:flex-row gap-3 sm:gap-6 lg:gap-7 text-xs sm:text-sm lg:text-base text-white prata text-center sm:text-left'>
+                    <Link to="#" className='hover:text-red-800 duration-300 transition-colors'>Privacy Policy</Link>
+                    <Link to="#" className='hover:text-red-800 duration-300 transition-colors'>Terms of Use</Link>
                     <span>Copyright © 2025</span>
                 </div>
             </div>
