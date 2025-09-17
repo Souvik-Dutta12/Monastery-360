@@ -392,14 +392,14 @@ export const regionToTours = {
       "id": "pem-heritage",
       "title": "Pemayangtse Heritage Tour",
       "time": "Tue, Thu • 11:00 AM",
-      "panoramaUrl": "https://pannellum.org/images/cuba.jpg",
+      "panoramaUrl": "https://www.google.com/maps/embed?pb=!4v1758093138636!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREVoSlhucEFF!2m2!1d27.30518919282202!2d88.25156580066201!3f158.69918015177967!4f-16.974731290172656!5f0.6645501473320738",
       "about": "Explore the historic Pemayangtse Monastery, its exquisite wooden sculptures, and surrounding heritage sites while learning about Sikkim’s spiritual and cultural legacy."
     },
     {
       "id": "tashi-sunrise",
       "title": "Tashiding Sunrise Tour",
       "time": "Sat • 6:00 AM",
-      "panoramaUrl": "https://pannellum.org/images/alma.jpg",
+      "panoramaUrl": "https://www.google.com/maps/embed?pb=!4v1758094296279!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ0V6djM1LUFF!2m2!1d27.307710898809!2d88.2976437708665!3f311.7220501942709!4f3.312649107981528!5f0.7820865974627469",
       "about": "Experience a breathtaking sunrise over the Himalayas at Tashiding Monastery, combined with insights into sacred rituals and local Buddhist traditions."
     }
   ],
@@ -408,21 +408,21 @@ export const regionToTours = {
       "id": "namchi-culture",
       "title": "Namchi Culture Tour",
       "time": "Wed • 2:00 PM",
-      "panoramaUrl": "https://pannellum.org/images/bma-1.jpg",
+      "panoramaUrl":"https://www.google.com/maps/embed?pb=!4v1758094489645!6m8!1m7!1sSzykVrksLyMtI01at0AGUQ!2m2!1d27.17042855843198!2d88.36346714206266!3f294.06216!4f0!5f0.7820865974627469",
       "about": "A guided walk through Namchi’s cultural highlights, temples, and local markets — learn about regional rituals, crafts, and the Char Dham complex while enjoying panoramic hill views."
     },
     {
       "id": "ravangla-park",
       "title": "Ravangla Buddha Park Tour",
       "time": "Sun • 9:00 AM",
-      "panoramaUrl": "https://pannellum.org/images/cuba.jpg",
+      "panoramaUrl": "https://www.google.com/maps/embed?pb=!4v1758093849136!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREUtSTJBbXdF!2m2!1d27.41250043052966!2d88.58361050014649!3f150.3414312405002!4f-5.952685235095231!5f0.7820865974627469",
       "about": "Visit the Buddha Park and surrounding trails; experience the giant Shakyamuni statue, serene gardens, and panoramic vistas ideal for meditation, photography, and short nature walks."
     },
     {
       "id": "temi-tea-vr",
       "title": "Temi Tea Estate VR Walk",
       "time": "Fri • 4:00 PM",
-      "panoramaUrl": "https://pannellum.org/images/alma.jpg",
+      "panoramaUrl":"https://www.google.com/maps/embed?pb=!4v1758095237312!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ0szSlc0bEFF!2m2!1d27.04933418201817!2d88.2543150776408!3f193.83805049060652!4f3.6106650882440476!5f0.7820865974627469",
       "about": "A virtual stroll through Temi Tea Garden’s rolling plantations; learn tea-processing basics, local farming traditions, and enjoy sweeping views of neatly terraced tea bushes."
     }
   ],
@@ -431,28 +431,28 @@ export const regionToTours = {
       "id": "lachung-prayer",
       "title": "Lachung Prayer Hall Tour",
       "time": "Daily • 8:00 AM",
-      "panoramaUrl": "https://pannellum.org/images/alma.jpg",
+      "panoramaUrl": "https://www.google.com/maps/embed?pb=!4v1758094763684!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQzRqOWpJeXdF!2m2!1d27.68905688248872!2d88.74297227133621!3f260.78466479452055!4f2.3835616438356197!5f0.4000000000000002",
       "about": "Join monks at Lachung Monastery’s prayer hall, witness morning rituals, and immerse yourself in the spiritual energy of chants while surrounded by snow-clad Himalayan peaks."
     },
     {
       "id": "lachen-circuit",
       "title": "Lachen Monastic Circuit",
       "time": "Fri • 3:00 PM",
-      "panoramaUrl": "https://pannellum.org/images/bma-1.jpg",
+      "panoramaUrl": "https://www.google.com/maps/embed?pb=!4v1758094826977!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREV1NHJIaEFF!2m2!1d27.73222868081597!2d88.54896419435!3f172.42787!4f0!5f0.7820865974627469",
       "about": "Explore the monastic circuit of Lachen, visiting sacred halls, ancient relics, and learning about the traditions of the Nyingma sect in a serene mountain setting."
     },
     {
       "id": "phodong-courtyards",
       "title": "Phodong Courtyards 360",
       "time": "Mon • 11:00 AM",
-      "panoramaUrl": "https://pannellum.org/images/cuba.jpg",
+      "panoramaUrl": "https://www.google.com/maps/embed?pb=!4v1758094058153!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREUtSTJBbXdF!2m2!1d27.41250043052966!2d88.58361050014649!3f12.41!4f0.5699999999999932!5f0.7820865974627469",
       "about": "Walk through the courtyards of Phodong Monastery, admire historic murals, and experience mask dance stories that highlight the Kagyu sect’s deep spiritual roots."
     },
     {
       "id": "phensang-trails",
       "title": "Phensang Forest Trails",
       "time": "Thu • 7:00 AM",
-      "panoramaUrl": "https://pannellum.org/images/alma.jpg",
+      "panoramaUrl": "https://www.google.com/maps/embed?pb=!4v1758095596219!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREVwdldmZ2dF!2m2!1d27.19419999688898!2d88.1182999729995!3f266.7574191122864!4f-1.7542502994061095!5f0.4000000000000002",
       "about": "Hike the peaceful forest trails surrounding Phensang Monastery, combining nature walks with visits to sacred prayer sites, and enjoy quiet reflection in lush green surroundings."
     }
   ]

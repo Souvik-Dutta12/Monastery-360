@@ -120,9 +120,9 @@ const Tours = ({ tours }) => {
           try {
             viewerRef.current.setPanorama(expandedTour.panoramaUrl, { autoLoad: true })
             // Reset hotspots by reloading config when changing scene
-            try { viewerRef.current.removeHotSpots && viewerRef.current.getConfig && viewerRef.current.getConfig().hotSpots?.forEach((hs) => viewerRef.current.removeHotSpot && viewerRef.current.removeHotSpot(hs.id)) } catch (_) {}
+            try { viewerRef.current.removeHotSpots && viewerRef.current.getConfig && viewerRef.current.getConfig().hotSpots?.forEach((hs) => viewerRef.current.removeHotSpot && viewerRef.current.removeHotSpot(hs.id)) } catch (_) { }
           } catch (_) {
-            try { viewerRef.current.destroy && viewerRef.current.destroy() } catch (_) {}
+            try { viewerRef.current.destroy && viewerRef.current.destroy() } catch (_) { }
             viewerRef.current = null
           }
         }
@@ -154,9 +154,9 @@ const Tours = ({ tours }) => {
           // Toggle autorotate according to state
           if (isAutoRotating) {
             const speed = expandedTour.autoRotate || 2
-            try { viewerRef.current.startAutoRotate(speed) } catch (_) {}
+            try { viewerRef.current.startAutoRotate(speed) } catch (_) { }
           } else {
-            try { viewerRef.current.stopAutoRotate() } catch (_) {}
+            try { viewerRef.current.stopAutoRotate() } catch (_) { }
           }
         }
 
@@ -177,17 +177,17 @@ const Tours = ({ tours }) => {
           if (next) viewerRef.current.startAutoRotate(expandedTour?.autoRotate || 2)
           else viewerRef.current.stopAutoRotate()
         }
-      } catch (_) {}
+      } catch (_) { }
       return next
     })
   }
 
   const handleFullscreen = () => {
-    try { viewerRef.current && viewerRef.current.toggleFullscreen() } catch (_) {}
+    try { viewerRef.current && viewerRef.current.toggleFullscreen() } catch (_) { }
   }
 
   const handleResetView = () => {
-    try { viewerRef.current && viewerRef.current.setHfov(100) } catch (_) {}
+    try { viewerRef.current && viewerRef.current.setHfov(100) } catch (_) { }
   }
 
   const handleShare = async () => {
@@ -221,11 +221,11 @@ const Tours = ({ tours }) => {
   }
 
   return (
-    <div className="w-full flex flex-col mt-20 md:mt-0 gap-4 px-3 sm:px-4">
+    <div className="w-full flex flex-col mt-20 md:mt-5 gap-4 px-3 sm:px-4 mb-5">
       {effectiveTours.map((tour) => {
         const isExpanded = expandedTour?.id === tour.id
         const timeText = tour.time || ''
-        const description = tour.description || 'Immersive 360° tour experience.'
+        const description = tour.description || tour.about || 'Immersive 360° tour experience.'
 
         return (
           <div key={tour.id} className="border  border-amber-200 rounded-xl overflow-hidden bg-white shadow-sm">
@@ -251,34 +251,53 @@ const Tours = ({ tours }) => {
             </button>
 
             {/* --- Expanded Section --- */}
+
             {isExpanded && (
               <div className="px-3 sm:px-4 py-3 flex flex-col gap-3">
-                {/* Info Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
-                  <InfoItem label="Location" value={tour.location} />
-                  <InfoItem label="Period" value={tour.period} />
-                  <InfoItem label="Credits" value={tour.credits} />
-                  <InfoItem label="Date" value={tour.date} />
-                </div>
+                {/* Info Grid (render only if data exists) */}
+                {(tour.location || tour.period || tour.credits || tour.date) && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+                    <InfoItem label="Location" value={tour.location} />
+                    <InfoItem label="Period" value={tour.period} />
+                    <InfoItem label="Credits" value={tour.credits} />
+                    <InfoItem label="Date" value={tour.date} />
+                  </div>
+                )}
 
-                {/* Buttons - responsive row */}
+                {/* Buttons */}
                 <div className="flex flex-wrap sm:flex-nowrap gap-2 overflow-x-auto pb-1">
-                  <button onClick={handleToggleAutorotate} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">{isAutoRotating ? 'Pause' : 'Play'}</button>
+                  <button onClick={handleToggleAutorotate} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">
+                    {isAutoRotating ? 'Pause' : 'Play'}
+                  </button>
                   <button onClick={handleResetView} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Reset</button>
                   <button onClick={handleFullscreen} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Fullscreen</button>
                   <button onClick={handleShare} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Share</button>
                   <button onClick={handleDownload} className="flex-1 sm:flex-none px-3 py-2 rounded-lg border border-amber-200 bg-white text-sm text-red-900 hover:bg-amber-100">Download</button>
                 </div>
 
-                {/* 360 Viewer */}
-                <div className="relative w-full aspect-video sm:aspect-[16/9] lg:aspect-[21/9] rounded-xl overflow-hidden border border-amber-200">
-                  <div ref={containerRef} className="w-full h-full bg-black" />
-                  {loading && (
-                    <div className="absolute inset-0 flex items-center justify-center text-red-900/70 bg-black/20 backdrop-blur-[1px]">
-                      Loading 360° view…
-                    </div>
-                  )}
-                </div>
+                {/* 360 Viewer OR Google Maps iframe */}
+                {expandedTour?.panoramaUrl?.match(/\.(jpg|jpeg|png)$/i) ? (
+                  <div className="relative w-full aspect-video sm:aspect-[16/9] lg:aspect-[21/9] rounded-xl overflow-hidden border border-amber-200">
+                    <div ref={containerRef} className="w-full h-full bg-black" />
+                    {loading && (
+                      <div className="absolute inset-0 flex items-center justify-center text-red-900/70 bg-black/20 backdrop-blur-[1px]">
+                        Loading 360° view…
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="relative w-full aspect-video sm:aspect-[16/9] lg:aspect-[21/9] rounded-xl overflow-hidden border border-amber-200">
+                    <iframe
+                      src={expandedTour?.panoramaUrl}
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                  </div>
+                )}
 
                 {tour.hotSpots && tour.hotSpots.length > 0 && (
                   <div className="text-xs sm:text-sm text-red-900/80">
@@ -287,6 +306,7 @@ const Tours = ({ tours }) => {
                 )}
               </div>
             )}
+
           </div>
         )
       })}
