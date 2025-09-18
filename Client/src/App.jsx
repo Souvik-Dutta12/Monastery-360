@@ -8,29 +8,32 @@ import SignUp from './pages/SignUp'
 import VRTourPage from './pages/VRTour'
 import Contact from './pages/Contact'
 import ProtectedRoute from './components/ProtectedRoute'
+import { AuthProvider } from './context/AuthContext'
 
 
 const App = () => {
   return (
-    <div className='w-screen h-auto'>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/explore' element={<Explore />} />
-        <Route path='/sign-in' element={<SignIn />} />
-        <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/vr-tour' element={<VRTourPage />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route 
-          path='/dashboard' 
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route path="*" element={<div className='text-7xl ml-[7%] md:ml-[25%] prata font-black  mt-70 text-red-800'>404 - Page Not Found</div>} />
-      </Routes>
-    </div>
+    <AuthProvider>
+      <div className='w-screen h-auto'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/explore' element={<Explore />} />
+          <Route path='/sign-in' element={<SignIn />} />
+          <Route path='/sign-up' element={<SignUp />} />
+          <Route path='/vr-tour' element={<VRTourPage />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route 
+            path='/dashboard' 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route path="*" element={<div className='text-7xl ml-[7%] md:ml-[25%] prata font-black  mt-70 text-red-800'>404 - Page Not Found</div>} />
+        </Routes>
+      </div>
+    </AuthProvider>
   )
 }
 

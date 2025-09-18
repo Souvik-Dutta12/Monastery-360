@@ -21,7 +21,7 @@ const SignInPage = () => {
                 <p className="text-xl text-red-700 prata">Sikkim Heritage</p>
               </div>
             </div>
-            
+            <p className="text-red-800 prata">Sign in to your account</p>
           </div>
 
           {/* Clerk SignIn Component */}

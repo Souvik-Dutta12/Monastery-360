@@ -1,12 +1,14 @@
 import React from 'react'
-import { useAuth } from '@clerk/clerk-react'
+import { useAuth as useClerkAuth } from '@clerk/clerk-react'
 import { Navigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 const ProtectedRoute = ({ children }) => {
-  const { isSignedIn, isLoaded } = useAuth()
+  const { isSignedIn, isLoaded } = useClerkAuth()
+  const { isLoadingRole } = useAuth()
 
-  // Show loading while Clerk is initializing
-  if (!isLoaded) {
+  // Show loading while Clerk is initializing or role is loading
+  if (!isLoaded || isLoadingRole) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#0D244B] to-[#1a3a5c] flex items-center justify-center">
         <div className="text-center">
