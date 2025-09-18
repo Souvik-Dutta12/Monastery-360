@@ -13,16 +13,19 @@ const SignUpPage = () => {
     setShowClerkForm(true);
   };
 
-  const handleSignUpComplete = async (user) => {
+  const handleSignUpComplete = async () => {
     try {
-      // Store the user role in Clerk metadata
-      await user.update({
-        publicMetadata: {
-          role: selectedRole
-        }
-      });
+      // We need to wait for the user to be fully loaded after sign-up
+      // and then update their metadata
+      
+      // Store the selected role in localStorage temporarily
+      localStorage.setItem('userRole', selectedRole);
+      console.log('User role saved to localStorage:', selectedRole);
+      
+      // Note: The actual metadata update will happen in AuthContext
+      // when the user is fully loaded after sign-up/sign-in
     } catch (error) {
-      console.error("Error setting user role:", error);
+      console.error("Error handling sign-up completion:", error);
     }
   };
 
