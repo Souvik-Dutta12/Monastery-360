@@ -38,7 +38,7 @@ const Nav = () => {
           </span>
           <span>
             <Link
-              to={'/sign-in'}
+              to={'/events'}
               onClick={() => setActive('Events')}
               className={`prata text-amber-300 duration-300 text-shadow-md relative inline-block pb-1 group text-lg xl:text-xl`}
             >

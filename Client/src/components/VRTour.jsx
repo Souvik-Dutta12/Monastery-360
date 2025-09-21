@@ -36,7 +36,7 @@ const VRTour = () => {
               execution-while-out-of-viewport 
               execution-while-not-rendered 
               web-share 
-              src="https://sketchfab.com/models/8764231d188a464497d27293dbe5031f/embed?autospin=1&autostart=1&preload=1"
+              src="https://sketchfab.com/models/d2de6b05accb4a9ebe3681157afe36c3/embed?autospin=1&autostart=1&preload=1&transparent=1"
               style={{ width: '100%', height: '100%', border: 'none' }}
             />
             <p style={{ fontSize: '10px', fontWeight: 'normal', margin: '5px', color: '#4A4A4A' }}>
