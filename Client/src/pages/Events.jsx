@@ -2,19 +2,34 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const Events = () => {
   // Animation states
   const [animatedSections, setAnimatedSections] = useState({
     hero: false,
+    calendar: false,
     upcoming: false,
     featured: false,
     past: false,
     newsletter: false
   });
 
+  // Calendar state
+  const [date, setDate] = useState(new Date());
+  const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [eventDates, setEventDates] = useState([
+    new Date(2024, 9, 15), // October 15, 2024
+    new Date(2024, 10, 5), // November 5, 2024
+    new Date(2024, 11, 1), // December 1, 2024
+    new Date(2025, 4, 26), // May 26, 2025
+  ]);
+
   // Refs for sections
   const heroRef = useRef(null);
+  const calendarRef = useRef(null);
   const upcomingRef = useRef(null);
   const featuredRef = useRef(null);
   const pastRef = useRef(null);
@@ -46,7 +61,7 @@ const Events = () => {
       date: "December 1, 2024",
       time: "9:00 AM - 5:00 PM",
       location: "Hemis Monastery",
-      image: "/public/material.png",
+      image: "/public/bg2.jpg",
       description: "Exhibition of rare thangka paintings and Buddhist artifacts."
     }
   ];
@@ -55,7 +70,7 @@ const Events = () => {
     title: "Buddha Purnima Celebration",
     date: "May 26, 2025",
     location: "Multiple Monasteries",
-    image: "/public/group.png",
+    image: "/public/card.png",
     description: "The most auspicious day in the Buddhist calendar celebrating Buddha's birth, enlightenment, and death. Join special ceremonies, prayer sessions, and cultural performances across various monasteries."
   };
 
@@ -65,7 +80,7 @@ const Events = () => {
       title: "Summer Dharma Teachings",
       date: "July 10-15, 2024",
       location: "Thiksey Monastery",
-      image: "/public/sompod.png"
+      image: "/public/card.png"
     },
     {
       id: 2,
@@ -79,16 +94,38 @@ const Events = () => {
       title: "Monastic Life Workshop",
       date: "September 5, 2024",
       location: "Phuktal Monastery",
-      image: "/public/material.png"
+      image: "/public/card.png"
     },
     {
       id: 4,
       title: "Traditional Music Concert",
       date: "September 18, 2024",
       location: "Diskit Monastery",
-      image: "/public/bg2.jpg"
+      image: "/public/card.jpg"
     }
   ];
+
+  // Function to check if a date has an event
+  const hasEvent = (date) => {
+    return eventDates.some(eventDate => 
+      date.getDate() === eventDate.getDate() && 
+      date.getMonth() === eventDate.getMonth() && 
+      date.getFullYear() === eventDate.getFullYear()
+    );
+  };
+
+  // Handle date change
+  const handleDateChange = (newDate) => {
+    setDate(newDate);
+    setSelectedDate(newDate);
+  };
+
+  // Handle month change
+  const handleActiveStartDateChange = ({ activeStartDate }) => {
+    if (activeStartDate) {
+      setActiveMonth(activeStartDate.getMonth());
+    }
+  };
 
   // Intersection Observer setup
   useEffect(() => {
@@ -114,6 +151,7 @@ const Events = () => {
 
     // Observe all section refs
     if (heroRef.current) observer.observe(heroRef.current);
+    if (calendarRef.current) observer.observe(calendarRef.current);
     if (upcomingRef.current) observer.observe(upcomingRef.current);
     if (featuredRef.current) observer.observe(featuredRef.current);
     if (pastRef.current) observer.observe(pastRef.current);
@@ -122,6 +160,7 @@ const Events = () => {
     return () => {
       // Cleanup observer
       if (heroRef.current) observer.unobserve(heroRef.current);
+      if (calendarRef.current) observer.unobserve(calendarRef.current);
       if (upcomingRef.current) observer.unobserve(upcomingRef.current);
       if (featuredRef.current) observer.unobserve(featuredRef.current);
       if (pastRef.current) observer.unobserve(pastRef.current);
@@ -157,6 +196,140 @@ const Events = () => {
             <span>Explore All Events</span>
             <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
           </Link>
+        </div>
+      </section>
+
+      {/* Calendar Section */}
+      <section 
+        ref={calendarRef}
+        data-section="calendar"
+        className={`py-16 bg-amber-50 transition-all duration-1000 ${
+          animatedSections.calendar ? 'opacity-100' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-amber-800">
+            Event Calendar
+          </h2>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-amber-200">
+              <div className="flex flex-col lg:flex-row gap-8">
+                <div className="lg:w-7/12">
+                  <div className="custom-calendar">
+                    <Calendar
+                      onChange={handleDateChange}
+                      value={date}
+                      onActiveStartDateChange={handleActiveStartDateChange}
+                      tileClassName={({ date }) => 
+                        hasEvent(date) ? 'event-date' : null
+                      }
+                      tileContent={({ date }) => 
+                        hasEvent(date) ? <div className="event-dot"></div> : null
+                      }
+                      className="rounded-lg shadow-sm border-amber-200 border"
+                    />
+                  </div>
+                  <style jsx="true">{`
+                    .custom-calendar .react-calendar {
+                      width: 100%;
+                      border: none;
+                      font-family: inherit;
+                    }
+                    .custom-calendar .react-calendar__tile {
+                      position: relative;
+                      height: 48px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      transition: all 0.2s ease;
+                    }
+                    .custom-calendar .react-calendar__tile:hover {
+                      background-color: rgba(245, 158, 11, 0.1);
+                    }
+                    .custom-calendar .react-calendar__tile--active {
+                      background-color: #f59e0b !important;
+                      color: white;
+                    }
+                    .custom-calendar .react-calendar__tile--now {
+                      background-color: rgba(245, 158, 11, 0.2);
+                    }
+                    .custom-calendar .react-calendar__navigation {
+                      margin-bottom: 1rem;
+                    }
+                    .custom-calendar .react-calendar__navigation button {
+                      min-width: 44px;
+                      background: none;
+                      font-size: 16px;
+                      border-radius: 6px;
+                      transition: all 0.2s ease;
+                    }
+                    .custom-calendar .react-calendar__navigation button:hover {
+                      background-color: rgba(245, 158, 11, 0.1);
+                    }
+                    .custom-calendar .react-calendar__month-view__weekdays {
+                      font-weight: bold;
+                      color: #92400e;
+                    }
+                    .custom-calendar .event-date {
+                      font-weight: bold;
+                      color: #92400e;
+                    }
+                    .custom-calendar .event-dot {
+                      position: absolute;
+                      bottom: 4px;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      width: 6px;
+                      height: 6px;
+                      background-color: #f59e0b;
+                      border-radius: 50%;
+                    }
+                  `}</style>
+                </div>
+                
+                <div className="lg:w-5/12 bg-amber-50 rounded-lg p-4">
+                  <h3 className="text-xl font-semibold mb-4 text-amber-800">
+                    {selectedDate ? (
+                      `Events on ${selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`
+                    ) : (
+                      "Upcoming Events"
+                    )}
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    {selectedDate && hasEvent(selectedDate) ? (
+                      upcomingEvents
+                        .filter(event => {
+                          const eventDate = new Date(event.date);
+                          return eventDate.getDate() === selectedDate.getDate() &&
+                                 eventDate.getMonth() === selectedDate.getMonth();
+                        })
+                        .map(event => (
+                          <div key={event.id} className="flex items-start p-3 bg-white rounded-lg border-l-4 border-amber-500 shadow-sm hover:shadow-md transition-all duration-300">
+                            <div className="bg-amber-100 rounded-full p-2 mr-3">
+                              <i className="fas fa-calendar-day text-amber-600"></i>
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-amber-800">{event.title}</h4>
+                              <p className="text-sm text-gray-600">{event.time} • {event.location}</p>
+                            </div>
+                          </div>
+                        ))
+                    ) : (
+                      <div className="text-center py-6">
+                        <div className="inline-block p-3 bg-amber-100 rounded-full mb-3">
+                          <i className="fas fa-calendar text-amber-600 text-xl"></i>
+                        </div>
+                        <p className="text-gray-600">Select a date to see events</p>
+                        <p className="text-sm text-gray-500 mt-2">Dates with events are highlighted</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -335,60 +508,19 @@ const Events = () => {
             ))}
           </div>
           
-          <div className="text-center mt-12">
+          <div className="text-center mt-12 ">
             <Link 
               to="/archives" 
               className="inline-flex items-center text-amber-700 hover:text-amber-800 transition-all duration-300 group"
             >
-              <span>View All Past Events</span>
+              <span className='border p-2 rounded-md'>View All Past Events</span>
               <i className="fas fa-long-arrow-alt-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section 
-        ref={newsletterRef}
-        data-section="newsletter"
-        className={`py-16 bg-amber-100/50 transition-all duration-1000 ${
-          animatedSections.newsletter ? 'opacity-100' : 'opacity-0 translate-y-10'
-        }`}
-      >
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-amber-200">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-amber-800">
-                Stay Updated
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Subscribe to our newsletter to receive updates about upcoming events, special ceremonies, and cultural programs at monasteries.
-              </p>
-            </div>
-            
-            <form className="max-w-xl mx-auto">
-              <div className="flex flex-col md:flex-row gap-4">
-                <input 
-                  type="email" 
-                  placeholder="Your email address" 
-                  className="flex-grow bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-300"
-                />
-                <button 
-                  type="submit" 
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-600/30 hover:scale-105 flex items-center justify-center group"
-                >
-                  <span>Subscribe</span>
-                  <i className="fas fa-paper-plane ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
-                </button>
-              </div>
-            </form>
-            
-            <div className="mt-8 text-center text-sm text-gray-500">
-              By subscribing, you agree to receive event updates and promotional emails from Monastery 360.
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       <Footer />
     </div>

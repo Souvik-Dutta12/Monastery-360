@@ -128,20 +128,20 @@ const Home = () => {
         <div className='absolute inset-0 bg-[#1d1903]/70 '></div>
         
         <div className='relative z-10 w-full h-full flex flex-col  items-center  md:items-start   justify-center px-4 sm:px-12 md:px-16 lg:px-24'>
-          <div className='flex flex-col mt-0 md:mt-10 items-center md:items-start'>
+          <div className='flex flex-col mt-10 items-center md:items-start'>
             <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl prata font-black text-white tracking-tight leading-tight text-shadow-2xl animate-fadeIn'>
               Experience <br />
               <span className='text-amber-50'><span className='text-amber-300 hover:text-amber-200 hover:drop-shadow-[0_0_8px_rgba(252,211,77,0.5)] transition-all duration-300'>Sikkim's</span> Sacred</span> <br />
               <span className='text-amber-50'>Heritage</span> <span className='hover:text-red-500 transition-colors duration-300 cursor-pointer'>Digitally</span>
             </h1>
             
-            <p className='text-base sm:text-lg md:text-xl pl-12 md:pl-0 mt-6 text-amber-300 w-full md:max-w-xl animate-fadeIn' style={{animationDelay: '300ms'}}>
+            <p className='text-base sm:text-lg md:text-xl pl-12 md:pl-0 mt-0 md:mt-6 text-amber-300 w-full md:max-w-xl animate-fadeIn' style={{animationDelay: '300ms'}}>
               Explore 200+ monasteries through immersive 360° virtual tours, 
               discover ancient manuscripts, and connect with living Buddhist 
               traditions from anywhere in the world.
             </p>
             
-            <div className='flex flex-col sm:flex-row items-center md:items-start gap-4 mt-8'>
+            <div className='flex flex-col sm:flex-row items-center md:items-start gap-4 mt-2 md:mt-8'>
               <Link to={'#'} className='px-6 py-3 bg-red-700 hover:bg-red-600 transition-all duration-300 text-white rounded-lg inline-flex items-center border border-amber-100 justify-center gap-2 hover:shadow-lg hover:shadow-red-700/30 transform hover:-translate-y-1 active:translate-y-0'>
                 <i className="ri-vr-line hover:animate-pulse"></i>
                 <span className='prata text-base sm:text-lg flex gap-1 text-amber-100'>Start Virtual Tour <i className="ri-arrow-right-line group-hover:translate-x-1 transition-transform duration-300"></i></span>
@@ -152,7 +152,7 @@ const Home = () => {
               </Link>
             </div>
             
-            <div className='mt-16 flex flex-col md:flex-row items-center gap-10 md:gap-20 text-white/90 w-full md:max-w-md'>
+            <div className='mt-5 md:mt-16 flex flex-col md:flex-row items-center gap-3 md:gap-20 text-white/90 w-full md:max-w-md'>
               {[
                 { n: '200+', l: 'Monasteries' },
                 { n: '10M+', l: 'Virtual Visitors' },
