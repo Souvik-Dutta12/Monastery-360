@@ -135,7 +135,7 @@ const Home = () => {
               <span className='text-amber-50'>Heritage</span> <span className='hover:text-red-500 transition-colors duration-300 cursor-pointer'>Digitally</span>
             </h1>
             
-            <p className='text-base sm:text-lg md:text-xl pl-12 md:pl-0 mt-0 md:mt-6 text-amber-300 w-full md:max-w-xl animate-fadeIn' style={{animationDelay: '300ms'}}>
+            <p className='text-base sm:text-lg md:text-xl  mt-0 md:mt-6 text-amber-300 w-full md:max-w-xl animate-fadeIn' style={{animationDelay: '300ms'}}>
               Explore 200+ monasteries through immersive 360° virtual tours, 
               discover ancient manuscripts, and connect with living Buddhist 
               traditions from anywhere in the world.
