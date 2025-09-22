@@ -115,7 +115,7 @@ const Nav = () => {
               <span className={`absolute left-0 -bottom-0.5 h-[2px] bg-red-900 transition-all duration-300 ${active === 'Explore' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </Link>
             <Link
-              to={'/sign-in'}
+              to={'/events'}
               onClick={() => {
                 setActive('Events')
                 setMobileMenuOpen(false)
