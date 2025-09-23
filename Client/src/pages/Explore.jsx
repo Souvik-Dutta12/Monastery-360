@@ -93,7 +93,7 @@ const InteractiveMap = ({ selectedRegion, onRegionSelect }) => {
     <div className='relative'>
       <canvas 
         ref={canvasRef} 
-        className='w-full h-full rounded-xl border border-amber-200/20'
+        className='w-full h-full  rounded-xl border border-amber-200/20'
         onClick={(e) => {
           const rect = canvasRef.current.getBoundingClientRect()
           const x = e.clientX - rect.left
@@ -106,7 +106,7 @@ const InteractiveMap = ({ selectedRegion, onRegionSelect }) => {
           else if (x > 110 && x < 190 && y > 160 && y < 240) onRegionSelect('West')
         }}
       />
-      <div className='absolute top-4 left-4 bg-[#1d1903]/90 backdrop-blur-sm rounded-lg p-3 border border-amber-200/20'>
+      <div className='absolute top-4 hidden md:flex flex-col left-4 bg-[#1d1903]/90 backdrop-blur-sm rounded-lg p-3 border border-amber-200/20'>
         <div className='text-amber-300 text-sm font-bold'>Interactive Map</div>
         <div className='text-amber-100/70 text-xs'>Click regions to explore</div>
       </div>
@@ -377,10 +377,10 @@ const Explore = () => {
 
               <button 
                 onClick={() => setShowAIGuide(true)}
-                className='w-full px-6 py-4 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg flex items-center justify-center gap-2'
+                className='w-full px-6 py-4 cursor-pointer bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg flex items-center justify-center gap-2'
               >
                 <i className='ri-robot-2-line'></i>
-                <span>Get AI Tour Guide</span>
+                <span >Get AI Tour Guide</span>
               </button>
             </div>
           </div>
@@ -416,7 +416,7 @@ const Explore = () => {
                     </div>
                   ))}
                 </div>
-                <button className='w-full mt-4 px-4 py-2 bg-amber-200 hover:bg-amber-300 transition-colors text-red-900 rounded-lg text-sm'>
+                <button className='w-full cursor-pointer mt-4 px-4 py-2 bg-amber-200 hover:bg-amber-300 transition-colors text-red-900 rounded-lg text-sm'>
                   Explore {section.title}
                 </button>
               </div>
@@ -455,7 +455,7 @@ const Explore = () => {
                 </div>
                 <Link 
                   to='/vr-tour'
-                  className='w-full px-4 py-2 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg text-sm flex items-center justify-center gap-2'
+                  className='w-full cursor-pointer px-4 py-2 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg text-sm flex items-center justify-center gap-2'
                 >
                   <i className='ri-vr-line'></i>
                   <span>Start VR Tour</span>

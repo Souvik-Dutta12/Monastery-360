@@ -142,7 +142,7 @@ const Home = () => {
             </p>
             
             <div className='flex flex-col sm:flex-row items-center md:items-start gap-4 mt-2 md:mt-8'>
-              <Link to={'#'} className='px-6 py-3 bg-red-700 hover:bg-red-600 transition-all duration-300 text-white rounded-lg inline-flex items-center border border-amber-100 justify-center gap-2 hover:shadow-lg hover:shadow-red-700/30 transform hover:-translate-y-1 active:translate-y-0'>
+              <Link to={'/vr-tour'} className='px-6 py-3 bg-red-700 hover:bg-red-600 transition-all duration-300 text-white rounded-lg inline-flex items-center border border-amber-100 justify-center gap-2 hover:shadow-lg hover:shadow-red-700/30 transform hover:-translate-y-1 active:translate-y-0'>
                 <i className="ri-vr-line hover:animate-pulse"></i>
                 <span className='prata text-base sm:text-lg flex gap-1 text-amber-100'>Start Virtual Tour <i className="ri-arrow-right-line group-hover:translate-x-1 transition-transform duration-300"></i></span>
               </Link>
@@ -296,7 +296,7 @@ const Home = () => {
                   { icon: 'ri-drag-move-line', text: 'Drag to Rotate' },
                   { icon: 'ri-zoom-in-line', text: 'Scroll to Zoom' },
                   { icon: 'ri-fullscreen-line', text: 'Fullscreen View' },
-                  { icon: 'ri-vr-line', text: 'VR Compatible' }
+                  { icon: 'ri-goggles-line', text: 'VR Compatible' }
                 ].map((feature, idx) => (
                   <div key={idx} className='flex items-center gap-2 bg-[#1d1903]/60 backdrop-blur-sm p-2 sm:p-3 rounded-lg border border-amber-200/20 hover:border-amber-200/50 hover:bg-[#1d1903]/80 transition-all duration-300 transform hover:scale-105 cursor-pointer group'>
                     <div className='w-8 h-8 flex items-center justify-center rounded-full bg-amber-400/20 text-amber-300 group-hover:bg-amber-400/40 transition-all duration-300'>
@@ -309,11 +309,11 @@ const Home = () => {
               
               {/* CTA Buttons */}
               <div className='flex flex-col sm:flex-row gap-3'>
-                <Link to='/vrtour' className='px-4 py-2 sm:py-3 bg-red-800 hover:bg-red-700 transition-all duration-300 text-amber-100 rounded-lg flex items-center justify-center gap-2 text-sm sm:text-base hover:shadow-lg hover:shadow-red-800/30 transform hover:-translate-y-1 active:translate-y-0 active:shadow-none'>
+                <Link to='/vr-tour' className='px-4 py-2 sm:py-3 bg-red-800 hover:bg-red-700 transition-all duration-300 text-amber-100 rounded-lg flex items-center justify-center gap-2 text-sm sm:text-base hover:shadow-lg hover:shadow-red-800/30 transform hover:-translate-y-1 active:translate-y-0 active:shadow-none'>
                   <i className='ri-fullscreen-line'></i>
                   <span>View Full Experience</span>
                 </Link>
-                <button className='px-4 py-2 sm:py-3 bg-amber-200/20 hover:bg-amber-200/30 transition-all duration-300 text-amber-200 rounded-lg border border-amber-200/30 hover:border-amber-200/50 flex items-center justify-center gap-2 text-sm sm:text-base hover:shadow-lg hover:shadow-amber-200/20 transform hover:-translate-y-1 active:translate-y-0 active:shadow-none'>
+                <button className='px-4 py-2 cursor-pointer sm:py-3 bg-amber-200/20 hover:bg-amber-200/30 transition-all duration-300 text-amber-200 rounded-lg border border-amber-200/30 hover:border-amber-200/50 flex items-center justify-center gap-2 text-sm sm:text-base hover:shadow-lg hover:shadow-amber-200/20 transform hover:-translate-y-1 active:translate-y-0 active:shadow-none'>
                   <i className='ri-download-line'></i>
                   <span>Download 3D Model</span>
                 </button>
@@ -370,7 +370,9 @@ const Home = () => {
                   <img src={m.img} alt={m.title} className='w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110' />
                   <div className='absolute inset-0 bg-gradient-to-t from-[#1d1903] via-transparent to-transparent opacity-70'></div>
                   <button className='absolute bottom-3 sm:bottom-4 left-3 sm:left-4 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-red-900/90 text-amber-100 hover:bg-red-800 transition-all duration-300 inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm transform hover:-translate-y-1 active:translate-y-0 hover:shadow-md hover:shadow-red-900/30'>
+                   <Link to={'/vr-tour'} className='inline-flex items-center gap-1'>
                     Virtual Tour <i className="ri-play-line"></i>
+                   </Link>
                   </button>
                 </div>
                 <div className='p-4 sm:p-5 transform transition-transform duration-300 group-hover:translate-y-[-5px]'>
@@ -498,7 +500,7 @@ const Home = () => {
               {/* VR Features Grid */}
               <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4'>
                 {[
-                  { icon: 'ri-vr-line', title: '360° Immersion', desc: 'Complete panoramic views' },
+                  { icon: 'ri-compass-3-line', title: '360° Immersion', desc: 'Complete panoramic views' },
                   { icon: 'ri-hand-coin-line', title: 'Hand Tracking', desc: 'Natural interaction' },
                   { icon: 'ri-volume-up-line', title: 'Spatial Audio', desc: '3D sound experience' },
                   { icon: 'ri-eye-line', title: 'Eye Tracking', desc: 'Foveated rendering' },
@@ -517,11 +519,11 @@ const Home = () => {
               <div className='space-y-3 sm:space-y-4'>
                 <h4 className='prata text-lg sm:text-xl font-semibold text-amber-200'>VR Controls</h4>
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
-                  <button className='px-3 sm:px-4 py-2 sm:py-3 bg-red-900/80 hover:bg-red-800 transition-colors text-amber-100 rounded-lg border border-red-800 flex items-center justify-center gap-2 text-sm sm:text-base'>
-                    <i className='ri-vr-cardboard-line'></i>
+                  <Link to={'/vr-tour'} className='px-3 sm:px-4 py-2 sm:py-3 bg-red-900/80 cursor-pointer duration-300 hover:bg-red-800 transition-colors text-amber-100 rounded-lg border border-red-800 flex items-center justify-center gap-2 text-sm sm:text-base'>
+                    <i className='ri-goggles-fill'></i>
                     <span>Start VR Tour</span>
-                  </button>
-                  <button className='px-3 sm:px-4 py-2 sm:py-3 bg-amber-200/20 hover:bg-amber-200/30 transition-colors text-amber-200 rounded-lg border border-amber-200/30 flex items-center justify-center gap-2 text-sm sm:text-base'>
+                  </Link>
+                  <button className='px-3 sm:px-4 py-2 cursor-pointer sm:py-3 bg-amber-200/20 hover:bg-amber-200/30 transition-colors text-amber-200 rounded-lg border border-amber-200/30 flex items-center justify-center gap-2 text-sm sm:text-base'>
                     <i className='ri-download-line'></i>
                     <span>Download App</span>
                   </button>
@@ -766,13 +768,7 @@ const Home = () => {
             {/* Input */}
             <div className='px-2 sm:px-3 pb-2 sm:pb-3'>
               <div className='flex items-center gap-1 sm:gap-2'>
-                <select className='text-xs sm:text-sm border border-amber-300 rounded-lg px-1 sm:px-2 py-1.5 sm:py-2 text-red-900 bg-white/80'>
-                  <option value='en'>EN</option>
-                  <option value='hi'>हिन्दी</option>
-                  <option value='ne'>नेपाली</option>
-                  <option value='si'>සිංහල</option>
-                  <option value='bo'>བོད་ཡིག</option>
-                </select>
+                
                 <input
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}

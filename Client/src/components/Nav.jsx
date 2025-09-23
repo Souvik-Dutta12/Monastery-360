@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Nav = () => {
   const [active, setActive] = useState('Home')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
+
   return (
     <div className='fixed z-50 w-full h-20 backdrop-blur flex justify-between px-4 md:px-10 pt-2 items-center text-2xl font-bold'>
       <div className='h-full flex items-center justify-center cursor-pointer'>
@@ -14,8 +14,8 @@ const Nav = () => {
         </Link>
       </div>
       {/* Desktop Navigation */}
-      <div className='hidden lg:flex justify-between w-auto gap-50'>
-        <div className='flex gap-6 xl:gap-10 w-auto items-center'>
+      <div className='hidden   lg:flex w-auto gap-30'>
+        <div className='flex gap-6 xl:gap-10 w-auto  items-center '>
           <span>
             <Link
               to={'/'}
@@ -67,11 +67,19 @@ const Nav = () => {
             </Link>
           </span>
         </div>
-        <div className='flex gap-3 xl:gap-5'>
-          <button className='px-3 xl:px-5 py-2 text-center bg-red-900 hover:bg-red-800 duration-300 text-amber-100 rounded-lg border cursor-pointer'>
+        <div className='flex gap-3 xl:gap-5 w-auto  items-center justify-evenly'>
+
+          <select className='text-xs sm:text-sm border cursor-pointer outline-none border-amber-300 rounded-lg px-1 sm:px-2 py-1.5 sm:py-2 text-red-900 bg-white/80'>
+            <option value='en' className='bg-amber-100'>EN</option>
+            <option value='hi' className='bg-amber-100'>हिन्दी</option>
+            <option value='ne' className='bg-amber-100'>नेपाली</option>
+            <option value='si' className='bg-amber-100'>සිංහල</option>
+            <option value='bo' className='bg-amber-100'>བོད་ཡིག</option>
+          </select>
+          <button className='px-3 xl:px-5 py-2 text-center bg-red-900 hover:bg-red-800 duration-300 text-amber-100 rounded-lg border cursor-pointer text-lg xl:text-xl'>
             <Link to={'/sign-in'} className='prata '>Login</Link>
           </button>
-          <button className='px-3 xl:px-5 py-2 text-center bg-amber-100 hover:bg-amber-200 duration-300 text-red-900 rounded-lg border cursor-pointer'>
+          <button className='px-3 xl:px-5 py-2 text-center bg-amber-100 hover:bg-amber-200 duration-300 text-red-900 rounded-lg border cursor-pointer text-lg xl:text-xl'>
             <Link to={'/sign-up'} className='prata '>Sign up</Link>
           </button>
         </div>
@@ -148,6 +156,13 @@ const Nav = () => {
               <span className={`absolute left-0 -bottom-0.5 h-[2px] bg-red-900 transition-all duration-300 ${active === 'Contact' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </Link>
             <div className='flex flex-col gap-3 pt-4 border-t border-amber-200/20'>
+              <select className='text-xs sm:text-sm border cursor-pointer outline-none border-amber-300 rounded-lg px-1 sm:px-2 py-1.5 sm:py-2 text-red-900 bg-white/80'>
+                <option value='en' className='bg-amber-100'>EN</option>
+                <option value='hi' className='bg-amber-100'>हिन्दी</option>
+                <option value='ne' className='bg-amber-100'>नेपाली</option>
+                <option value='si' className='bg-amber-100'>සිංහල</option>
+                <option value='bo' className='bg-amber-100'>བོད་ཡིག</option>
+              </select>
               <button className='w-full px-5 py-2 text-center bg-red-900 hover:bg-red-800 duration-300 text-amber-100 rounded-lg border cursor-pointer'>
                 <Link to={'/sign-in'} className='prata text-xl'>Login</Link>
               </button>
