@@ -196,7 +196,7 @@ const Events = () => {
             <span>Explore All Events</span>
             <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
           </Link>
-        </div>
+        </div> 
       </section>
 
       {/* Calendar Section */}
