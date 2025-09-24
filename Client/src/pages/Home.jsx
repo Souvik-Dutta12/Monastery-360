@@ -12,7 +12,7 @@ const Home = () => {
   const monasteriesRef = useRef(null)
   const archivesRef = useRef(null)
   const vrRef = useRef(null)
-  
+
   // Animation states
   const [animatedSections, setAnimatedSections] = useState({
     features: false,
@@ -21,7 +21,7 @@ const Home = () => {
     archives: false,
     vr: false
   })
-  
+
   // Scroll animation observer
   useEffect(() => {
     const observerOptions = {
@@ -29,7 +29,7 @@ const Home = () => {
       rootMargin: '0px',
       threshold: 0.2
     }
-    
+
     const observerCallback = (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -43,16 +43,16 @@ const Home = () => {
         }
       })
     }
-    
+
     const observer = new IntersectionObserver(observerCallback, observerOptions)
-    
+
     // Observe all section refs
     if (featuresRef.current) observer.observe(featuresRef.current)
     if (modelRef.current) observer.observe(modelRef.current)
     if (monasteriesRef.current) observer.observe(monasteriesRef.current)
     if (archivesRef.current) observer.observe(archivesRef.current)
     if (vrRef.current) observer.observe(vrRef.current)
-    
+
     return () => {
       if (featuresRef.current) observer.unobserve(featuresRef.current)
       if (modelRef.current) observer.unobserve(modelRef.current)
@@ -61,7 +61,7 @@ const Home = () => {
       if (vrRef.current) observer.unobserve(vrRef.current)
     }
   }, [])
-  
+
   // Live Cultural Events: simple calendar + schedule state
   const today = new Date()
   const [selectedDate, setSelectedDate] = useState(new Date(today.getFullYear(), today.getMonth(), today.getDate()))
@@ -126,7 +126,7 @@ const Home = () => {
           <img src='/bg2.jpg' alt="Monastery background" className='w-full h-full object-cover' />
         </div>
         <div className='absolute inset-0 bg-[#1d1903]/70 '></div>
-        
+
         <div className='relative z-10 w-full h-full flex flex-col  items-center  md:items-start   justify-center px-4 sm:px-12 md:px-16 lg:px-24'>
           <div className='flex flex-col mt-10 items-center md:items-start'>
             <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl prata font-black text-white tracking-tight leading-tight text-shadow-2xl animate-fadeIn'>
@@ -134,13 +134,13 @@ const Home = () => {
               <span className='text-amber-50'><span className='text-amber-300 hover:text-amber-200 hover:drop-shadow-[0_0_8px_rgba(252,211,77,0.5)] transition-all duration-300'>Sikkim's</span> Sacred</span> <br />
               <span className='text-amber-50'>Heritage</span> <span className='hover:text-red-500 transition-colors duration-300 cursor-pointer'>Digitally</span>
             </h1>
-            
-            <p className='text-base sm:text-lg md:text-xl  mt-0 md:mt-6 text-amber-300 w-full md:max-w-xl animate-fadeIn' style={{animationDelay: '300ms'}}>
-              Explore 200+ monasteries through immersive 360° virtual tours, 
-              discover ancient manuscripts, and connect with living Buddhist 
+
+            <p className='text-base sm:text-lg md:text-xl  mt-0 md:mt-6 text-amber-300 w-full md:max-w-xl animate-fadeIn' style={{ animationDelay: '300ms' }}>
+              Explore 200+ monasteries through immersive 360° virtual tours,
+              discover ancient manuscripts, and connect with living Buddhist
               traditions from anywhere in the world.
             </p>
-            
+
             <div className='flex flex-col sm:flex-row items-center md:items-start gap-4 mt-2 md:mt-8'>
               <Link to={'/vr-tour'} className='px-6 py-3 bg-red-700 hover:bg-red-600 transition-all duration-300 text-white rounded-lg inline-flex items-center border border-amber-100 justify-center gap-2 hover:shadow-lg hover:shadow-red-700/30 transform hover:-translate-y-1 active:translate-y-0'>
                 <i className="ri-vr-line hover:animate-pulse"></i>
@@ -151,15 +151,15 @@ const Home = () => {
                 <span className='prata text-base sm:text-lg'>Explore Map</span>
               </Link>
             </div>
-            
+
             <div className='mt-5 md:mt-16 flex flex-col md:flex-row items-center gap-3 md:gap-20 text-white/90 w-full md:max-w-md'>
               {[
                 { n: '200+', l: 'Monasteries' },
                 { n: '10M+', l: 'Virtual Visitors' },
                 { n: '15', l: 'Languages' },
               ].map((s, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className='flex flex-col items-center md:items-start hover:scale-110 transition-all duration-300 cursor-default'
                   style={{ animationDelay: `${i * 200}ms` }}
                 >
@@ -169,7 +169,7 @@ const Home = () => {
               ))}
             </div>
           </div>
-          
+
           {/* Feature list on the right side */}
           <div className='absolute right-8 md:right-12 lg:right-24 top-1/2 transform -translate-y-1/2 hidden md:block'>
             <div className='space-y-4'>
@@ -188,16 +188,16 @@ const Home = () => {
               ))}
             </div>
           </div>
-          
-          
-          
+
+
+
         </div>
       </div>
 
       {/* FEATURES: Light background with dark text, same palette */}
-      <section 
-        ref={featuresRef} 
-        data-section="features" 
+      <section
+        ref={featuresRef}
+        data-section="features"
         className={`w-full bg-amber-50 text-[#1d1903] py-12 sm:py-16 px-4 sm:px-6 md:px-10 lg:px-16 transition-all duration-1000 ${animatedSections.features ? 'opacity-100' : 'opacity-0 translate-y-10'}`}
       >
         <div className='max-w-7xl mx-auto'>
@@ -214,8 +214,8 @@ const Home = () => {
               { icon: 'ri-headphone-line', title: 'Smart Audio Guides', desc: 'Location-based narration with offline support.' },
               { icon: 'ri-calendar-event-line', title: 'Cultural Calendar', desc: 'Festivals and rituals with booking options.' },
             ].map((f, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className='group bg-white/70 border border-amber-200 rounded-xl p-6 shadow-sm hover:shadow-lg hover:shadow-amber-200/30 transition-all duration-300 transform hover:-translate-y-1 hover:bg-white/90'
                 style={{
                   opacity: animatedSections.features ? 1 : 0,
@@ -236,7 +236,7 @@ const Home = () => {
       </section>
 
       {/* 3D MODEL SHOWCASE: Interactive monastery model */}
-      <section 
+      <section
         ref={modelRef}
         data-section="model"
         className={`w-full bg-gradient-to-b from-amber-50 to-[#1d1903] text-amber-50 py-12 sm:py-16 px-4 sm:px-6 md:px-10 lg:px-16 transition-all duration-1000 ${animatedSections.model ? 'opacity-100' : 'opacity-0 translate-y-10'}`}
@@ -246,7 +246,7 @@ const Home = () => {
             <h2 className='prata text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-red-800'>Explore in 3D</h2>
             <p className='mt-3 text-red-900/70 text-base sm:text-lg px-4'>Interact with our detailed 3D monastery models before your visit</p>
           </div>
-          
+
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center'>
             {/* 3D Model Container */}
             <div className='relative w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden border-4 border-amber-200/30 shadow-2xl transform hover:scale-[1.02] transition-all duration-300'>
@@ -254,42 +254,44 @@ const Home = () => {
               <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#1d1903]/40 to-transparent z-10 pointer-events-none'></div>
               <div className='absolute -top-4 -right-4 w-16 h-16 bg-amber-300/30 rounded-full blur-xl'></div>
               <div className='absolute -bottom-8 -left-8 w-24 h-24 bg-red-800/30 rounded-full blur-xl'></div>
-              
+
               {/* VR Badge */}
               <div className='absolute top-4 right-4 z-20 bg-red-900/90 backdrop-blur-sm text-amber-100 px-3 py-1 rounded-full text-xs sm:text-sm flex items-center gap-1 border border-amber-200/30 shadow-lg'>
                 <i className='ri-vr-line'></i>
                 <span>VR Ready</span>
               </div>
-              
+
               {/* Sketchfab iframe */}
-              <iframe 
-                title="Rumtek Monastery" 
-                frameBorder="0" 
-                allowFullScreen 
-                mozAllowFullScreen="true" 
-                webkitAllowFullScreen="true" 
-                allow="autoplay; fullscreen; xr-spatial-tracking" 
-                xr-spatial-tracking 
-                execution-while-out-of-viewport 
-                execution-while-not-rendered 
-                web-share 
-                src="https://sketchfab.com/models/d2de6b05accb4a9ebe3681157afe36c3/embed?autospin=1&autostart=1&preload=1&transparent=1&ui_theme=dark"
+              <iframe
+                title="Rumtek Monastery"
+                frameBorder="0"
+                allowFullScreen
+                webkitallowfullscreen="true"
+                mozallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; gyroscope; magnetometer; camera; clipboard-write; web-share"
+                xr-spatial-tracking="true"
+                execution-while-out-of-viewport="true"
+                execution-while-not-rendered="true"
+                web-share="true"
+                src="https://sketchfab.com/models/d2de6b05accb4a9ebe3681157afe36c3/embed?autospin=1&autostart=1&cardboard=1&preload=1&transparent=1&ui_theme=dark"
                 style={{ width: '100%', height: '100%', border: 'none' }}
-                className='z-0'
+                className="z-0"
               />
+
+
             </div>
-            
+
             {/* 3D Model Info */}
             <div className='space-y-4 sm:space-y-6'>
               <div>
                 <h3 className='prata text-xl sm:text-2xl md:text-3xl font-bold text-amber-200'>Rumtek Monastery</h3>
                 <p className='text-amber-100 mt-2 text-sm sm:text-base'>
-                  Explore the intricate details of Sikkim's largest monastery in stunning 3D. 
-                  Interact with the model to discover hidden chambers, sacred halls, and 
+                  Explore the intricate details of Sikkim's largest monastery in stunning 3D.
+                  Interact with the model to discover hidden chambers, sacred halls, and
                   architectural marvels from every angle.
                 </p>
               </div>
-              
+
               {/* Features */}
               <div className='grid grid-cols-2 gap-3'>
                 {[
@@ -306,7 +308,7 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-              
+
               {/* CTA Buttons */}
               <div className='flex flex-col sm:flex-row gap-3'>
                 <Link to='/vr-tour' className='px-4 py-2 sm:py-3 bg-red-800 hover:bg-red-700 transition-all duration-300 text-amber-100 rounded-lg flex items-center justify-center gap-2 text-sm sm:text-base hover:shadow-lg hover:shadow-red-800/30 transform hover:-translate-y-1 active:translate-y-0 active:shadow-none'>
@@ -322,9 +324,9 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
+
       {/* MONASTERIES: Dark section with light text */}
-      <section 
+      <section
         ref={monasteriesRef}
         data-section="monasteries"
         className={`w-full bg-[#1d1903] text-amber-50 py-12 sm:py-16 px-4 sm:px-6 md:px-10 lg:px-16 transition-all duration-1000 ${animatedSections.monasteries ? 'opacity-100' : 'opacity-0 translate-y-10'}`}
@@ -341,24 +343,30 @@ const Home = () => {
           </div>
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6'>
             {[
-              { title: 'Rumtek Monastery', subtitle: 'The Dharmachakra Centre', img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=60', details: [
-                { icon: 'ri-calendar-line', text: 'Founded: 1966' },
-                { icon: 'ri-mountain-line', text: 'Altitude: 1,550m' },
-                { icon: 'ri-team-line', text: '300+ Monks' },
-              ] },
-              { title: 'Pemayangtse Monastery', subtitle: 'Perfect Sublime Lotus', img: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=60', details: [
-                { icon: 'ri-calendar-line', text: 'Founded: 1705' },
-                { icon: 'ri-mountain-line', text: 'Altitude: 2,085m' },
-                { icon: 'ri-vip-crown-line', text: 'Royal Monastery' },
-              ] },
-              { title: 'Tashiding Monastery', subtitle: 'Sacred Hill of Glory', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=60', details: [
-                { icon: 'ri-calendar-line', text: 'Founded: 1641' },
-                { icon: 'ri-mountain-line', text: 'Altitude: 1,465m' },
-                { icon: 'ri-water-flash-line', text: 'Holy Water Site' },
-              ] },
+              {
+                title: 'Rumtek Monastery', subtitle: 'The Dharmachakra Centre', img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=60', details: [
+                  { icon: 'ri-calendar-line', text: 'Founded: 1966' },
+                  { icon: 'ri-mountain-line', text: 'Altitude: 1,550m' },
+                  { icon: 'ri-team-line', text: '300+ Monks' },
+                ]
+              },
+              {
+                title: 'Pemayangtse Monastery', subtitle: 'Perfect Sublime Lotus', img: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=60', details: [
+                  { icon: 'ri-calendar-line', text: 'Founded: 1705' },
+                  { icon: 'ri-mountain-line', text: 'Altitude: 2,085m' },
+                  { icon: 'ri-vip-crown-line', text: 'Royal Monastery' },
+                ]
+              },
+              {
+                title: 'Tashiding Monastery', subtitle: 'Sacred Hill of Glory', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=60', details: [
+                  { icon: 'ri-calendar-line', text: 'Founded: 1641' },
+                  { icon: 'ri-mountain-line', text: 'Altitude: 1,465m' },
+                  { icon: 'ri-water-flash-line', text: 'Holy Water Site' },
+                ]
+              },
             ].map((m, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className='group overflow-hidden rounded-xl border border-amber-200/10 bg-[#241f07] hover:border-amber-200/30 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg hover:shadow-amber-900/20'
                 style={{
                   opacity: animatedSections.monasteries ? 1 : 0,
@@ -370,9 +378,9 @@ const Home = () => {
                   <img src={m.img} alt={m.title} className='w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110' />
                   <div className='absolute inset-0 bg-gradient-to-t from-[#1d1903] via-transparent to-transparent opacity-70'></div>
                   <button className='absolute bottom-3 sm:bottom-4 left-3 sm:left-4 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-red-900/90 text-amber-100 hover:bg-red-800 transition-all duration-300 inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm transform hover:-translate-y-1 active:translate-y-0 hover:shadow-md hover:shadow-red-900/30'>
-                   <Link to={'/vr-tour'} className='inline-flex items-center gap-1'>
-                    Virtual Tour <i className="ri-play-line"></i>
-                   </Link>
+                    <Link to={'/vr-tour'} className='inline-flex items-center gap-1'>
+                      Virtual Tour <i className="ri-play-line"></i>
+                    </Link>
                   </button>
                 </div>
                 <div className='p-4 sm:p-5 transform transition-transform duration-300 group-hover:translate-y-[-5px]'>
@@ -396,7 +404,7 @@ const Home = () => {
       </section>
 
       {/* DIGITAL ARCHIVES: Match index.html content */}
-      <section 
+      <section
         ref={archivesRef}
         data-section="archives"
         className={`w-full bg-amber-50 text-[#1d1903] py-12 sm:py-16 px-4 sm:px-6 md:px-10 lg:px-16 transition-all duration-1000 ${animatedSections.archives ? 'opacity-100' : 'opacity-0 translate-y-10'}`}
@@ -408,13 +416,13 @@ const Home = () => {
           </div>
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6'>
             {[
-              { icon: 'ri-scroll-2-line', title: 'Ancient Manuscripts', desc: '500+ digitized manuscripts', count: '500+' },
+              { icon: 'ri-article-line', title: 'Ancient Manuscripts', desc: '500+ digitized manuscripts', count: '500+' },
               { icon: 'ri-palette-line', title: 'Sacred Murals', desc: 'High-resolution artwork scans', count: '1200+' },
               { icon: 'ri-camera-3-line', title: 'Historical Photos', desc: 'Century-old documentation', count: '800+' },
               { icon: 'ri-music-2-line', title: 'Chants & Prayers', desc: 'Traditional audio recordings', count: '300+' },
             ].map((c, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className='relative group bg-white/80 border border-amber-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:shadow-amber-200/30 hover:-translate-y-1'
                 style={{
                   opacity: animatedSections.archives ? 1 : 0,
@@ -422,7 +430,7 @@ const Home = () => {
                   transition: `all 0.6s ease-out ${idx * 0.1}s`
                 }}
               >
-                <div className='flex items-center gap-3'>
+                <div className='flex items-center gap-1'>
                   <i className={`${c.icon} text-red-800 text-2xl group-hover:scale-110 group-hover:text-red-700 transition-all duration-300`}></i>
                   <h3 className='prata text-xl font-semibold text-red-900 group-hover:text-red-800 transition-colors duration-300'>{c.title}</h3>
                 </div>
@@ -437,7 +445,7 @@ const Home = () => {
       </section>
 
       {/* VR EXPERIENCE SECTION: Dark theme with 3D/VR showcase */}
-      <section 
+      <section
         ref={vrRef}
         data-section="vr"
         className={`w-full bg-gradient-to-t from-[#FFF5E0] via-[#2d1a0a] to-[#1d1903] text-amber-50 py-12 sm:py-16 px-4 sm:px-6 md:px-10 lg:px-16 transition-all duration-1000 ${animatedSections.vr ? 'opacity-100' : 'opacity-0 translate-y-10'}`}
@@ -455,9 +463,9 @@ const Home = () => {
                 {/* VR Headset Mockup */}
                 <div className='relative mx-auto w-48 sm:w-64 h-36 sm:h-48 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500'>
                   <div className='absolute inset-4 bg-gradient-to-br from-amber-200/20 to-red-900/30 rounded-xl overflow-hidden'>
-                    <img 
-                      src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=60' 
-                      alt='VR Monastery View' 
+                    <img
+                      src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=60'
+                      alt='VR Monastery View'
                       className='w-full h-full object-cover opacity-80'
                     />
                     <div className='absolute inset-0 bg-gradient-to-t from-[#1d1903] via-transparent to-transparent'></div>
@@ -470,11 +478,11 @@ const Home = () => {
                   <div className='absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-gray-700 rounded-full'></div>
                   <div className='absolute -right-2 top-1/2 transform -translate-y-1/2 w-4 h-12 bg-gray-600 rounded-full'></div>
                 </div>
-                
+
                 {/* Floating Elements */}
                 <div className='absolute -top-4 -right-4 w-8 h-8 bg-amber-300 rounded-full animate-pulse'></div>
                 <div className='absolute -bottom-4 -left-4 w-6 h-6 bg-red-800 rounded-full animate-bounce'></div>
-                
+
                 {/* VR Stats Overlay */}
                 <div className='absolute top-4 right-4 bg-[#1d1903]/90 backdrop-blur-sm rounded-lg p-3 border border-amber-200/20'>
                   <div className='text-amber-300 text-sm font-bold'>4K Resolution</div>
@@ -488,14 +496,14 @@ const Home = () => {
               <div>
                 <h3 className='prata text-2xl sm:text-3xl font-bold text-amber-200 mb-3 sm:mb-4'>Experience Sacred Spaces Like Never Before</h3>
                 <p className='text-amber-100/80 text-base sm:text-lg leading-relaxed'>
-                  Our advanced VR technology transports you directly into Sikkim's most sacred monasteries. 
-                  Walk through ancient halls, witness traditional ceremonies, and explore hidden chambers 
+                  Our advanced VR technology transports you directly into Sikkim's most sacred monasteries.
+                  Walk through ancient halls, witness traditional ceremonies, and explore hidden chambers
                   with unprecedented realism.
                 </p>
               </div>
 
 
-              
+
 
               {/* VR Features Grid */}
               <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4'>
@@ -608,7 +616,7 @@ const Home = () => {
                 </button>
               </div>
               <div className='grid grid-cols-7 text-center text-red-900/80 text-xs sm:text-sm mb-2'>
-                {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map((d) => (
+                {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d) => (
                   <div key={d} className='py-1'>{d}</div>
                 ))}
               </div>
@@ -625,9 +633,8 @@ const Home = () => {
                         <button
                           key={cIndex}
                           onClick={() => setSelectedDate(cell)}
-                          className={`h-8 sm:h-12 rounded-md border text-xs sm:text-sm transition-colors ${
-                            isSelected ? 'bg-amber-200 border-amber-300 text-red-900' : 'bg-white/70 border-amber-200 hover:bg-amber-100'
-                          }`}
+                          className={`h-8 sm:h-12 rounded-md border text-xs sm:text-sm transition-colors ${isSelected ? 'bg-amber-200 border-amber-300 text-red-900' : 'bg-white/70 border-amber-200 hover:bg-amber-100'
+                            }`}
                         >
                           <div className='flex flex-col items-center justify-center h-full'>
                             <span className={`leading-none ${isToday ? 'text-red-800 font-semibold' : 'text-red-900'}`}>{cell.getDate()}</span>
@@ -715,7 +722,7 @@ const Home = () => {
         </div>
       </section>
 
-        <Footer />
+      <Footer />
       {/* Floating Chatbot */}
       <div className={`fixed cursor-pointer z-50 right-4 sm:right-6 bottom-4 sm:bottom-6`}>
         {!chatOpen && (
@@ -768,7 +775,7 @@ const Home = () => {
             {/* Input */}
             <div className='px-2 sm:px-3 pb-2 sm:pb-3'>
               <div className='flex items-center gap-1 sm:gap-2'>
-                
+
                 <input
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}

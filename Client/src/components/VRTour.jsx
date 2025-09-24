@@ -8,8 +8,8 @@ const VRTour = () => {
       <div className='absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-[#1d1903]/90 to-transparent p-2 sm:p-4'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center gap-2 sm:gap-4'>
-            <Link 
-              to='/' 
+            <Link
+              to='/'
               className='px-2 sm:px-4 py-1 sm:py-2 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg flex items-center gap-1 sm:gap-2 text-xs sm:text-sm'
             >
               <i className='ri-arrow-left-line text-sm sm:text-base'></i>
@@ -25,44 +25,21 @@ const VRTour = () => {
       <div className='w-full h-full flex items-center justify-center pt-12 sm:pt-16 pb-20 sm:pb-24'>
         <div className='w-full max-w-6xl h-full max-h-4xl rounded-lg shadow-2xl border border-amber-200/20 overflow-hidden'>
           <div className='sketchfab-embed-wrapper' style={{ width: '100%', height: '100%' }}>
-            <iframe 
-              title="Rumtek Monastery" 
-              frameBorder="0" 
-              allowFullScreen 
-              mozAllowFullScreen="true" 
-              webkitAllowFullScreen="true" 
-              allow="autoplay; fullscreen; xr-spatial-tracking" 
-              xr-spatial-tracking 
-              execution-while-out-of-viewport 
-              execution-while-not-rendered 
-              web-share 
+            <iframe
+              title="Rumtek Monastery"
+              frameBorder="0"
+              allowFullScreen
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+              allow="autoplay; fullscreen; xr-spatial-tracking; accelerometer; gyroscope; magnetometer; camera; clipboard-write; web-share"
+              xr-spatial-tracking="true"
+              execution-while-out-of-viewport="true"
+              execution-while-not-rendered="true"
+              web-share="true"
               src="https://sketchfab.com/models/d2de6b05accb4a9ebe3681157afe36c3/embed?autospin=1&autostart=1&preload=1&transparent=1"
               style={{ width: '100%', height: '100%', border: 'none' }}
             />
-            <p style={{ fontSize: '10px', fontWeight: 'normal', margin: '5px', color: '#4A4A4A' }}>
-              <a 
-                href="https://sketchfab.com/3d-models/chinese-monastery-8764231d188a464497d27293dbe5031f?utm_medium=embed&utm_campaign=share-popup&utm_content=8764231d188a464497d27293dbe5031f" 
-                target="_blank" 
-                rel="nofollow" 
-                style={{ fontWeight: 'bold', color: '#1CAAD9' }}
-              >
-                Rumtek Monastery
-              </a> by <a 
-                href="https://sketchfab.com/Abhisuresh?utm_medium=embed&utm_campaign=share-popup&utm_content=8764231d188a464497d27293dbe5031f" 
-                target="_blank" 
-                rel="nofollow" 
-                style={{ fontWeight: 'bold', color: '#1CAAD9' }}
-              >
-                Abhi suresh
-              </a> on <a 
-                href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=8764231d188a464497d27293dbe5031f" 
-                target="_blank" 
-                rel="nofollow" 
-                style={{ fontWeight: 'bold', color: '#1CAAD9' }}
-              >
-                Sketchfab
-              </a>
-            </p>
+
           </div>
         </div>
       </div>
@@ -107,23 +84,28 @@ const VRTour = () => {
             <div className='bg-[#1d1903]/80 backdrop-blur-sm rounded-lg p-2 sm:p-4 border border-amber-200/20 sm:col-span-2 lg:col-span-1'>
               <h3 className='prata text-sm sm:text-lg text-amber-200 mb-1 sm:mb-2'>Quick Actions</h3>
               <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-1 sm:gap-2'>
-                <button 
-                  onClick={() => window.open('https://sketchfab.com/3d-models/chinese-monastery-8764231d188a464497d27293dbe5031f', '_blank')}
+                <button
+                  onClick={() => {
+                    window.location.href = 'https://sketchfab.com/3d-models/chinese-monastery-8764231d188a464497d27293dbe5031f';
+                  }}
                   className='w-full px-2 sm:px-3 py-1 sm:py-2 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg text-xs sm:text-sm flex items-center justify-center gap-1 sm:gap-2'
                 >
                   <i className='ri-external-link-line'></i>
                   <span className='hidden sm:inline'>View on Sketchfab</span>
                   <span className='sm:hidden'>Sketchfab</span>
                 </button>
-                <button 
-                  onClick={() => window.open('https://sketchfab.com/Abhisuresh', '_blank')}
+
+                <button
+                  onClick={() => {
+                    window.location.href = 'https://sketchfab.com/Abhisuresh';
+                  }}
                   className='w-full px-2 sm:px-3 py-1 sm:py-2 bg-amber-200 hover:bg-amber-300 transition-colors text-red-900 rounded-lg text-xs sm:text-sm flex items-center justify-center gap-1 sm:gap-2'
                 >
                   <i className='ri-user-line'></i>
                   <span className='hidden sm:inline'>View Creator</span>
                   <span className='sm:hidden'>Creator</span>
                 </button>
-                <button 
+                <button
                   onClick={() => {
                     const iframe = document.querySelector('iframe');
                     if (iframe) {
