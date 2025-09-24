@@ -26,7 +26,7 @@ const SignInPage = () => {
 
           {/* Clerk SignIn Component */}
           <div className="bg-white/90 backdrop-blur-md rounded-xl p-1 lg:p-6 border border-red-200 shadow-lg">
-            <SignIn 
+            <SignIn  
               appearance={{
                 elements: {
                   formButtonPrimary: 'bg-red-900 hover:bg-red-800 text-amber-100 border-0',
