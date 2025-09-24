@@ -4,6 +4,8 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { upcomingEvents,featuredEvent,pastEvents } from '../data/tourData';
+
 
 const Events = () => {
   // Animation states
@@ -36,74 +38,7 @@ const Events = () => {
   const newsletterRef = useRef(null);
 
   // Sample event data
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: "Annual Monastery Festival",
-      date: "October 15, 2024",
-      time: "10:00 AM - 6:00 PM",
-      location: "Tawang Monastery",
-      image: "/public/bg2.jpg",
-      description: "Join us for a celebration of Buddhist culture with traditional dances, music, and rituals."
-    },
-    {
-      id: 2,
-      title: "Meditation Retreat",
-      date: "November 5-7, 2024",
-      time: "All day",
-      location: "Rumtek Monastery",
-      image: "/public/card.png",
-      description: "A three-day immersive meditation retreat guided by senior monks."
-    },
-    {
-      id: 3,
-      title: "Sacred Art Exhibition",
-      date: "December 1, 2024",
-      time: "9:00 AM - 5:00 PM",
-      location: "Hemis Monastery",
-      image: "/public/bg2.jpg",
-      description: "Exhibition of rare thangka paintings and Buddhist artifacts."
-    }
-  ];
 
-  const featuredEvent = {
-    title: "Buddha Purnima Celebration",
-    date: "May 26, 2025",
-    location: "Multiple Monasteries",
-    image: "/public/card.png",
-    description: "The most auspicious day in the Buddhist calendar celebrating Buddha's birth, enlightenment, and death. Join special ceremonies, prayer sessions, and cultural performances across various monasteries."
-  };
-
-  const pastEvents = [
-    {
-      id: 1,
-      title: "Summer Dharma Teachings",
-      date: "July 10-15, 2024",
-      location: "Thiksey Monastery",
-      image: "/public/card.png"
-    },
-    {
-      id: 2,
-      title: "Cultural Heritage Day",
-      date: "August 20, 2024",
-      location: "Lamayuru Monastery",
-      image: "/public/card.png"
-    },
-    {
-      id: 3,
-      title: "Monastic Life Workshop",
-      date: "September 5, 2024",
-      location: "Phuktal Monastery",
-      image: "/public/card.png"
-    },
-    {
-      id: 4,
-      title: "Traditional Music Concert",
-      date: "September 18, 2024",
-      location: "Diskit Monastery",
-      image: "/public/card.jpg"
-    }
-  ];
 
   // Function to check if a date has an event
   const hasEvent = (date) => {
@@ -385,7 +320,7 @@ const Events = () => {
                   </div>
                   <p className="text-gray-600 mb-6">{event.description}</p>
                   <button className="w-full bg-amber-100 hover:bg-amber-600 hover:text-white text-amber-800 py-2 rounded-lg transition-all duration-300 hover:shadow-md group">
-                    <span className="group-hover:mr-2 transition-all duration-300">Register Now</span>
+                    <span className="group-hover:mr-2 cursor-pointer transition-all duration-300">Register Now</span>
                     <i className="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
                   </button>
                 </div>
@@ -436,12 +371,12 @@ const Events = () => {
                   {featuredEvent.description}
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <button className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-600/30 hover:scale-105 flex items-center group">
+                  <button className="bg-amber-600 cursor-pointer hover:bg-amber-700 text-white px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-600/30 hover:scale-105 flex items-center group">
                     <span>Learn More</span>
-                    <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                    <i className="ri-arrow-right-line ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
                   </button>
-                  <button className="bg-transparent border border-amber-600 text-amber-700 hover:bg-amber-600/20 px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center group">
-                    <i className="far fa-calendar-plus mr-2 group-hover:animate-pulse"></i>
+                  <button className="bg-transparent cursor-pointer border border-amber-600 text-amber-700 hover:bg-amber-600/20 px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center group">
+                    <i className="ri-calendar-check-line mr-2 group-hover:animate-pulse"></i>
                     <span>Add to Calendar</span>
                   </button>
                 </div>
@@ -477,13 +412,13 @@ const Events = () => {
                   transition: `all 0.5s ease ${index * 0.15}s`
                 }}
               >
-                <div className="h-40 overflow-hidden relative">
+                <div className="h-40 w-full overflow-hidden relative">
                   <img 
-                    src={event.image} 
+                    src={event?.image} 
                     alt={event.title} 
                     className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-amber-900 bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                  {/* <div className="absolute inset-0 bg-amber-900 bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300"></div> */}
                 </div>
                 <div className="p-4">
                   <h3 className="text-lg font-semibold mb-2 text-amber-700 group-hover:text-amber-800 transition-colors duration-300">
@@ -499,9 +434,9 @@ const Events = () => {
                   </div>
                 </div>
                 <div className="px-4 pb-4">
-                  <button className="w-full bg-amber-100 hover:bg-amber-600 hover:text-white text-amber-800 py-2 rounded text-sm transition-all duration-300 flex items-center justify-center group">
+                  <button className="w-full cursor-pointer bg-amber-100 hover:bg-amber-600 hover:text-white text-amber-800 py-2 rounded text-sm transition-all duration-300 flex items-center justify-center group">
                     <span>View Gallery</span>
-                    <i className="fas fa-images ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
+                    <i className="ri-multi-image-line ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
                   </button>
                 </div>
               </div>

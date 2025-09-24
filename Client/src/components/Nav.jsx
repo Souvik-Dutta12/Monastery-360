@@ -69,7 +69,7 @@ const Nav = () => {
         </div>
         <div className='flex gap-3 xl:gap-5 w-auto  items-center justify-evenly'>
 
-          <select className='text-xs sm:text-sm border cursor-pointer outline-none border-amber-300 rounded-lg px-1 sm:px-2 py-1.5 sm:py-2 text-red-900 bg-white/80'>
+          <select className='text-xs prata sm:text-sm border cursor-pointer outline-none border-amber-300 rounded-lg px-1 sm:px-2 py-1.5 sm:py-2 text-red-900 bg-white/80'>
             <option value='en' className='bg-amber-100'>EN</option>
             <option value='hi' className='bg-amber-100'>हिन्दी</option>
             <option value='ne' className='bg-amber-100'>नेपाली</option>

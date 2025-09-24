@@ -95,7 +95,7 @@ export const mustVisitSections = [
   },
   {
     title: 'Adventure Spots',
-    icon: 'ri-hiking-line',
+    icon: 'ri-treasure-map-line',
     count: '30+',
     description: 'Trekking routes and adventure activities',
     highlights: ['Goecha La Trek', 'Singalila Ridge', 'Dzongri Trek']
@@ -670,3 +670,73 @@ export const regionToArchives = {
 ]
 
 }
+
+
+export  const upcomingEvents = [
+    {
+      id: 1,
+      title: "Annual Monastery Festival",
+      date: "October 15, 2024",
+      time: "10:00 AM - 6:00 PM",
+      location: "Tawang Monastery",
+      image: "https://thumbs.dreamstime.com/b/masked-dance-festival-lamayuru-monastery-india-one-largest-oldest-gompas-ladakh-host-to-two-annual-festivals-61302243.jpg",
+      description: "Join us for a celebration of Buddhist culture with traditional dances, music, and rituals."
+    },
+    {
+      id: 2,
+      title: "Meditation Retreat",
+      date: "November 5-7, 2024",
+      time: "All day",
+      location: "Rumtek Monastery",
+      image: "https://sikkimtourism.org/wp-content/uploads/2023/11/Meditation-Retreats-sikkim.jpg",
+      description: "A three-day immersive meditation retreat guided by senior monks."
+    },
+    {
+      id: 3,
+      title: "Sacred Art Exhibition",
+      date: "December 1, 2024",
+      time: "9:00 AM - 5:00 PM",
+      location: "Hemis Monastery",
+      image: "https://plus.unsplash.com/premium_photo-1678329517720-fd3eaf9df17c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U2FjcmVkJTIwQXJ0JTIwRXhoaWJpdGlvbnxlbnwwfHwwfHx8MA%3D%3D",
+      description: "Exhibition of rare thangka paintings and Buddhist artifacts."
+    }
+  ];
+
+export  const featuredEvent = {
+    title: "Buddha Purnima Celebration",
+    date: "May 26, 2025",
+    location: "Multiple Monasteries",
+    image: "https://images.unsplash.com/photo-1589400554239-7c6cf8393a6e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnVkZGhhfGVufDB8fDB8fHww",
+    description: "The most auspicious day in the Buddhist calendar celebrating Buddha's birth, enlightenment, and death. Join special ceremonies, prayer sessions, and cultural performances across various monasteries."
+  };
+
+ export const pastEvents = [
+    {
+      id: 1,
+      title: "Summer Dharma Teachings",
+      date: "July 10-15, 2024",
+      location: "Thiksey Monastery",
+      image: "https://plus.unsplash.com/premium_photo-1673529438200-060770e87fe3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8U3VtbWVyJTIwRGhhcm1hfGVufDB8fDB8fHww"
+    },
+    {
+      id: 2,
+      title: "Cultural Heritage Day",
+      date: "August 20, 2024",
+      location: "Lamayuru Monastery",
+      image: "https://sikkimtourism.org/wp-content/uploads/2023/06/cultural-milieu-of-sikkim.jpg"
+    },
+    {
+      id: 3,
+      title: "Monastic Life Workshop",
+      date: "September 5, 2024",
+      location: "Phuktal Monastery",
+      image: "https://static.livebooks.com/dbade8fa1a584f62a804aa32ef9b3d86/i/b33eb7e7ca854f2a9514bfeedb143a54/1/GCuCv726vxAVM9sgguVj4g/_DSF1388-3673-3674-3675-3676.jpg"
+    },
+    {
+      id: 4,
+      title: "Traditional Music Concert",
+      date: "September 18, 2024",
+      location: "Diskit Monastery",
+      image: "https://www.kipepeo.in/wp-content/uploads/sikkim-festival-02.jpg"
+    }
+  ];
