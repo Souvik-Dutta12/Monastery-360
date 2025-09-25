@@ -8,7 +8,7 @@ const VRTourPage = () => {
       <div className="absolute top-4 left-4 z-20">
         <Link
           to="/"
-          className="px-4 py-2 bg-amber-700 hover:bg-amber-600 transition-colors text-amber-100 rounded-lg flex items-center gap-2 shadow-lg shadow-black/30"
+          className="px-4 py-2 bg-amber-700 hover:bg-amber-600 transition-colors text-amber-100 rounded-lg flex items-center gap-2 shadow-lg shadow-black/30 mt-12 md:mt-0"
         >
           <i className="ri-arrow-left-line"></i>
           <span>Back</span>
