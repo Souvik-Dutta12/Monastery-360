@@ -63,6 +63,7 @@ const Monastery = () => {
                       about={m.about}
                       location={m.location}
                       images={m.images}
+                      map={m.map}
                     />
                   ))
                 ) : (

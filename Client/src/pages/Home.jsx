@@ -378,7 +378,7 @@ const Home = () => {
                   <img src={m.img} alt={m.title} className='w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110' />
                   <div className='absolute inset-0 bg-gradient-to-t from-[#1d1903] via-transparent to-transparent opacity-70'></div>
                   <button className='absolute bottom-3 sm:bottom-4 left-3 sm:left-4 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-red-900/90 text-amber-100 hover:bg-red-800 transition-all duration-300 inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm transform hover:-translate-y-1 active:translate-y-0 hover:shadow-md hover:shadow-red-900/30'>
-                    <Link to={'/vr-tour'} className='inline-flex items-center gap-1'>
+                    <Link to={'/vr-show'} className='inline-flex items-center gap-1'>
                       Virtual Tour <i className="ri-play-line"></i>
                     </Link>
                   </button>
@@ -527,7 +527,7 @@ const Home = () => {
               <div className='space-y-3 sm:space-y-4'>
                 <h4 className='prata text-lg sm:text-xl font-semibold text-amber-200'>VR Controls</h4>
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
-                  <Link to={'/vr-tour'} className='px-3 sm:px-4 py-2 sm:py-3 bg-red-900/80 cursor-pointer duration-300 hover:bg-red-800 transition-colors text-amber-100 rounded-lg border border-red-800 flex items-center justify-center gap-2 text-sm sm:text-base'>
+                  <Link to={'/vr-show'} className='px-3 sm:px-4 py-2 sm:py-3 bg-red-900/80 cursor-pointer duration-300 hover:bg-red-800 transition-colors text-amber-100 rounded-lg border border-red-800 flex items-center justify-center gap-2 text-sm sm:text-base'>
                     <i className='ri-goggles-fill'></i>
                     <span>Start VR Tour</span>
                   </Link>

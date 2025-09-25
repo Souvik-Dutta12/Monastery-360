@@ -84,16 +84,14 @@ const VRTour = () => {
             <div className='bg-[#1d1903]/80 backdrop-blur-sm rounded-lg p-2 sm:p-4 border border-amber-200/20 sm:col-span-2 lg:col-span-1'>
               <h3 className='prata text-sm sm:text-lg text-amber-200 mb-1 sm:mb-2'>Quick Actions</h3>
               <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-1 sm:gap-2'>
-                <button
-                  onClick={() => {
-                    window.location.href = 'https://sketchfab.com/3d-models/chinese-monastery-8764231d188a464497d27293dbe5031f';
-                  }}
-                  className='w-full px-2 sm:px-3 py-1 sm:py-2 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg text-xs sm:text-sm flex items-center justify-center gap-1 sm:gap-2'
+                <Link
+                  to={'/vr-tour'}
+                  className='w-full cursor-pointer px-2 sm:px-3 py-1 sm:py-2 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg text-xs sm:text-sm flex items-center justify-center gap-1 sm:gap-2'
                 >
-                  <i className='ri-external-link-line'></i>
-                  <span className='hidden sm:inline'>View on Sketchfab</span>
-                  <span className='sm:hidden'>Sketchfab</span>
-                </button>
+                  <i className='ri-goggles-line'></i>
+                  <span className='hidden sm:inline'>VR View</span>
+                  
+                </Link>
 
                 <button
                   onClick={() => {

@@ -216,7 +216,8 @@ export const regionToMonasteries = {
         "https://media.istockphoto.com/id/2228503994/photo/rumtek-monastery-in-lush-green-hills-of-himalayas.webp?a=1&b=1&s=612x612&w=0&k=20&c=Vv1bFTkog_h0Ma1pvqTMzUM5sDbv04S70gfBnwHsBF4=",
         "https://media.istockphoto.com/id/622223788/photo/the-enchey-monastery.webp?a=1&b=1&s=612x612&w=0&k=20&c=JTwVxOrLCRPG1gu_t6KIIG8x28BJemWow8l7WFgaYgA=",
         "https://media.istockphoto.com/id/2225606046/photo/interior-of-rumtek-monastery-also-known-as-the-dharma-chakra-centre-gangtok.webp?a=1&b=1&s=612x612&w=0&k=20&c=0VwgVC-BeYpOI4sdo-PpGRC8aSFo3jZ7-1mF46No1KE="
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1772.8925017147008!2d88.55963282139504!3d27.288610566659205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6a30f1e34741b%3A0x317cb60253a00c9e!2sRumtek%20Monastery!5e0!3m2!1sen!2sin!4v1758794021009!5m2!1sen!2sin"
     }
   ],
   "West": [
@@ -231,7 +232,8 @@ export const regionToMonasteries = {
         "https://media.istockphoto.com/id/186875600/photo/pemayangtse-monastery.webp?a=1&b=1&s=612x612&w=0&k=20&c=ttd0KyJunM5CUfoa1fS-gslQ5vItUTAoLBf7a3S38vQ=",
         "https://images.unsplash.com/photo-1726334937318-dbc03627160d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fFBlbWF5YW5ndHNlJTIwTW9uYXN0ZXJ5fGVufDB8fDB8fHww",
         "https://images.unsplash.com/photo-1717738979582-aa23dd492fbb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8UGVtYXlhbmd0c2UlMjBNb25hc3Rlcnl8ZW58MHx8MHx8fDA%3D"
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14181.25685598131!2d88.24341625165547!3d27.30335317266036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e685d35d570dcf%3A0xbba9d8f51db0ca38!2sPemayangtse%20Monastery!5e0!3m2!1sen!2sin!4v1758794205203!5m2!1sen!2sin" 
     },
     {
       "id": "tashiding",
@@ -244,7 +246,8 @@ export const regionToMonasteries = {
         "https://media.istockphoto.com/id/491471378/photo/evening-prayer-flags-in-sangachoeling-monastery-sikkim-tibet-india.webp?a=1&b=1&s=612x612&w=0&k=20&c=UhwsRU-SSbyh8DYyN72UbtAiYyk_ZbUbivBVg34qGBo=",
         "https://www.adotrip.com/public/images/areas/master_images/5c3f0a99aa3ec-Tashiding_Monastery_Attractions.jpg",
         "https://c8.alamy.com/comp/FJ94FC/tashiding-monastery-gangtok-sikkim-india-asia-FJ94FC.jpg"
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3545.136037952742!2d88.29529967523897!3d27.30893077641318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e685fca06dc171%3A0x92150f5f129db887!2sTashiding%20Monastery!5e0!3m2!1sen!2sin!4v1758793339916!5m2!1sen!2sin"
     },
     {
       "id": "yuksom",
@@ -257,7 +260,8 @@ export const regionToMonasteries = {
         "https://images.unsplash.com/photo-1634308670152-17f7f1aa4e79?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RHViZGklMjBNb25hc3RlcnklMjAoWXVrc29tKXxlbnwwfHwwfHx8MA%3D%3D",
         "https://images.unsplash.com/photo-1695491883757-f502728f9610?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8RHViZGklMjBNb25hc3RlcnklMjAoWXVrc29tKXxlbnwwfHwwfHx8MA%3D%3D",
         "https://s7ap1.scene7.com/is/image/incredibleindia/dubdi-monastery-pelling-sikkim-attr-about?qlt=82&ts=1727335485961"
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3543.2933391841434!2d88.22741727524108!3d27.36655287637966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e688bc40b54c35%3A0x9be6bac98c197ef0!2sDubdi%20Buddhist%20Monastery%20-%20Yuksom%2C%20West%20Sikkim%20District%2C%20Sikkim%2C%20India!5e0!3m2!1sen!2sin!4v1758793432862!5m2!1sen!2sin"
     }
   ],
   "South": [
@@ -272,7 +276,8 @@ export const regionToMonasteries = {
         "https://media.istockphoto.com/id/1132799250/photo/namchi-monastery-sikkim-india.webp?a=1&b=1&s=612x612&w=0&k=20&c=3IB7YgojPawwdeP0Y8PaSHG4glPSLShkmnqh14JZFeM=",
         "https://media.istockphoto.com/id/1283355994/photo/siddheswar-dham-or-char-dham-temple.webp?a=1&b=1&s=612x612&w=0&k=20&c=ZcwyuLLvLhAG_5qcnuUplblfMam3uwDmAwsDjlCCXPs=",
         "https://media.istockphoto.com/id/836677232/photo/close-up-at-the-right-golden-hand-with-mace-of-guru-rinpoche-statue-the-patron-saint-of-sikkim.webp?a=1&b=1&s=612x612&w=0&k=20&c=oOIbwkr8S_ZVkuRdI-qwe1LmzYsimVMRVnGQLgA_yhw="
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28394.968515314216!2d88.36216307970368!3d27.176072011279345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e69dfb96289d41%3A0xfe762655b861f2f5!2sNamchi%20Forest%20Block%2C%20Sikkim%20737126!5e0!3m2!1sen!2sin!4v1758793534854!5m2!1sen!2sin"
     },
     {
       "id": "ravangla",
@@ -285,7 +290,8 @@ export const regionToMonasteries = {
         "https://images.unsplash.com/photo-1706778442454-fc151a3b07e1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UmF2YW5nbGElMjBNb25hc3Rlcnl8ZW58MHx8MHx8fDA%3D",
         "https://plus.unsplash.com/premium_photo-1678521000167-05f24453b78e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fFJhdmFuZ2xhJTIwTW9uYXN0ZXJ5fGVufDB8fDB8fHww",
         "https://media.istockphoto.com/id/2226096784/photo/offering-bowls-at-buddha-temple-ravangla-gumpa-gangtok.webp?a=1&b=1&s=612x612&w=0&k=20&c=J5fO85uXprIrpC9mg2zq_4G3EmqEeCBOKgc56zNM078="
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3544.5107529775078!2d88.33037678063445!3d27.32849631555554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e69ab876f2e433%3A0xe595a93fb0b1c33e!2sRalang%20New%20Monastery!5e0!3m2!1sen!2sin!4v1758793583414!5m2!1sen!2sin"
     },
     {
       "id": "temi",
@@ -298,7 +304,8 @@ export const regionToMonasteries = {
         "https://media.istockphoto.com/id/960455154/photo/bhutan-temple-top-of-the-hill.webp?a=1&b=1&s=612x612&w=0&k=20&c=Xuk12ZNfavsCQji5hdzyk8_7Nyod9oJeaFJCU6ABLD8=",
         "https://media.istockphoto.com/id/1389342953/photo/tawang-monastery.webp?a=1&b=1&s=612x612&w=0&k=20&c=Z3T1gBcU-7O6yshRhFOw8fnbBUGJRqKmQxa0RZ8s75g=",
         "https://media.istockphoto.com/id/1327666529/photo/view-of-the-top-portion-of-the-pangan-nyingma-monastery-at-manali-in-himachal-pradesh-india.webp?a=1&b=1&s=612x612&w=0&k=20&c=xOVV9PmMIQLbrkBaMPDLXyKMcfEByAZJVROzLcroyl0="
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1550.0223683285558!2d88.42832638722976!3d27.24019424119048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e69ec397f397a9%3A0x1a9ee0cd6d6c80c3!2sTemi%2C%20Sikkim%20737134!5e0!3m2!1sen!2sin!4v1758793676878!5m2!1sen!2sin"
     },
     {
       "id": "borong",
@@ -311,7 +318,8 @@ export const regionToMonasteries = {
         "https://plus.unsplash.com/premium_photo-1752140697600-c78c0ce62efa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Qm9yb25nJTIwTW9uYXN0ZXJ5fGVufDB8fDB8fHww",
         "https://images.unsplash.com/photo-1662907929402-c8b0921a5820?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fEJvcm9uZyUyME1vbmFzdGVyeXxlbnwwfHwwfHx8MA%3D%3D",
         "https://plus.unsplash.com/premium_photo-1664301792823-cf444818b684?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fEJvcm9uZyUyME1vbmFzdGVyeXxlbnwwfHwwfHx8MA%3D%3D"
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3543.5899115200737!2d88.3424864752407!3d27.357286476384843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e690749bb49e67%3A0xe03796591f53e5a6!2sPema%20Chholing%20Gumba%20Borong!5e0!3m2!1sen!2sin!4v1758793710781!5m2!1sen!2sin"
     },
     {
       "id": "assangthang",
@@ -324,7 +332,8 @@ export const regionToMonasteries = {
         "https://www.trawell.in/admin/images/upload/288555461Namchi_Sa.jpg",
         "https://images.unsplash.com/photo-1601121956138-78c7edd313ea?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8QXNzYW5ndGhhbmclMjBNb25hc3Rlcnl8ZW58MHx8MHx8fDA%3D",
         "https://images.unsplash.com/photo-1742096303282-30272e9b8cef?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fEFzc2FuZ3RoYW5nJTIwTW9uYXN0ZXJ5fGVufDB8fDB8fHww"
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14201.67167033364!2d88.32907125156053!3d27.143138174165582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e427ea334e4d57%3A0xa7f2a62803927f0a!2sAssangthang%2C%20Sikkim%20737126!5e0!3m2!1sen!2sin!4v1758793806611!5m2!1sen!2sin"
     }
   ],
   "North": [
@@ -339,7 +348,8 @@ export const regionToMonasteries = {
         "https://media1.thrillophilia.com/filestore/z347ve9osnv0zza40pa5mosx7jb8_1538563430_shutterstock_139477499.jpg?w=400&dpr=2",
         "https://media.istockphoto.com/id/2214084955/photo/lachung-monastery-is-a-nyingma-buddhist-gompa-in-the-lachung-valley-in-sikkim-india.webp?a=1&b=1&s=612x612&w=0&k=20&c=CLlECOWw6JBXayMG8Fq7HuKxBqGl_ezU-yNvyXLXpLE=",
         "https://media.istockphoto.com/id/1321316778/photo/ancient-buddhist-colorful-monastery-with-cloudy-sky-from-different-angle-at-day.webp?a=1&b=1&s=612x612&w=0&k=20&c=FFl3gC4gK1Y4gk1SYWUYYek4uLHOdHh16AgJfwCABd8="
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.9259758635826!2d88.7461803752531!3d27.688682676193316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6cdcca88079ed%3A0xc2796957013b9372!2sLachung%20Monastery!5e0!3m2!1sen!2sin!4v1758793855135!5m2!1sen!2sin"
     },
     {
       "id": "lachen",
@@ -352,7 +362,8 @@ export const regionToMonasteries = {
         "https://media.istockphoto.com/id/601402424/photo/aciveiro-monastery-facade-and-church-pontevedra-province-galicia-spain.webp?a=1&b=1&s=612x612&w=0&k=20&c=zYxO30k-N_WnAcn7Sz22-QXuFJpE4ncxB6nEp0M8mWQ=",
         "https://images.unsplash.com/photo-1702817451691-155b8bfe3b6c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fExhY2hlbiUyME1vbmFzdGVyeXxlbnwwfHwwfHx8MA%3D%3D",
         "https://c8.alamy.com/comp/B6E7X5/prayer-flags-at-pemayangtsi-monastery-sikkim-india-B6E7X5.jpg"
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.0200674510716!2d88.55516417525413!3d27.716666676177194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6c4a7eaaaaaab%3A0x7e1f36bdcaee6181!2sLachen%20Monastery!5e0!3m2!1sen!2sin!4v1758793892963!5m2!1sen!2sin"
     },
     {
       "id": "phodong",
@@ -365,7 +376,8 @@ export const regionToMonasteries = {
         "https://images.unsplash.com/photo-1601121956138-78c7edd313ea?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8UGhvZG9uZyUyME1vbmFzdGVyeXxlbnwwfHwwfHx8MA%3D%3D",
         "https://images.unsplash.com/photo-1590498418987-aa4e1e0d2b94?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8UGhvZG9uZyUyME1vbmFzdGVyeXxlbnwwfHwwfHx8MA%3D%3D",
         "https://plus.unsplash.com/premium_photo-1721001746757-4e0df9a0cdff?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fFBob2RvbmclMjBNb25hc3Rlcnl8ZW58MHx8MHx8fDA%3D"
-      ]
+      ],
+      "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3541.809517072099!2d88.58124557524283!3d27.412871476352656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6bba53187e157%3A0xefa19c90b60b6591!2sPhodong%20Monastery!5e0!3m2!1sen!2sin!4v1758793929677!5m2!1sen!2sin"
     },
     {
       "id": "phensang",
@@ -378,7 +390,8 @@ export const regionToMonasteries = {
         "https://media.istockphoto.com/id/968898100/photo/rumtek-monastery-near-gangtok-sikkim-india-2013-april-14th.jpg?s=612x612&w=0&k=20&c=0pPgihRva4sWduC7fHoTx6gAJJ9TwHKS4hj8OD342Zs=",
         "https://media.istockphoto.com/id/1407310782/photo/statue-of-a-lion-in-a-buddhist-monastery.webp?a=1&b=1&s=612x612&w=0&k=20&c=aaUxsmuQRQ3dD0Yy7Si_uv217GkrYvPDl8RTcWspKIw=",
         "https://media.istockphoto.com/id/536457347/photo/buddhist-temple.webp?a=1&b=1&s=612x612&w=0&k=20&c=2CPMDN1_Aiv9Svy7v1andlVzbUCswlG0NfcNxXsLXWA="
-      ]
+      ],
+       "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3541.557763830083!2d88.6075546752431!3d27.420722976347907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6ba41484e83cf%3A0x1ae7c5a6a881d70e!2sPhensang%20Monastery!5e0!3m2!1sen!2sin!4v1758793976813!5m2!1sen!2sin"
     }
   ]
 }

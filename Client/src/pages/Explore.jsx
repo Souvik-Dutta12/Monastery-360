@@ -243,7 +243,7 @@ const AITourGuide = ({ region, onClose }) => {
                         <span className='text-amber-200 font-semibold'>{spot}</span>
                       </div>
                       <Link 
-                        to='/vr-tour'
+                        to='/vr-show'
                         className='text-red-900 hover:text-red-800 text-sm underline'
                       >
                         Start VR Tour
@@ -454,7 +454,7 @@ const Explore = () => {
                   ))}
                 </div>
                 <Link 
-                  to='/vr-tour'
+                  to='/vr-show'
                   className='w-full cursor-pointer px-4 py-2 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg text-sm flex items-center justify-center gap-2'
                 >
                   <i className='ri-vr-line'></i>

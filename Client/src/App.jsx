@@ -5,12 +5,12 @@ import Explore from './pages/Explore'
 import Dashboard from './pages/Dashboard'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
-import VRTourPage from './pages/VRTour'
+import VRTourPage from './pages/VRTourPage'
 import Contact from './pages/Contact'
 import Events from './pages/Events'
 import ProtectedRoute from './components/ProtectedRoute'
 import { AuthProvider } from './context/AuthContext'
-
+import VRTour from './components/VRTour'
 
 const App = () => {
   return (
@@ -24,6 +24,7 @@ const App = () => {
           <Route path='/vr-tour' element={<VRTourPage />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/events' element={<Events />} />
+          <Route path='/vr-show' element={<VRTour />}/>
           <Route 
             path='/dashboard' 
             element={
