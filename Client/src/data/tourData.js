@@ -488,7 +488,7 @@ export const regionToBookings = {
     "facilities": ["Evening Prayers", "Cultural Narration", "Light Refreshments"]
   },
   {
-    "id": "rumtek-360",
+    "id": "rumtek360",
     "name": "Rumtek 360 Tour",
     "date": "2025-10-08",
     "image": "https://www.shutterstock.com/image-photo/rumtek-monastery-sikkim-260nw-2455618055.jpg",
@@ -527,14 +527,14 @@ export const regionToBookings = {
     "facilities": ["VR Walk", "Tea Plantation Tour", "Tea Tasting"]
   },
   {
-    "id": "namchi-culture",
+    "id": "namchiculture",
     "name": "Namchi Culture Tour",
     "date": "2025-10-10",
     "image": "https://media2.thrillophilia.com/images/photos/000/213/083/original/1586594768_shutterstock_703357087.jpg?",
     "facilities": ["Cultural Guide", "Temple Visit", "Local Snacks"]
   },
   {
-    "id": "ravangla-park",
+    "id": "ravanglapark",
     "name": "Ravangla Buddha Park Tour",
     "date": "2025-10-11",
     "image": "https://live.staticflickr.com/65535/49776045173_743e14cdfa_c.jpg",

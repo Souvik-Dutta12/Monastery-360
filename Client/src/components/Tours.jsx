@@ -292,10 +292,12 @@ const Tours = ({ tours }) => {
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}
+                      allow="accelerometer; gyroscope; magnetometer; fullscreen"
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
                     ></iframe>
+
                   </div>
                 )}
 

@@ -18,7 +18,7 @@ const Users = () => {
             </div>
             <div className='w-full md:w-[75%] h-auto md:min-h-[65vh] mt-0 md:mt-3 bg-white/60 ml-0 md:ml-12 '>
                 <div className='w-full h-auto flex flex-col justify-center '>
-                {Array.from({length:4}).map((_,i)=><User />)}
+                {Array.from({length:4}).map((_,i)=><User key={i}/>)}
             </div>
             </div>
         </div>
