@@ -19,7 +19,7 @@ const InteractiveMap = ({ selectedRegion, onRegionSelect }) => {
 
     const drawMap = () => {
       ctx.clearRect(0, 0, width, height)
-      
+
       // Background
       ctx.fillStyle = '#1d1903'
       ctx.fillRect(0, 0, width, height)
@@ -70,7 +70,7 @@ const InteractiveMap = ({ selectedRegion, onRegionSelect }) => {
           const angle = (index * 2 * Math.PI) / region.monasteries.length
           const dotX = region.x + Math.cos(angle) * 25
           const dotY = region.y + Math.sin(angle) * 25
-          
+
           ctx.fillStyle = '#FEF3C7'
           ctx.beginPath()
           ctx.arc(dotX, dotY, 3, 0, Math.PI * 2)
@@ -91,14 +91,14 @@ const InteractiveMap = ({ selectedRegion, onRegionSelect }) => {
 
   return (
     <div className='relative'>
-      <canvas 
-        ref={canvasRef} 
+      <canvas
+        ref={canvasRef}
         className='w-full h-full  rounded-xl border border-amber-200/20'
         onClick={(e) => {
           const rect = canvasRef.current.getBoundingClientRect()
           const x = e.clientX - rect.left
           const y = e.clientY - rect.top
-          
+
           // Simple click detection for regions
           if (x > 260 && x < 340 && y > 60 && y < 140) onRegionSelect('North')
           else if (x > 260 && x < 340 && y > 260 && y < 340) onRegionSelect('South')
@@ -140,7 +140,7 @@ const AITourGuide = ({ region, onClose }) => {
               <h2 className='prata text-3xl text-amber-200'>{data.title}</h2>
               <p className='text-amber-100/70 mt-1'>AI-Powered Tour Guide for {region} Sikkim</p>
             </div>
-            <button 
+            <button
               onClick={onClose}
               className='p-2 hover:bg-amber-200/10 rounded-lg transition-colors'
             >
@@ -184,7 +184,7 @@ const AITourGuide = ({ region, onClose }) => {
               </div>
               <h3 className='prata text-2xl text-amber-200 mb-2'>Generate Your AI Tour</h3>
               <p className='text-amber-100/70 mb-6'>Our AI will create a personalized itinerary based on your preferences</p>
-              <button 
+              <button
                 onClick={generateAITour}
                 disabled={isGenerating}
                 className='px-6 py-3 bg-red-900 hover:bg-red-800 disabled:opacity-50 transition-colors text-amber-100 rounded-lg flex items-center gap-2 mx-auto'
@@ -242,7 +242,7 @@ const AITourGuide = ({ region, onClose }) => {
                         <i className='ri-vr-line text-amber-300'></i>
                         <span className='text-amber-200 font-semibold'>{spot}</span>
                       </div>
-                      <Link 
+                      <Link
                         to='/vr-show'
                         className='text-red-900 hover:text-red-800 text-sm underline'
                       >
@@ -281,7 +281,7 @@ const AITourGuide = ({ region, onClose }) => {
                   <i className='ri-share-line'></i>
                   <span>Share Tour</span>
                 </button>
-                <button 
+                <button
                   onClick={() => setCurrentStep(0)}
                   className='px-6 py-3 bg-[#241f07] hover:bg-[#2d1a0a] transition-colors text-amber-200 rounded-lg flex items-center gap-2'
                 >
@@ -304,12 +304,18 @@ const Explore = () => {
   return (
     <div className='w-full min-h-screen'>
       <Nav />
-      
+
       {/* Hero Section - Dark theme */}
-      <section className='relative py-20 px-6 md:px-10 lg:px-16  text-amber-50'>
-        <div className='absolute inset-0 bg-gradient-to-br from-[#1d1903] via-[#2d1a0a] to-[#1d1903]'></div>
-        <div className='absolute inset-0 bg-gradient-to-t to-red-900/30 via-transparent  from-amber-900/20 '></div>
-        
+      <section className='relative py-20 px-6 md:px-10 lg:px-16 w-screen h-screen overflow-hidden text-amber-50'>
+        <div className='absolute inset-0 z-10 bg-[#1d1903]/50 '></div>
+        {/* <div className='absolute inset-0 z-5 bg-gradient-to-t to-red-900/30 via-transparent  from-amber-900/20 '></div> */}
+        <div className="absolute inset-0 z-0 w-full h-full">
+  <img
+    src="https://yatrasamadhan.in/wp-content/uploads/2020/12/Sikkim-1536x768.jpg"
+    alt="Monastery background"
+    className="absolute top-0 left-0 w-full h-full object-cover object-center"
+  />
+</div>
         <div className='relative mt-50 z-10 max-w-7xl mx-auto'>
           <div className='text-center mb-12'>
             <h1 className='prata text-5xl md:text-7xl font-bold text-amber-200 mb-6'>
@@ -348,8 +354,8 @@ const Explore = () => {
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
             {/* Map */}
             <div className='bg-white/80 rounded-2xl p-8 border border-amber-200 shadow-sm'>
-              <InteractiveMap 
-                selectedRegion={selectedRegion} 
+              <InteractiveMap
+                selectedRegion={selectedRegion}
                 onRegionSelect={setSelectedRegion}
               />
             </div>
@@ -375,7 +381,7 @@ const Explore = () => {
                 </div>
               </div>
 
-              <button 
+              <button
                 onClick={() => setShowAIGuide(true)}
                 className='w-full px-6 py-4 cursor-pointer bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg flex items-center justify-center gap-2'
               >
@@ -453,7 +459,7 @@ const Explore = () => {
                     </div>
                   ))}
                 </div>
-                <Link 
+                <Link
                   to='/vr-show'
                   className='w-full cursor-pointer px-4 py-2 bg-red-900 hover:bg-red-800 transition-colors text-amber-100 rounded-lg text-sm flex items-center justify-center gap-2'
                 >
@@ -470,9 +476,9 @@ const Explore = () => {
 
       {/* AI Tour Guide Modal */}
       {showAIGuide && (
-        <AITourGuide 
-          region={selectedRegion} 
-          onClose={() => setShowAIGuide(false)} 
+        <AITourGuide
+          region={selectedRegion}
+          onClose={() => setShowAIGuide(false)}
         />
       )}
     </div>
