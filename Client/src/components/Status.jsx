@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { audioGuidence } from '../data/tourData'
+import { useRegion } from '../context/RegionContext'
 
 const Status = () => {
+
+  const { selectedRegion } = useRegion();
+
   const [online, setOnline] = useState(true)
   const [audioOffline, setAudioOffline] = useState(true)
   const [latencyMs, setLatencyMs] = useState(42)
+
+  const audioList = audioGuidence?.[selectedRegion] || [
+    { label: 'Rumtek Guide (EN)', src: 'https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav' },
+    { label: 'Pemayangtse (HI)', src: 'https://www2.cs.uic.edu/~i101/SoundFiles/ImperialMarch60.wav' },
+    { label: 'Tashiding (NE)', src: 'https://www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav' }
+  ] || [];
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -12,12 +22,6 @@ const Status = () => {
     }, 3000)
     return () => clearInterval(id)
   }, [])
-
-  const audioGuides = [
-    { label: 'Rumtek Guide (EN)', src: 'https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav' },
-    { label: 'Pemayangtse (HI)', src: 'https://www2.cs.uic.edu/~i101/SoundFiles/ImperialMarch60.wav' },
-    { label: 'Tashiding (NE)', src: 'https://www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav' }
-  ]
 
   return (
     <div className='w-full p-6 mt-8 md:mt-0'>
@@ -67,20 +71,34 @@ const Status = () => {
 
           {/* Audio Guidance (Offline) - third, now with inline players */}
           <div className='rounded-xl border border-amber-200 bg-white p-5 flex items-center justify-between gap-6'>
-            <div className='flex-1 flex items-start gap-4'>
-              <div className='h-10 w-10 rounded-lg bg-amber-100 text-red-900 flex items-center justify-center'>
-                <i className='ri-music-2-line text-xl'></i>
-              </div>
-              <div className='w-full'>
-                <div className='prata text-xl text-red-900'>Audio Guidance (Offline)</div>
-                <div className='text-red-900/70 text-sm'>Play voice guidance for VR and tours</div>
+            <div className='flex-1  flex items-start gap-4'>
+
+              <div className='w-full '>
+                <div className='flex items-center justify-between'>
+                  <div className='flex flex-col items-center gap-1'>
+                    <div className='flex items-center gap-2'>
+                      <div className='h-10 w-10 rounded-lg bg-amber-100 text-red-900 flex items-center justify-center'>
+                      <i className='ri-music-2-line text-xl'></i>
+                    </div>
+                      <div className='prata text-xl text-red-900'>Audio Guidance (Offline)</div>
+                    </div>
+                    <div className='text-red-900/70 text-sm'>Play voice guidance for VR and tours</div>
+                  </div>
+                  <label className='inline-flex items-center cursor-pointer'>
+                    <input type='checkbox' className='sr-only peer' checked={audioOffline} onChange={() => setAudioOffline(!audioOffline)} />
+                    <div className="w-11 h-6 bg-red-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-5 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600 relative"></div>
+                  </label>
+                </div>
                 {audioOffline && (
                   <div className='mt-4 w-full space-y-3'>
-                    {audioGuides.map((a) => (
-                      <div key={a.label} className='w-full rounded-lg border border-amber-200 p-3 bg-amber-50'>
-                        <div className='text-red-900 text-sm mb-2'>{a.label}</div>
+                    {audioList.map((a, i) => (
+                      <div key={a.id} className='w-full rounded-lg border border-amber-200 p-3 bg-amber-50'>
+                        <div className='flex gap-2'>
+                          <div className='text-red-900 text-sm mb-2'>{a.name}</div>
+                          <div className='text-red-900 text-sm mb-2'>({a.language})</div>
+                        </div>
                         <audio controls className='w-full'>
-                          <source src={`/audio/Rumtek Monastery.mp3`} type='audio/mpeg' />
+                          <source src={a.path} type='audio/mpeg' />
                           Your browser does not support the audio element.
                         </audio>
                       </div>
@@ -89,10 +107,7 @@ const Status = () => {
                 )}
               </div>
             </div>
-            <label className='inline-flex items-center cursor-pointer'>
-              <input type='checkbox' className='sr-only peer' checked={audioOffline} onChange={() => setAudioOffline(!audioOffline)} />
-              <div className="w-11 h-6 bg-red-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-5 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600 relative"></div>
-            </label>
+
           </div>
         </div>
       </div>

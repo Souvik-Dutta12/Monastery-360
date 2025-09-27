@@ -761,61 +761,61 @@ export const audioGuidence = {
       "id": "dubdi",
       "name": "Dubdi Monastery",
       "path": "/audio/Dubdi Monastery.mp3",
-      "language": "English"
+      "language": "HI"
     },
     {
       "id": "pemayangtse",
       "name": "Pemayangtse Monastery",
       "path": "/audio/Pemayangtse Monastery.mp3",
-      "language": "English"
+      "language": "HI"
     }
   ],
   "South": [
     {
       "id": "ralang",
       "name": "Ralang Monastery",
-      "path": "/audio/south/ralang.mp3",
-      "language": "English"
+      "path": "/audio/Ralang Monastery.mp3",
+      "language": "HI"
     }
   ],
   "East": [
     {
       "id": "enchey",
       "name": "Enchey Monastery",
-      "path": "/audio/east/enchey.mp3",
-      "language": "English"
+      "path": "/audio/Enchey Monastery.mp3",
+      "language": "HI"
     },
     {
       "id": "lingdum",
       "name": "Lingdum Monastery",
-      "path": "/audio/east/lingdum.mp3",
-      "language": "English"
+      "path": "/audio/Lingdum Monastery.mp3",
+      "language": "HI"
     },
     {
       "id": "rumtek",
       "name": "Rumtek Monastery",
-      "path": "/audio/east/rumtek.mp3",
-      "language": "English"
+      "path": "/audio/Rumtek Monastery.mp3",
+      "language": "HI"
     }
   ],
   "West": [
     {
       "id": "kathong",
       "name": "Kathong Monastery",
-      "path": "/audio/west/kathong.mp3",
-      "language": "English"
+      "path": "/audio/Kathog Monastery.mp3",
+      "language": "HI"
     },
     {
       "id": "phensong",
       "name": "Phensong Monastery",
-      "path": "/audio/west/phensong.mp3",
-      "language": "English"
+      "path": "/audio/Phensong Monastery.mp3",
+      "language": "HI"
     },
     {
       "id": "phodong",
       "name": "Phodong Monastery",
-      "path": "/audio/west/phodong.mp3",
-      "language": "English"
+      "path": "/audio/Phodong Monastery.mp3",
+      "language": "HI"
     }
   ]
 

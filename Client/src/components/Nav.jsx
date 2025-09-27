@@ -141,7 +141,7 @@ const Nav = () => {
               Events
               <span className={`absolute left-0 -bottom-0.5 h-[2px] bg-red-900 transition-all duration-300 ${active === 'Events' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </Link>
-            <Link
+            {/* <Link
               to={'/sign-in'}
               onClick={() => {
                 setActive('Digital Archives')
@@ -150,6 +150,17 @@ const Nav = () => {
               className={`prata text-amber-300 duration-300 text-shadow-md relative inline-block pb-1 group text-lg `}
             >
               Digital Archives
+              <span className={`absolute left-0 -bottom-0.5 h-[2px] bg-red-900 transition-all duration-300 ${active === 'Digital Archives' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+            </Link> */}
+            <Link
+              to={'/dashboard'}
+              onClick={() => {
+                setActive('Dashboard')
+                setMobileMenuOpen(false)
+              }}
+              className={`prata text-amber-300 duration-300 text-shadow-md relative inline-block pb-1 group text-lg `}
+            >
+              Dashboard
               <span className={`absolute left-0 -bottom-0.5 h-[2px] bg-red-900 transition-all duration-300 ${active === 'Digital Archives' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </Link>
             <Link
