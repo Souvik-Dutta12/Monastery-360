@@ -47,12 +47,20 @@ const Nav = () => {
             </Link>
           </span>
           <span>
-            <Link
+            {/* <Link
               to={'/sign-in'}
               onClick={() => setActive('Digital Archives')}
               className={`prata text-amber-300 duration-300 text-shadow-md relative inline-block pb-1 group text-lg xl:text-xl`}
             >
               Digital Archives
+              <span className={`absolute left-0 -bottom-0.5 h-[2px] bg-red-900 transition-all duration-300 ${active === 'Digital Archives' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+            </Link> */}
+            <Link
+              to={'/dashboard'}
+              onClick={() => setActive('Digital Archives')}
+              className={`prata text-amber-300 duration-300 text-shadow-md relative inline-block pb-1 group text-lg xl:text-xl`}
+            >
+              Dashboard
               <span className={`absolute left-0 -bottom-0.5 h-[2px] bg-red-900 transition-all duration-300 ${active === 'Digital Archives' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </Link>
           </span>

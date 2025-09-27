@@ -27,11 +27,12 @@ const App = () => {
           <Route path='/vr-show' element={<VRTour />}/>
           <Route 
             path='/dashboard' 
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } 
+            // element={
+            //   <ProtectedRoute>
+            //     <Dashboard />
+            //   </ProtectedRoute>
+            // } 
+            element={<Dashboard />}
           />
           <Route path="*" element={<div className='text-7xl ml-[7%] md:ml-[25%] prata font-black  mt-70 text-red-800'>404 - Page Not Found</div>} />
         </Routes>
