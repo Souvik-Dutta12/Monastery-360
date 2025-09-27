@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { audioGuidence } from '../data/tourData'
 
 const Status = () => {
   const [online, setOnline] = useState(true)
@@ -79,7 +80,7 @@ const Status = () => {
                       <div key={a.label} className='w-full rounded-lg border border-amber-200 p-3 bg-amber-50'>
                         <div className='text-red-900 text-sm mb-2'>{a.label}</div>
                         <audio controls className='w-full'>
-                          <source src={a.src} type='audio/mpeg' />
+                          <source src={`/audio/Rumtek Monastery.mp3`} type='audio/mpeg' />
                           Your browser does not support the audio element.
                         </audio>
                       </div>
