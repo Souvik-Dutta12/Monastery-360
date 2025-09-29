@@ -146,7 +146,7 @@ const Home = () => {
                 <i className="ri-vr-line hover:animate-pulse"></i>
                 <span className='prata text-base sm:text-lg flex gap-1 text-amber-100'>Start Virtual Tour <i className="ri-arrow-right-line group-hover:translate-x-1 transition-transform duration-300"></i></span>
               </Link>
-              <Link to={'#'} className='px-6 py-3 bg-amber-100/20 hover:bg-amber-100/30 backdrop-blur-sm transition-all duration-300 text-white border border-white/20 hover:border-amber-100/40 rounded-lg inline-flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-amber-100/20 transform hover:-translate-y-1 active:translate-y-0'>
+              <Link to={'/map'} className='px-6 py-3 bg-amber-100/20 hover:bg-amber-100/30 backdrop-blur-sm transition-all duration-300 text-white border border-white/20 hover:border-amber-100/40 rounded-lg inline-flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-amber-100/20 transform hover:-translate-y-1 active:translate-y-0'>
                 <i className="ri-map-pin-line hover:animate-bounce"></i>
                 <span className='prata text-base sm:text-lg'>Explore Map</span>
               </Link>

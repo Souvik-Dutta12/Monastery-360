@@ -11,6 +11,7 @@ import Events from './pages/Events'
 import ProtectedRoute from './components/ProtectedRoute'
 import { AuthProvider } from './context/AuthContext'
 import VRTour from './components/VRTour'
+import Map from './components/Map'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path='/contact' element={<Contact />} />
           <Route path='/events' element={<Events />} />
           <Route path='/vr-show' element={<VRTour />}/>
+          <Route path='/map' element={<Map />}/>
           <Route 
             path='/dashboard' 
             // element={
