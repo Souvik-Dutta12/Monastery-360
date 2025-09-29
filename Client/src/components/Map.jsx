@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 const GOOGLE_MAP_KEY = import.meta.env.VITE_GOOGLE_MAP_KEY
 
-
+const Map = () => {
+    
   return (
 
 
