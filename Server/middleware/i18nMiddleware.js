@@ -31,12 +31,24 @@ export const i18nMiddleware = async (req, res, next) => {
 // Auto-detect language middleware (uses content to detect language)
 export const autoDetectLanguage = async (req, res, next) => {
   try {
-    if (!req.body.content) {
+    // Check if req.body exists and has content
+    if (!req.body || typeof req.body !== 'object') {
+      return next();
+    }
+    
+    // Try to find text content in common request body properties
+    const textToDetect = req.body.content || 
+                         req.body.text || 
+                         req.body.message || 
+                         req.body.query || 
+                         (typeof req.body.q === 'string' ? req.body.q : null);
+    
+    if (!textToDetect) {
       return next();
     }
     
     // Detect language from content
-    const detectedLang = await detectLanguage(req.body.content);
+    const detectedLang = await detectLanguage(textToDetect);
     req.detectedLanguage = detectedLang;
     
     next();

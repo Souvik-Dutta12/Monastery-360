@@ -21,12 +21,12 @@ export const SUPPORTED_LANGUAGES = {
   si: 'Sikkimese'
 };
 
-// Translation service using external API
+// Translation service using LibreTranslate API (no API key required)
 export const translateText = async (text, targetLanguage, sourceLanguage = 'en') => {
   try {
-    // Using a translation API (replace with your preferred service)
+    // Using LibreTranslate API
     const response = await axios.post(
-      `${process.env.TRANSLATION_API_URL}`,
+      process.env.TRANSLATION_API_URL || 'https://libretranslate.com/translate',
       {
         q: text,
         source: sourceLanguage,
@@ -35,8 +35,7 @@ export const translateText = async (text, targetLanguage, sourceLanguage = 'en')
       },
       {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.TRANSLATION_API_KEY}`
+          'Content-Type': 'application/json'
         }
       }
     );
@@ -49,25 +48,69 @@ export const translateText = async (text, targetLanguage, sourceLanguage = 'en')
   }
 };
 
-// Detect language from text
+// Detect language from text using a combination of approaches
 export const detectLanguage = async (text) => {
   try {
+    // Simple language detection for common Indian languages based on script
+    const hindiPattern = /[\u0900-\u097F]/; // Devanagari script (Hindi)
+    const bengaliPattern = /[\u0980-\u09FF]/; // Bengali script
+    const tamilPattern = /[\u0B80-\u0BFF]/; // Tamil script
+    const teluguPattern = /[\u0C00-\u0C7F]/; // Telugu script
+    const kannadaPattern = /[\u0C80-\u0CFF]/; // Kannada script
+    const malayalamPattern = /[\u0D00-\u0D7F]/; // Malayalam script
+    const gujaratiPattern = /[\u0A80-\u0AFF]/; // Gujarati script
+    const punjabiPattern = /[\u0A00-\u0A7F]/; // Gurmukhi script (Punjabi)
+    const oriyaPattern = /[\u0B00-\u0B7F]/; // Oriya script
+    
+    // Check for script patterns first (more reliable for Indian languages)
+    if (hindiPattern.test(text)) return 'hi';
+    if (bengaliPattern.test(text)) return 'bn';
+    if (tamilPattern.test(text)) return 'ta';
+    if (teluguPattern.test(text)) return 'te';
+    if (kannadaPattern.test(text)) return 'kn';
+    if (malayalamPattern.test(text)) return 'ml';
+    if (gujaratiPattern.test(text)) return 'gu';
+    if (punjabiPattern.test(text)) return 'pa';
+    if (oriyaPattern.test(text)) return 'or';
+    
+    // For other languages or if script detection fails, use LibreTranslate
+    // Limit text length to avoid large payloads
+    const truncatedText = text.substring(0, 500);
+    
+    // Use a more reliable LibreTranslate instance
     const response = await axios.post(
-      `${process.env.LANGUAGE_DETECTION_API_URL}`,
+      process.env.LANGUAGE_DETECTION_API_URL || 'https://libretranslate.com/detect',
       {
-        q: text
+        q: truncatedText
       },
       {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.TRANSLATION_API_KEY}`
+          'Content-Type': 'application/json'
         }
       }
-    );
+    ); 
 
-    return response.data.language;
+    // LibreTranslate returns an array of detected languages with confidence scores
+    const detections = response.data;
+    if (detections && detections.length > 0) {
+      const detectedLang = detections[0].language;
+      
+      // Check if the detected language is in our supported languages
+      if (Object.keys(SUPPORTED_LANGUAGES).includes(detectedLang)) {
+        return detectedLang;
+      }
+    }
+    
+    // If no language detected or not in our supported languages, check if it's English text
+    const englishPattern = /^[A-Za-z0-9\s.,?!;:'"\-()]+$/;
+    if (englishPattern.test(text.substring(0, 100))) {
+      return 'en';
+    }
+    
+    // Default to English if all detection methods fail
+    return 'en';
   } catch (error) {
-    console.error('Language detection error:', error);
+    console.error('Language detection error:', error.message);
     // Default to English if detection fails
     return 'en';
   }
