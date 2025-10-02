@@ -1,0 +1,31 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "About digitize and showcase of digital archives and monasteries of sikkim",
+  "homepage": "https://github.com/Souvik-Dutta12/Monastery-360#readme",
+  "bugs": {
+    "url": "https://github.com/Souvik-Dutta12/Monastery-360/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Souvik-Dutta12/Monastery-360.git"
+  },
+  "license": "ISC",
+  "author": "Souvik Dutta",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.18.3",
+    "nodemon": "^3.1.10"
+  }
+}
