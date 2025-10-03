@@ -3,10 +3,39 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Supported languages
+// Supported languages (expanded to include all LibreTranslate languages)
 export const SUPPORTED_LANGUAGES = {
   en: 'English',
+  ar: 'Arabic',
+  az: 'Azerbaijani',
+  zh: 'Chinese',
+  cs: 'Czech',
+  da: 'Danish',
+  nl: 'Dutch',
+  eo: 'Esperanto',
+  fi: 'Finnish',
+  fr: 'French',
+  de: 'German',
+  el: 'Greek',
+  he: 'Hebrew',
   hi: 'Hindi',
+  hu: 'Hungarian',
+  id: 'Indonesian',
+  ga: 'Irish',
+  it: 'Italian',
+  ja: 'Japanese',
+  ko: 'Korean',
+  fa: 'Persian',
+  pl: 'Polish',
+  pt: 'Portuguese',
+  ru: 'Russian',
+  sk: 'Slovak',
+  es: 'Spanish',
+  sv: 'Swedish',
+  tr: 'Turkish',
+  uk: 'Ukrainian',
+  vi: 'Vietnamese',
+  // Indian languages
   bn: 'Bengali',
   ne: 'Nepali',
   ta: 'Tamil',
@@ -51,67 +80,34 @@ export const translateText = async (text, targetLanguage, sourceLanguage = 'en')
 // Detect language from text using a combination of approaches
 export const detectLanguage = async (text) => {
   try {
-    // Simple language detection for common Indian languages based on script
-    const hindiPattern = /[\u0900-\u097F]/; // Devanagari script (Hindi)
-    const bengaliPattern = /[\u0980-\u09FF]/; // Bengali script
-    const tamilPattern = /[\u0B80-\u0BFF]/; // Tamil script
-    const teluguPattern = /[\u0C00-\u0C7F]/; // Telugu script
-    const kannadaPattern = /[\u0C80-\u0CFF]/; // Kannada script
-    const malayalamPattern = /[\u0D00-\u0D7F]/; // Malayalam script
-    const gujaratiPattern = /[\u0A80-\u0AFF]/; // Gujarati script
-    const punjabiPattern = /[\u0A00-\u0A7F]/; // Gurmukhi script (Punjabi)
-    const oriyaPattern = /[\u0B00-\u0B7F]/; // Oriya script
-    
-    // Check for script patterns first (more reliable for Indian languages)
-    if (hindiPattern.test(text)) return 'hi';
-    if (bengaliPattern.test(text)) return 'bn';
-    if (tamilPattern.test(text)) return 'ta';
-    if (teluguPattern.test(text)) return 'te';
-    if (kannadaPattern.test(text)) return 'kn';
-    if (malayalamPattern.test(text)) return 'ml';
-    if (gujaratiPattern.test(text)) return 'gu';
-    if (punjabiPattern.test(text)) return 'pa';
-    if (oriyaPattern.test(text)) return 'or';
-    
-    // For other languages or if script detection fails, use LibreTranslate
-    // Limit text length to avoid large payloads
-    const truncatedText = text.substring(0, 500);
-    
-    // Use a more reliable LibreTranslate instance
-    const response = await axios.post(
-      process.env.LANGUAGE_DETECTION_API_URL || 'https://libretranslate.com/detect',
-      {
-        q: truncatedText
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    ); 
 
-    // LibreTranslate returns an array of detected languages with confidence scores
-    const detections = response.data;
+    const response = await fetch("https://libretranslate.com/detect", {
+      method: "POST",
+      body: JSON.stringify({
+        q: text,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+
+    const detections = await response.json();
+    console.log(detections);
+
     if (detections && detections.length > 0) {
       const detectedLang = detections[0].language;
-      
-      // Check if the detected language is in our supported languages
-      if (Object.keys(SUPPORTED_LANGUAGES).includes(detectedLang)) {
+      if (SUPPORTED_LANGUAGES.hasOwnProperty(detectedLang)) {
         return detectedLang;
       }
     }
-    
-    // If no language detected or not in our supported languages, check if it's English text
+
     const englishPattern = /^[A-Za-z0-9\s.,?!;:'"\-()]+$/;
     if (englishPattern.test(text.substring(0, 100))) {
       return 'en';
     }
-    
-    // Default to English if all detection methods fail
+
     return 'en';
   } catch (error) {
     console.error('Language detection error:', error.message);
-    // Default to English if detection fails
     return 'en';
   }
 };
@@ -136,11 +132,11 @@ const commonPhrases = {
 // Fallback translation function
 export const getLocalTranslation = (text, targetLanguage) => {
   if (targetLanguage === 'en') return text;
-  
+
   if (commonPhrases[text] && commonPhrases[text][targetLanguage]) {
     return commonPhrases[text][targetLanguage];
   }
-  
+
   return text; // Return original if no translation found
 };
 

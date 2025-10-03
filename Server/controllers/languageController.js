@@ -7,7 +7,7 @@ export const detectTextLanguage = async (req, res) => {
   try {
     const { text } = req.body;
     
-    if (!text) {
+    if (!text || typeof text != "string") {
       return res.status(400).json({ 
         success: false, 
         message: 'Text is required' 

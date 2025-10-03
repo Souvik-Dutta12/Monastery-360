@@ -1,0 +1,126 @@
+{
+  "common": {
+    "welcome": "मोनास्ट्री 360 में आपका स्वागत है",
+    "explore": "अन्वेषण",
+    "about": "हमारे बारे में",
+    "contact": "संपर्क करें",
+    "login": "लॉग इन",
+    "signup": "साइन अप",
+    "language": "भाषा",
+    "search": "खोज",
+    "home": "होम",
+    "events": "कार्यक्रम",
+    "dashboard": "डैशबोर्ड",
+    "sikkim_heritage": "सिक्किम विरासत",
+    "view_all": "सभी देखें",
+    "learn_more": "अधिक जानें",
+    "get_started": "शुरू करें"
+  },
+  "Home": {
+    "Hero": {
+      "hero_title": "अनुभव करें",
+      "hero_location": "सिक्किम का",
+      "hero_sacred": "पवित्र",
+      "hero_heritage": "विरासत",
+      "hero_digitally": "डिजिटल रूप से",
+      "hero_subtitle": "200+ मठों का इमर्सिव 360° वर्चुअल टूर के माध्यम से अन्वेषण करें, प्राचीन पांडुलिपियों की खोज करें, और दुनिया के किसी भी कोने से जीवित बौद्ध परंपराओं से जुड़ें।"
+    },
+    "VR": {
+      "start_virtual_tour": "वर्चुअल टूर शुरू करें",
+      "view_monastery_map": "मठ का नक्शा देखें",
+      "virtual_tour": "आभासी यात्रा",
+      "book_visit": "यात्रा बुक करें"
+    },
+    "Featured": {
+      "featured_monasteries": "प्रमुख मठ"
+    },
+    "Events": {
+      "upcoming_events": "आगामी कार्यक्रम",
+      "view_calendar": "कैलेंडर देखें",
+      "event_date": "तिथि",
+      "event_location": "स्थान",
+      "event_details": "विवरण",
+      "register_now": "अभी पंजीकरण करें"
+    }
+  },
+  "Explore": {
+    "Map": {
+      "explore_map": "नक्शा अन्वेषण करें"
+    },
+    "Tour": {
+      "duration": "अवधि",
+      "difficulty": "कठिनाई",
+      "highlights": "विशेषताएं"
+    },
+    "Filters": {
+      "explore_title": "मठों का अन्वेषण करें",
+      "filter_by": "फ़िल्टर करें",
+      "location": "स्थान",
+      "type": "प्रकार",
+      "apply_filters": "फ़िल्टर लागू करें",
+      "clear_filters": "फ़िल्टर हटाएं"
+    }
+  },
+  "Contact": {
+    "Info": {
+      "contact_us": "संपर्क करें",
+      "contact_description": "मोनास्ट्री 360, हमारे वर्चुअल टूर, या डिजिटल अभिलेखागार के बारे में किसी भी प्रश्न के लिए हमसे संपर्क करें।",
+      "address": "पता",
+      "address_line1": "123 हेरिटेज स्ट्रीट",
+      "address_line2": "कल्चरल डिस्ट्रिक्ट, दिल्ली 110001",
+      "follow_us": "हमें फॉलो करें",
+      "contact_title": "संपर्क करें",
+      "contact_subtitle": "हम आपसे सुनना चाहेंगे"
+    },
+    "Form": {
+      "send_message": "हमें संदेश भेजें",
+      "first_name": "पहला नाम",
+      "last_name": "अंतिम नाम",
+      "first_name_placeholder": "आपका पहला नाम",
+      "last_name_placeholder": "आपका अंतिम नाम",
+      "your_name": "आपका नाम",
+      "your_email": "आपका ईमेल",
+      "your_message": "आपका संदेश",
+      "email_placeholder": "अपना ईमेल दर्ज करें",
+      "name": "नाम",
+      "email": "ईमेल",
+      "message": "संदेश"
+    }
+  },
+  "Auth": {
+    "Common": {
+      "password": "पासवर्ड",
+      "password_placeholder": "अपना पासवर्ड दर्ज करें",
+      "confirm_password": "पासवर्ड की पुष्टि करें",
+      "remember_me": "मुझे याद रखें",
+      "forgot_password": "पासवर्ड भूल गए?",
+      "no_account": "खाता नहीं है?",
+      "have_account": "पहले से ही खाता है?",
+      "create_account": "खाता बनाएं",
+      "already_account": "पहले से ही खाता है?"
+    },
+    "SignIn": {
+      "sign_in_account": "अपने खाते में साइन इन करें",
+      "signin_title": "साइन इन करें",
+      "signin_subtitle": "वापसी पर स्वागत है"
+    },
+    "SignUp": {
+      "create_account": "सिक्किम की विरासत का अन्वेषण करने के लिए अपना खाता बनाएं",
+      "signup_title": "साइन अप करें",
+      "signup_subtitle": "अपना खाता बनाएं"
+    }
+  },
+  "Dashboard": {
+    "Main": {
+      "dashboard_welcome": "आपके डैशबोर्ड पर स्वागत है",
+      "my_bookings": "मेरी बुकिंग",
+      "saved_monasteries": "सहेजे गए मठ",
+      "profile_settings": "प्रोफाइल सेटिंग्स"
+    }
+  },
+  "Footer": {
+    "footer_rights": "सर्वाधिकार सुरक्षित",
+    "privacy_policy": "गोपनीयता नीति",
+    "terms_of_service": "सेवा की शर्तें"
+  }
+}

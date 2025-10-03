@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+// import './i18n'
 import Home from './pages/Home'
 import Explore from './pages/Explore'
 import Dashboard from './pages/Dashboard'
