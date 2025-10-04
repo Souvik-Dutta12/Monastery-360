@@ -8,7 +8,7 @@ import {
 const router = Router();
 
 router.route("/session/create").post(createSession);
-router.route("/chat/history").get(getHistory);
-router.route("/chat/send").post(sendMessage);
+router.route("/chat/history").get(getHistory);//?sessionId=123...
+router.route("/chat/send").post(sendMessage);//{sessionId, message}
 
 export default router;

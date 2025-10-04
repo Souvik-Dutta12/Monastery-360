@@ -18,7 +18,7 @@ const tools = [
         },
     },
 ];
-export const generateContent = async (query, context = "General writing assistance.") => {
+export const generateContent = async (query, context = "General writing assistance.", stream = false) => {
     try {
         const currentDate = new Date().toLocaleDateString("en-US", {
             year: "numeric",
@@ -97,20 +97,28 @@ export const generateContent = async (query, context = "General writing assistan
         `
 
 
-        let fullResponse = "";
-        const response = await ai.models.generateContentStream({
-            model: "gemini-2.5-flash",
-            contents: prompt,
-            tools
-        });
+        if (stream) {
+            return ai.models.generateContentStream({
+                model: "gemini-2.5-flash",
+                contents: prompt,
+                tools
+            }); // async iterable
+        } else {
+            let fullResponse = "";
+            const response = await ai.models.generateContentStream({
+                model: "gemini-2.5-flash",
+                contents: prompt,
+                tools
+            });
 
-        for await (const chunk of response) {
-            if (chunk.text) {
-                process.stdout.write(chunk.text);
-                fullResponse += chunk.text;
-            };
+            for await (const chunk of response) {
+                if (chunk.text) {
+                    process.stdout.write(chunk.text);
+                    fullResponse += chunk.text;
+                };
+            }
+            return fullResponse;
         }
-        return fullResponse;
     } catch (error) {
         console.error("Error generating content:", error);
     }

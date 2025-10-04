@@ -3,7 +3,8 @@ import Nav from '../components/Nav'
 import { Link } from 'react-router-dom'
 import CarouselPage from '../components/CarouselPage'
 import Footer from '../components/Footer'
-
+import axios from 'axios'
+import ReactMarkdown from 'react-markdown';
 
 const Home = () => {
   // Refs for scroll animations
@@ -103,20 +104,110 @@ const Home = () => {
   const [chatInput, setChatInput] = useState('')
   const [chatMessages, setChatMessages] = useState([
     {
-      from: 'bot',
+      role: 'assistant',
       text: "Namaste! I'm your AI Cultural Guide. Ask me about monasteries, rituals, or events.",
     }
   ])
-  const sendChat = (text) => {
-    if (!text.trim()) return
-    const newMsgs = [...chatMessages, { from: 'user', text }]
-    setChatMessages(newMsgs)
-    setChatInput('')
-    // Simple bot echo for demo
-    setTimeout(() => {
-      setChatMessages((prev) => ([...prev, { from: 'bot', text: 'I\'ll help you with: ' + text }]))
-    }, 400)
+  const [sessionId, setSessionId] = useState(null);
+  const chatBodyRef = useRef();
+
+  // Scroll to bottom when new messages arrive
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [chatMessages]);
+
+  // Create a new session when component mounts
+  useEffect(() => {
+    const initSession = async () => {
+      try {
+        // Check if sessionId exists in sessionStorage
+        let storedSessionId = sessionStorage.getItem("chatSessionId");
+
+        if (!storedSessionId) {
+          const res = await axios.post("/chatbot/session/create");
+          storedSessionId = res.data.sessionId;
+          sessionStorage.setItem("chatSessionId", storedSessionId);
+        }
+
+        setSessionId(storedSessionId);
+
+        // Fetch chat history
+        const histRes = await axios.get(`/chatbot/chat/history?sessionId=${storedSessionId}`);
+
+        // Convert history to frontend format and ensure chronological order
+        const historyMessages = histRes.data.messages
+          .slice()
+          .reverse()   // oldest → newest
+          .map(m => ({
+            from: m.role === "user" ? "user" : "assistant",
+            text: m.text
+          }));
+
+        // Always add Namaste at the very top
+        setChatMessages([
+          {
+            from: "assistant",
+            text: "Namaste! I'm your AI Cultural Guide. Ask me about monasteries, rituals, or events."
+          },
+          ...historyMessages
+        ]);
+      } catch (err) {
+        console.error("Error initializing chat session:", err);
+      }
+    };
+
+    initSession();
+  }, []);
+
+
+
+
+const sendChat = async (message) => {
+  if (!message || !sessionId) return;
+
+  setChatMessages(prev => [...prev, { from: "user", text: message }]);
+  setChatInput("");
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/v1/chatbot/chat/send`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId, message }),
+    });
+
+    if (!res.body) throw new Error("No response body");
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let aiReply = "";
+
+    // Add empty assistant bubble
+    setChatMessages(prev => [...prev, { from: "assistant", text: "" }]);
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      aiReply += decoder.decode(value);
+      setChatMessages(prev => {
+        const updated = [...prev];
+        updated[updated.length - 1] = { from: "assistant", text: aiReply };
+        return updated;
+      });
+    }
+
+  } catch (err) {
+    console.error(err);
+    setChatMessages(prev => [...prev, { from: "assistant", text: "Sorry, something went wrong." }]);
   }
+};
+
+
+
+
+
   return (
     <div className=' w-full h-full ' >
       {/* HERO: Mountain background with light text */}
@@ -735,7 +826,7 @@ const Home = () => {
           </button>
         )}
         {chatOpen && (
-          <div className='cursor-pointer w-[280px] sm:w-[320px] md:w-[360px] h-[400px] sm:h-[440px] rounded-xl overflow-hidden shadow-2xl border border-amber-200 bg-white/95 backdrop-blur-md'>
+          <div className='cursor-pointer w-[280px] sm:w-[320px] md:w-[360px] h-[400px] sm:h-[420px] rounded-xl overflow-hidden shadow-2xl border border-amber-200 bg-white/95 backdrop-blur-md'>
             {/* Header */}
             <div className='px-3 sm:px-4 py-2 sm:py-3 bg-red-900 text-amber-100 flex items-center justify-between cursor-pointer' onClick={() => setChatOpen(false)}>
               <div className='flex items-center gap-2 sm:gap-3'>
@@ -752,28 +843,42 @@ const Home = () => {
               </button>
             </div>
             {/* Body */}
-            <div className='h-[250px] sm:h-[300px] overflow-y-auto px-3 sm:px-4 py-2 sm:py-3 space-y-2 sm:space-y-3'>
+            <div ref={chatBodyRef} className='h-[250px]  sm:h-[300px] overflow-y-auto px-3 sm:px-3 py-2 sm:py-3 space-y-2 sm:space-y-3'>
               {chatMessages.map((m, idx) => (
-                <div key={idx} className={`flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`${m.from === 'user' ? 'bg-amber-200 text-red-900' : 'bg-[#1d1903] text-amber-100'} rounded-lg px-3 py-2 max-w-[80%]`}>{m.text}</div>
+                <div key={idx} className={`flex  ${m.from === 'user' ? 'justify-end' : 'justify-center'}`}>
+                  <div className={`${m.from === 'user' ? 'bg-amber-200 text-red-900 rounded-tl-lg' : 'bg-[#1d1903] text-amber-200 w-full rounded-tr-lg'} rounded-b-lg px-3 py-2 max-w-[100%]`}>
+                    {m.from === "assistant" ? (
+                      <ReactMarkdown>{m.text}</ReactMarkdown>
+                    ) : (
+                      m.text
+                    )}
+                  </div>
+
                 </div>
               ))}
-              {/* Quick actions */}
-              <div className='grid grid-cols-2 gap-2'>
-                {[
-                  'Tell me about Rumtek Monastery',
-                  'Plan a 3-day monastery tour',
-                  'What festivals are happening soon?',
-                  'Best time to visit Sikkim?',
-                ].map((q) => (
-                  <button key={q} onClick={() => sendChat(q)} className='text-sm border border-amber-300 rounded-lg px-2 py-1 text-red-900 hover:bg-amber-100 text-left'>
-                    {q}
-                  </button>
-                ))}
-              </div>
+              {/* Quick actions (only show if no user messages yet) */}
+              {!chatMessages.some(m => m.from === "user") && (
+                <div className='grid grid-cols-2 gap-2'>
+                  {[
+                    'Tell me about Rumtek Monastery',
+                    'Plan a 3-day monastery tour',
+                    'What festivals are happening soon?',
+                    'Best time to visit Sikkim?',
+                  ].map((q) => (
+                    <button
+                      key={q}
+                      onClick={() => sendChat(q)}
+                      className='text-sm border border-amber-300 rounded-lg px-2 py-1 text-red-900 hover:bg-amber-100 text-left'
+                    >
+                      {q}
+                    </button>
+                  ))}
+                </div>
+              )}
+
             </div>
             {/* Input */}
-            <div className='px-2 sm:px-3 pb-2 sm:pb-3'>
+            <div className='px-2 mt-2 sm:px-3 '>
               <div className='flex items-center gap-1 sm:gap-2'>
 
                 <input
@@ -783,7 +888,7 @@ const Home = () => {
                   className='flex-1 border border-amber-300 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-red-900 bg-white/80 text-xs sm:text-sm'
                   placeholder='Ask about monasteries...'
                 />
-                <button onClick={() => sendChat(chatInput)} className='h-8 w-8 sm:h-10 sm:w-10 rounded-lg bg-red-900 text-amber-100 hover:bg-red-800 flex items-center justify-center'>
+                <button onClick={() => sendChat(chatInput)} className='h-8 w-8 sm:h-10 sm:w-10 rounded-lg cursor-pointer bg-red-900 text-amber-100 hover:bg-red-800 flex items-center justify-center'>
                   <i className='ri-send-plane-2-line text-sm sm:text-base'></i>
                 </button>
               </div>

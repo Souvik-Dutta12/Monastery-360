@@ -7,7 +7,7 @@ const MAX_HISTORY = 20;
 
 export const createSession = async (req, res) => {
   const sessionId = uuidv4();
-  res.json({ sessionId });
+  return res.status(201).json({ sessionId, message:"Session created successfully" });
 }; 
 
 export const getHistory = async (req, res) => {
@@ -16,7 +16,7 @@ export const getHistory = async (req, res) => {
 
   const key = `session:${sessionId}:messages`;
   const messages = await redis.lrange(key, 0, -1);
-  res.json({ messages: messages.map((m) => JSON.parse(m)) });
+  return res.status(200).json({ messages: messages.map((m) => JSON.parse(m)) , msg :"Messages fetch successfully"});
 };
 
 export const sendMessage = async (req, res) => {
@@ -32,7 +32,7 @@ export const sendMessage = async (req, res) => {
   await redis.expire(key, SESSION_TTL);
 
   try {
-    // Generate AI response
+    // Build context
     const historyMessages = await redis.lrange(key, 0, MAX_HISTORY - 1);
     const context = historyMessages
       .reverse()
@@ -40,16 +40,29 @@ export const sendMessage = async (req, res) => {
       .map((m) => `${m.role === "user" ? "User" : "Assistant"}: ${m.text}`)
       .join("\n");
 
-    const reply = await generateContent(message, context);
+    // Headers for streaming
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Connection", "keep-alive");
 
-    // Save assistant reply
-    await redis.lpush(key, JSON.stringify({ role: "assistant", text: reply }));
+    let fullReply = "";
+    const aiStream = await generateContent(message, context, true);
+
+    for await (const chunk of aiStream) {
+      if (chunk.text) {
+        fullReply += chunk.text; // accumulate full message
+        res.write(chunk.text);   // stream to frontend
+      }
+    }
+
+    // Save full AI message to Redis after streaming
+    await redis.lpush(key, JSON.stringify({ role: "assistant", text: fullReply }));
     await redis.ltrim(key, 0, MAX_HISTORY);
     await redis.expire(key, SESSION_TTL);
 
-    res.json({ reply });
+    res.end();
   } catch (error) {
-    console.error("Error generating AI response:", error);
-    res.status(500).json({ error: "Failed to generate AI response" });
+    console.error("AI streaming error:", error);
+    res.end("Sorry, something went wrong.");
   }
 };
