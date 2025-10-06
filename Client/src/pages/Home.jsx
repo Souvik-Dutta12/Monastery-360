@@ -172,7 +172,7 @@ const sendChat = async (message) => {
 
   try {
     setLoading(true);
-    const res = await fetch(`http://localhost:5000/api/v1/chatbot/chat/send`, {
+    const res = await fetch(`https://monastery-360.onrender.com/api/v1/chatbot/chat/send`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sessionId, message }),
