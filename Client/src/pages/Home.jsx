@@ -1,7 +1,6 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react'
 import Nav from '../components/Nav'
 import { Link } from 'react-router-dom'
-import CarouselPage from '../components/CarouselPage'
 import Footer from '../components/Footer'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown';
@@ -109,6 +108,7 @@ const Home = () => {
     }
   ])
   const [sessionId, setSessionId] = useState(null);
+  const [loading, setLoading] = useState(false);
   const chatBodyRef = useRef();
 
   // Scroll to bottom when new messages arrive
@@ -171,6 +171,7 @@ const sendChat = async (message) => {
   setChatInput("");
 
   try {
+    setLoading(true);
     const res = await fetch(`http://localhost:5000/api/v1/chatbot/chat/send`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -185,7 +186,7 @@ const sendChat = async (message) => {
 
     // Add empty assistant bubble
     setChatMessages(prev => [...prev, { from: "assistant", text: "" }]);
-
+    setLoading(false);
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
@@ -200,6 +201,7 @@ const sendChat = async (message) => {
 
   } catch (err) {
     console.error(err);
+    setLoading(false);
     setChatMessages(prev => [...prev, { from: "assistant", text: "Sorry, something went wrong." }]);
   }
 };
@@ -856,6 +858,22 @@ const sendChat = async (message) => {
 
                 </div>
               ))}
+              
+
+              {/* Loader Animation */}
+  {loading && (
+    <div className="flex justify-start">
+      <div className="bg-[#1d1903] text-amber-200 rounded-lg px-3 py-2 flex items-center">
+        <div className="typing">
+          <span className="dot"></span>
+          <span className="dot"></span>
+          <span className="dot"></span>
+        </div>
+      </div>
+    </div>
+  )}
+
+
               {/* Quick actions (only show if no user messages yet) */}
               {!chatMessages.some(m => m.from === "user") && (
                 <div className='grid grid-cols-2 gap-2'>
@@ -877,6 +895,8 @@ const sendChat = async (message) => {
               )}
 
             </div>
+
+
             {/* Input */}
             <div className='px-2 mt-2 sm:px-3 '>
               <div className='flex items-center gap-1 sm:gap-2'>
